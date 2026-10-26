@@ -1,0 +1,22 @@
+{
+  "whitelistVerified": false,
+  "reviewerRepositoryAccess": false,
+  "realPerpsOrder": false,
+  "nativeProtectionReadback": false,
+  "demoReady": true,
+  "xPost1": null,
+  "xPost2": null,
+  "buildUrl": null,
+  "demoScope": "Local replay with real desktop browser captures only; not live-chain acceptance",
+  "readinessDocument": "docs/SUBMISSION_READINESS.md",
+  "feedback": {
+    "index": "feedback/README.md",
+    "reports": [
+      "feedback/001-sdk-ws-eai-again.md",
+      "feedback/002-deadline-timezone-conflict.md"
+    ],
+    "submitted": false,
+    "accepted": false,
+    "dedup": "NOT_RUN"
+  }
+}

@@ -1,0 +1,40 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v5.0.5 /workspace/scratch/c01bd6fe117d/dreamshield
+
+ ❯ tests/unit/argon-protocol.test.ts (14 tests | 1 failed) 23ms
+   ❯ Argon P2 independent verification (offline only) (14)
+     × rejects cancel absence proof from a different factory-mapped registry 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects cancel absence proof from a different factory-mapped registry
+AssertionError: expected { state: 'Applied', …(2) } to match object { state: 'NeedsReview', …(1) }
+(9 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "reason": "CANCEL_SNAPSHOT_SCOPE_MISMATCH",
+-   "state": "NeedsReview",
++   "reason": "CANONICAL_CANCEL_EVENT_AND_ABSENCE_READBACK; no fill claim",
++   "state": "Applied",
+  }
+
+ ❯ tests/unit/argon-protocol.test.ts:73:63
+     71|   const read=mocks.rpc.readContract.getMockImplementation()!;
+     72|   mocks.rpc.readContract.mockImplementation(async args=>args.functionN…
+     73|   expect(await reconcileOperation({...op,draft:cancelDraft})).toMatchO…
+       |                                                               ^
+     74|  });
+     75|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 passed (14)
+   Start at  12:18:19
+   Duration  506ms (import 82%, transform 12%, tests 6%, worker 1%)
+

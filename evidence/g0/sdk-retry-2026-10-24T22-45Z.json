@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-24T22:45:38.126Z",
+  "readOnly": true,
+  "transactionsSent": 0,
+  "status": "failed",
+  "error": "@somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed",
+  "cause": "getaddrinfo EAI_AGAIN api.hideki2.infra.testnet.somnia.network"
+}

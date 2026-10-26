@@ -1,0 +1,18 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> dreamshield@0.1.0 submission:check
+> node --import tsx scripts/submission-check.ts
+
+{
+  "status": "BLOCKED",
+  "missing": [
+    "whitelistVerified",
+    "reviewerRepositoryAccess",
+    "realPerpsOrder",
+    "nativeProtectionReadback",
+    "xPost1",
+    "xPost2"
+  ],
+  "submitted": false,
+  "buildUrl": null
+}

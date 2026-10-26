@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-10-25T03:10:20.018325+00:00",
+  "requestedModel": "gemini-4-argon-high",
+  "inputSHA256": "18239901747aa154e714c7b06d19616817b89db7e75be449175f4f13345e8c64",
+  "automaticRetry": false,
+  "httpStatus": 200,
+  "modelVersion": null,
+  "usageMetadata": {
+    "promptTokenCount": 23447,
+    "candidatesTokenCount": 6412,
+    "totalTokenCount": 29859
+  },
+  "elapsedSeconds": 77.892
+}

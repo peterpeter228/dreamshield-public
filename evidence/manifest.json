@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "project": "DreamShield",
+  "status": "offline-remediated-live-blocked",
+  "codeCommit": "605e3eca4a6513dd0023e3221aeed7e260eb61d6",
+  "basedOnRemoteCommit": "2d94f34d69a0b45b8f8b074b7c8c154661e279ef",
+  "codeIdentity": "Historical 2026-10-25 remediation checkpoint, identified by the source digests below; not the current Phase1 source. See phase1Evidence for the later offline verification and build fingerprints.",
+  "capturedAt": "2026-10-25T03:21:20.489544+00:00",
+  "inventoryScope": "Retained distribution artifact paths and SHA-256 values refreshed on 2026-10-27 from final raw bytes; capturedAt, sourceFiles, code/build/input fingerprints, check counts and persistence identities remain historical original-repository records, not current-source or new-copy verification.",
+  "phase1Evidence": "evidence/phase1-2026-10-26/verification.json",
+  "sdk": {
+    "name": "@somnia-chain/markets-sdk",
+    "installedVersion": "0.32.1",
+    "lockfileIntegrity": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21"
+  },
+  "network": {
+    "expectedChainId": 50383,
+    "observedChainId": 50383,
+    "observationAt": "2026-10-24T22:28:16.300Z",
+    "currentProbeStatus": "failed",
+    "currentProbeAt": "2026-10-24T22:50:12.271Z",
+    "owner": null,
+    "pool": null
+  },
+  "checks": [
+    {
+      "name": "typecheck",
+      "status": "passed"
+    },
+    {
+      "name": "offline-tests",
+      "status": "passed",
+      "count": 119,
+      "report": "evidence/tests/argon-2026-10-25/argon-full-tests.txt"
+    },
+    {
+      "name": "production-build",
+      "status": "passed",
+      "warning": "Large lazy protocol chunk"
+    },
+    {
+      "name": "desktop-replay-browser",
+      "status": "historical-scoped-pass-not-rerun-for-current-owner-protocol-change",
+      "report": "tests/browser/QA-2026-10-24.md"
+    },
+    {
+      "name": "mobile-tablet-browser",
+      "status": "historical-scoped-pass-not-rerun-for-current-owner-protocol-change",
+      "report": "tests/browser/RESPONSIVE_QA.md",
+      "actualCssWidths": [
+        768,
+        485
+      ],
+      "zoomedDesktopCssWidth": 323,
+      "zoomPercent": 150,
+      "physicalMobileVerified": false,
+      "exact375At100PercentVerified": false
+    },
+    {
+      "name": "live-owner-lifecycle",
+      "status": "not-run"
+    },
+    {
+      "name": "argon-review",
+      "status": "not-verified-outcome-uncertain"
+    },
+    {
+      "name": "independent-review",
+      "status": "performed-remediated",
+      "report": "review/INDEPENDENT_REVIEW.md"
+    },
+    {
+      "name": "second-review",
+      "status": "performed-conservative-remediation",
+      "report": "review/REMEDIATION_RECHECK.md"
+    },
+    {
+      "name": "argon-static-review-independent-verification",
+      "status": "baseline-reviewed-findings-remediated-offline",
+      "report": "review/ARGON_VERIFICATION_2026-10-25.md",
+      "postFixArgonReview": false
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "apps/server/app.ts",
+      "sha256": "3337d02ac2bcda5e1728362739d5e5c6f653a618145658dcc0f67240e2d675dc"
+    },
+    {
+      "path": "apps/server/config.ts",
+      "sha256": "7965601918af7ddb66ad6bf04483c0ce48669db4d62bbb100d531086c785b4f4"
+    },
+    {
+      "path": "apps/server/index.ts",
+      "sha256": "daa7c6f427e22fd81cda4c5c8681eda77909eb1d1d1a48bf3dd79ba9e2351d4d"
+    },
+    {
+      "path": "apps/web/design/DESIGN.md",
+      "sha256": "da2f3aef1352ee02a1363caf8e11c7d432937f139e8a2ef23d3192b4686588e0"
+    },
+    {
+      "path": "apps/web/index.html",
+      "sha256": "60f176deead259c33a1135767c943a5a2f429bef762cd9460140e7186898a4ac"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "2664cc0f2e1d911661aea6cb32c856880b47c73f38e7d40f12d9261b62ae1813"
+    },
+    {
+      "path": "apps/web/src/OwnerPanel.tsx",
+      "sha256": "3263f152ff4ed55fe5d42ee8206c3e4b69dc1b988b52fe0205506ee4bd35b13c"
+    },
+    {
+      "path": "apps/web/src/Protection.tsx",
+      "sha256": "aa9798f2e96a915410db1a18f78dce3b215327446ba1f63d95a281479b1db0cc"
+    },
+    {
+      "path": "apps/web/src/Repair.tsx",
+      "sha256": "e2e95ee8895ddddec4ac8e442e2830ae00f14c4136d11021845dc77305cb1266"
+    },
+    {
+      "path": "apps/web/src/Timeline.tsx",
+      "sha256": "ea501eb8e05506c33ac91842702e504f0edd79b0d18f5ab0185a17ddff6f5c8f"
+    },
+    {
+      "path": "apps/web/src/env.d.ts",
+      "sha256": "35d26ea66c86da9701e4f4b467913481ffeae910761cea34c775c5dacb7f8eaa"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "2aa9ecf94a4ffaf931ce8f12aee7349bf20076a11f9abe363ddc0df7365dcee2"
+    },
+    {
+      "path": "apps/web/src/owner.ts",
+      "sha256": "c549441a04937b88c59087b8ee3bff310bc5d41ea8ce39e8c437594fb4b5de09"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "sha256": "71afecc1931c702ff0516201f8ffe2af956552af6e37a8c5aea428057cde242b"
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "fe512918ba6bd43caae15b2b709766b537b49942e575690f54048925c83e7770"
+    },
+    {
+      "path": "packages/domain/desk.ts",
+      "sha256": "b189418d269348c710adb133cf579c1e81ce1ce133a86e80e984fab2d7281195"
+    },
+    {
+      "path": "packages/domain/index.ts",
+      "sha256": "5c6adcb8aa40efac05ebf94d8b5651e2a6a2a003c54eed0ad1fcf6c25b600514"
+    },
+    {
+      "path": "packages/domain/types.ts",
+      "sha256": "d1235a8be44c57f139a5b0801b88f0304b39a1a29d295fbdf69fd42e0b528c52"
+    },
+    {
+      "path": "packages/protocol/SDK-LICENSE.txt",
+      "sha256": "2319aed531f8f75475fc1a5ee5a3933b256afb1fa7eb917dfafec8916896c07d"
+    },
+    {
+      "path": "packages/protocol/index.ts",
+      "sha256": "3c514ffd4b65eff4a97ff401b2d027e9f5901eeab8de7de6a646079a8b2b704e"
+    },
+    {
+      "path": "packages/protocol/sdk-abi.ts",
+      "sha256": "24a1b31f7740add41898b58104fe98ddfd4f22437a6e23dc8aeb01d49d064084"
+    },
+    {
+      "path": "packages/storage/index.ts",
+      "sha256": "0a8d18bece95f7cafa6a212e093ce0343247a1d10939f7351f959099d9fbea51"
+    },
+    {
+      "path": "scripts/doctor-readonly.ts",
+      "sha256": "a2c842cbaa5331cd9262c247b32655ee885aed541f4efd7ee92d2bd7ae5d42c4"
+    },
+    {
+      "path": "scripts/live-testnet.ts",
+      "sha256": "b16cec97c565c9fdb574b9c1263cabce4b4464232e6271aff21e6504b58ee370"
+    },
+    {
+      "path": "scripts/submission-check.ts",
+      "sha256": "b2200fcd245bfa77e9c004a200e1ac2669a53378921336842d0578e1286719fa"
+    },
+    {
+      "path": "scripts/verify-evidence.ts",
+      "sha256": "df7b0dd19b8cf6db7a1bf864c3e275223b23a4598c1bc77bfc4958c3aa1a5cec"
+    },
+    {
+      "path": "tests/browser/ACCEPTANCE.md",
+      "sha256": "da6319dd77016417f083de506964393413c197d37531b4a271176bdb25f482f5"
+    },
+    {
+      "path": "tests/browser/QA-2026-10-24.md",
+      "sha256": "49a4fe8ac4cbf7b47e422507b12b4caaf2269e9e1060156839cf19743d6c5540"
+    },
+    {
+      "path": "tests/integration/api.test.ts",
+      "sha256": "9ee342d14d57ef21fed12dad1bcfc4cda7a0885b53885fe648b04a16c8931bac"
+    },
+    {
+      "path": "tests/integration/desk-assessment.test.ts",
+      "sha256": "436fe8dcfebfbb6fb073180be5ba0d24b2cd017bd333e554f9e1f520b97fdadb"
+    },
+    {
+      "path": "tests/integration/journal.test.ts",
+      "sha256": "89a2235c7e3e56fbd65e2fd88a17593fc4a577190acfc3680f2a2a53af3b899d"
+    },
+    {
+      "path": "tests/integration/owner-recovery-api.test.ts",
+      "sha256": "64b3df66480da092c31f9379833490b66bb4b0cc645b1eb5fd583b182e22984c"
+    },
+    {
+      "path": "tests/unit/domain.test.ts",
+      "sha256": "c2d851a06eea7f1f9fcd1e8bd42c0a0859706ae1e0ab13d7f52e7678debf452d"
+    },
+    {
+      "path": "tests/unit/protocol.test.ts",
+      "sha256": "2fb1b43a2beab399efb621d51e6580d01eb0eb235e103d7a6c734811d93f2f97"
+    },
+    {
+      "path": "tests/unit/recovered-provenance.test.ts",
+      "sha256": "ad2b6613813a629b3d22cd2a5d88e76cc3d7ff26314b0047adbdd9cb45ec770a"
+    },
+    {
+      "path": "fixtures/scenarios.ts",
+      "sha256": "566eb859f36cf6b06638eb0d488ef4d06d1a16a3d97349a0729f72348dd80fcb"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ac2a63bdd9dedeed6bc29bbbf226fce4b8d1525c2e49b17bf747b1c33ce7f69f"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "2b2f61dda26f6b893464826ca7e243d54d6aac4692db7f52fc2fcc858d1174bc"
+    },
+    {
+      "path": "tsconfig.server.json",
+      "sha256": "27a48cedb16c9bd730cdf2f65b3d5bc62164e2ad57020e359f641240f09c5695"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "43223999dc624bb0948516a1c7b61c94063c11c059829b4dc77bb6ec2ec3be3d"
+    },
+    {
+      "path": ".nvmrc",
+      "sha256": "d9f318747a126ce2247661af67852b185def7789492eabfad7bba322be087c33"
+    },
+    {
+      "path": "tests/browser/RESPONSIVE_QA.md",
+      "sha256": "fb2222ed6bf7cb1cd342687f32c3a266a82ed2266c15114994a83b55577d21a6"
+    },
+    {
+      "path": "packages/protocol/transaction-abi.ts",
+      "sha256": "22bae13fee63fce31f3b1e7560f0d4355d18bd65a61c7b4a4378e27c99da3cf6"
+    },
+    {
+      "path": "tests/unit/argon-hash-provenance.test.ts",
+      "sha256": "62b73342584548438209407e2076afdecd6935c0262b11feca5c44e0d46fe49b"
+    },
+    {
+      "path": "tests/unit/argon-protocol.test.ts",
+      "sha256": "fc72aa7b3e094f52795f40e13c6a881d4dd185214c78ac3d5262ef381ff7e87a"
+    },
+    {
+      "path": "tests/unit/transaction-encoding.test.ts",
+      "sha256": "d108340778b3f4fb07980ef2e988d5fe82e94e4a09a0be27b845d275b8ce5c16"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/browser/connection-refused.jpg",
+      "sha256": "df11d31b4edf8c92f7a0c713c030cdd4cc14eaad6c3b41deb893fe9416d1917d"
+    },
+    {
+      "path": "evidence/browser/console-log.json",
+      "sha256": "c054411d9af54f2682f14477b9596a676303582f7e795b7d5ec62a823a1f8e62"
+    },
+    {
+      "path": "evidence/browser/doctor-cloud-terminal.log",
+      "sha256": "41d83059376eda4e74e53ed30d3f8e27a88b1c6d6bf59893754f24a4ba7fb980"
+    },
+    {
+      "path": "evidence/browser/downloaded-final-evidence.json",
+      "sha256": "b00d2bf71b6db5128b0d390cbb6f916309af510341f98d6588e7814205f12a03"
+    },
+    {
+      "path": "evidence/browser/downloaded-protected-evidence.json",
+      "sha256": "fe94977f3814bdf570d5fbdfca406ff7bdb311e9b235900312ae2026e0cbcc39"
+    },
+    {
+      "path": "evidence/browser/missing-final.png",
+      "sha256": "a32ed0c506157565e277ef3c1b0849d8e5a671920ff6e305cd05058ac4f81fb5"
+    },
+    {
+      "path": "evidence/browser/preview.png",
+      "sha256": "eab7e040e13b270aab081347c9c718f21d091f3b2f3948f38cb5361932987e02"
+    },
+    {
+      "path": "evidence/browser/protected-final.png",
+      "sha256": "133622147ca563b471cbc18dfbd5a3d77f7aae1c9515f3fe03547943ea2c3752"
+    },
+    {
+      "path": "evidence/browser/protected-fresh.png",
+      "sha256": "dca4a0358747006a63ad0a586692393366ae95953be2ca48c083dd1842847d4b"
+    },
+    {
+      "path": "evidence/browser/protected.png",
+      "sha256": "8871c60f96fa238c6bafe4eaa1f943b99ccda26419c2b2fdf116809bc24ceac0"
+    },
+    {
+      "path": "evidence/browser/read-failure.png",
+      "sha256": "3790a7977cb53725bfac395365ccc194f1721735898b6c7cfa9f6a370fbcd139"
+    },
+    {
+      "path": "evidence/browser/scenario-dom-final.json",
+      "sha256": "00665651d856815150374c31bc86b1ee4a57aaa13f1df579a949f64f0e5e921e"
+    },
+    {
+      "path": "evidence/browser/scenario-dom.json",
+      "sha256": "0023350d710c830da9c2f7fa9f7d5e5b0e8d1d3332e0943cb28b089f15310a93"
+    },
+    {
+      "path": "evidence/browser/short-preview-final.png",
+      "sha256": "63a2c91c782420f318de5865f3e80c54c49960d117331eb6ba89bd7727f9afe8"
+    },
+    {
+      "path": "evidence/browser/source-final-sha256.txt",
+      "sha256": "dc011d370d616bf10ff8f15a13df8364a2f8544cfcfd2f62cbdbd285926007f5"
+    },
+    {
+      "path": "evidence/browser/source-sha256.txt",
+      "sha256": "540c8d98794ebea7591986e3b5c30e562c51baf1bae37185bcb66058dc79e8c4"
+    },
+    {
+      "path": "evidence/browser/stale-final.png",
+      "sha256": "def18b61fdbcc2b25b2b7cbfd15e5358b9f7ca00df90f71657c76ea286211e4f"
+    },
+    {
+      "path": "evidence/browser/stale.png",
+      "sha256": "cb96df58cdbad7508613c763bcdac60e3b46c925fe83b387bfabc2d20fe71834"
+    },
+    {
+      "path": "evidence/g0/SDK_DIAGNOSIS.md",
+      "sha256": "e4774571ccfe20645567c83e426dd5212bc77ca31358a13d208e42727c623015"
+    },
+    {
+      "path": "evidence/g0/doctor-2026-10-24T22-23-54.860Z.json",
+      "sha256": "fc78673b3b76d7624d0c55058abed2b986ea76523dc8b8568303770ce8bdf4aa"
+    },
+    {
+      "path": "evidence/g0/doctor-2026-10-24T22-28-16.300Z.json",
+      "sha256": "8fe4906613b366cbfb7fdfa69aad9585a274202253661aaee4565c589152f563"
+    },
+    {
+      "path": "evidence/g0/doctor-2026-10-24T22-50-12.271Z.json",
+      "sha256": "0fd468377e2dd27e913df9ccb5b1fabaacdd803123895b260fd2613f7698bca5"
+    },
+    {
+      "path": "evidence/g0/sdk-diagnostic-2026-10-24T22-44Z.txt",
+      "sha256": "c3594a4cc3430e8fc233ffa70e26b81d3770b8dd1f1c85cc1b23c3f3dd22df22"
+    },
+    {
+      "path": "evidence/g0/sdk-retry-2026-10-24T22-45Z.json",
+      "sha256": "dd7c58aa38fe9738affee19c1d349d54e0e85ed151b37e0a54eabd34edd64f4b"
+    },
+    {
+      "path": "evidence/review/ARGON_STATUS.md",
+      "sha256": "b2a633172f8e75a3115567f3e1346c0e2242dd9fd18622e9d2410ee24a2de15a"
+    },
+    {
+      "path": "evidence/submission.json",
+      "sha256": "162b2335b446db59fec9001d11d0881de5fa1ffa8b9a4e7a2bcaa756abdf768c"
+    },
+    {
+      "path": "evidence/tests/evidence-check-2026-10-24.txt",
+      "sha256": "b3450e257ccc3b7e038111855b530cd840b4de292ee88b7940c7fa12d3537fe9"
+    },
+    {
+      "path": "evidence/tests/offline-2026-10-24.txt",
+      "sha256": "7ed57478601efe0dd4aa4696094663fcbb452578fb9626930f6dab49db8713e3"
+    },
+    {
+      "path": "evidence/tests/submission-check-2026-10-24.txt",
+      "sha256": "70c918ad93475891a06e2a29bf676cf474cb62647688624f5e61c28503094cf9"
+    },
+    {
+      "path": "evidence/review/argon-final/receipt.json",
+      "sha256": "77329f6750da3a8895c9ae563e15d37519b3850d72a2019ae2e24d0963fac075"
+    },
+    {
+      "path": "evidence/browser/responsive-focus485.png",
+      "sha256": "543e5955a670294ddcaa0e29bf091a7976c0be28d31c24cb3b8683eb19e4e4f6"
+    },
+    {
+      "path": "evidence/browser/responsive-narrow485.png",
+      "sha256": "abf8e5b7ae273974ab19ae0fd5aed6071797a745b0251cd2d85f1c9fc6154c5c"
+    },
+    {
+      "path": "evidence/browser/responsive-tablet768.png",
+      "sha256": "30a555402eeffa589cbf963b164c970be0f7a6c4df43378f079cfa0b56142d8f"
+    },
+    {
+      "path": "evidence/browser/responsive-validation.json",
+      "sha256": "df530f2f3a15a29cb3c475639b597803450acde739ce1ffec32008d65456fc42"
+    },
+    {
+      "path": "evidence/browser/responsive-zoom150-css323.png",
+      "sha256": "10a9361b49f1363a2801c73f836bcc16d844c440ed5151ee6edb1a03d6e5221a"
+    },
+    {
+      "path": "evidence/browser/responsive-zoom150-evidence323.png",
+      "sha256": "f005f8003672f69310bf030540f7ec50f4f3b149b5f836a7ad56014524b8a7af"
+    },
+    {
+      "path": "evidence/browser/responsive-zoom150-native-evidence.jpg",
+      "sha256": "ba3c32d9f61365cd15ddaccbe70a98ff2356ce60a4eb4e9e219846edcbb0bb53"
+    },
+    {
+      "path": "evidence/browser/responsive-zoom150-native-top.jpg",
+      "sha256": "24ec8938d2596522067c8612b189370cb715115cdd4d5d4e1ef56e29a108256b"
+    },
+    {
+      "path": "evidence/browser/responsive-zoom150-native.jpg",
+      "sha256": "44d630808e12fc8899cad1175ba208031602d553d6f9ad8eb54c51b4e43ea545"
+    },
+    {
+      "path": "evidence/review/argon-2026-10-25/receipt.json",
+      "sha256": "6e4203993ddef26a4ac2be211a4d21695d692dc0a3c2aa4aaf77fd8278103410"
+    },
+    {
+      "path": "evidence/review/argon-2026-10-25/response.json",
+      "sha256": "3addd3eb5172cd8aca882560b8af6c2461e99908152be8c287ec1a67c18acdaa"
+    },
+    {
+      "path": "evidence/review/argon-2026-10-25/raw-review.md",
+      "sha256": "b802fed7647177c8766ff4012d11feaab8eafbcba58bc5432040b0ca995a9f56"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-protocol-after.txt",
+      "sha256": "f3b151ccbe9d77d28b74b7383d0d879edf17778b47e995f6e8448bf1ac151040"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-hash-before.txt",
+      "sha256": "f8c1fe1e194d683af4e57c4782dfc866ce8952fc61314ce4a6e1ee212a777c3e"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-full-tests.txt",
+      "sha256": "921d948caea7f360c9ef464130581e116befb8ba6aee205bd27c689f6965b4c9"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-typecheck.txt",
+      "sha256": "d171d2815cbf83382ee48ca700a42e991f3ac67d5c603d3d090550707c5f9b2a"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-protocol-before.txt",
+      "sha256": "b9d10acea68aafb5a6dd874d368f341d2d850b1f641e822b3166149f0b1d4c96"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-build.txt",
+      "sha256": "cc231690a4a860cfc847dfb8ab7aa804dc105752a9d8f8044d3f851933ac6fa6"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-hash-after.txt",
+      "sha256": "2e026e90c88afd0d1d79a05d2c9747fe6900e436590fb1873417cb96e7883f66"
+    },
+    {
+      "path": "evidence/tests/argon-2026-10-25/argon-cancel-readback-before.txt",
+      "sha256": "89cc90116de6d9f9b4df59a3d08e175763c6e8a3aa8d0ca14af7d2135fdba052"
+    },
+    {
+      "path": "review/ARGON_VERIFICATION_2026-10-25.md",
+      "sha256": "c377dc8d653e8e39997429fa4b5327a1a27c95612929a0f00f1e4501674aa14d"
+    }
+  ],
+  "transactions": [],
+  "deployment": null,
+  "knownLimitations": [
+    "Current RPC/SDK network unavailable; prior observations historical",
+    "No isolated owner or real order/SL lifecycle",
+    "Recovered hash provenance cannot automatically unlock operation",
+    "Physical mobile/touch, exact375px at100% and real wallet paths not accepted",
+    "No whitelist verification, X publication or formal submission",
+    "Argon baseline static result is not a formal audit or post-fix external approval",
+    "Legacy unanchored drafts and same-second timing ambiguity retain lock",
+    "Trusted local-client wallet-result boundary; no cryptographic wallet provenance",
+    "Current owner/protocol change tested offline; historical browser artifacts not rerun"
+  ],
+  "formalSubmission": null,
+  "localInventoryNotes": "Browser inventory includes generated dist outputs and local design concept.png, intentionally not committed; implementation source digests are listed separately.",
+  "persistence": {
+    "status": "verified-code-commit-readback",
+    "codeCommit": "605e3eca4a6513dd0023e3221aeed7e260eb61d6",
+    "receipt": "evidence/review/argon-2026-10-25/persistence.json",
+    "force": false,
+    "verifiedAt": "2026-10-25T03:24:52.031723+00:00"
+  },
+  "previousTestedCodeCommit": "de3cfe50b5517278e72a4b9a06806af0f22cc342"
+}

@@ -1,0 +1,1 @@
+console.error('BLOCKED_LIVE: This command never loads a private key or broadcasts. Use the reviewed local owner browser workflow with an isolated testnet account after prerequisites and wallet confirmations. See docs/LIVE_HANDOFF.md.');process.exitCode=2;

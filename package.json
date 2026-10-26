@@ -1,0 +1,39 @@
+{
+  "name": "dreamshield",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.22.1"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "vite build && tsc -p tsconfig.server.json",
+    "test": "vitest run --root .",
+    "dev": "node --import tsx apps/server/index.ts",
+    "demo:replay": "APP_MODE=replay node --import tsx apps/server/index.ts",
+    "doctor:readonly": "node --import tsx scripts/doctor-readonly.ts",
+    "verify:evidence": "node --import tsx scripts/verify-evidence.ts",
+    "test:judge": "npm run typecheck && npm test && npm run build && npm run verify:evidence -- evidence/manifest.json --allow-incomplete",
+    "submission:check": "node --import tsx scripts/submission-check.ts",
+    "live:testnet": "node --import tsx scripts/live-testnet.ts"
+  },
+  "dependencies": {
+    "@somnia-chain/markets-sdk": "0.32.1",
+    "express": "5.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "viem": "2.57.11"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.6",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

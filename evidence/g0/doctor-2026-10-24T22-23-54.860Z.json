@@ -1,0 +1,231 @@
+{
+  "startedAt": "2026-10-24T22:23:54.860Z",
+  "readOnly": true,
+  "transactionsSent": 0,
+  "ownerConfigured": false,
+  "poolConfigured": false,
+  "signerConfigured": false,
+  "liveOwnerGate": "BLOCKED_NO_USER_SIGNER",
+  "fixedBlockAcrossSdkCalls": false,
+  "versions": {
+    "node": "v24.22.1",
+    "npm": "11.9.0",
+    "sdk": "0.32.1",
+    "viem": "2.57.11",
+    "lockSha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21"
+  },
+  "http": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "endpoint": "https://api.hideki2.infra.testnet.somnia.network",
+      "chainId": 50383,
+      "block": "32285430",
+      "blockHash": "0xcf6ae5422e2c2b6a4f9e60770103fedef7ce34189662356b0960a14d820f417b",
+      "blockTimestamp": "1792880645",
+      "lagSeconds": 1
+    }
+  },
+  "websocket": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "endpoint": "wss://api.hideki2.infra.testnet.somnia.network/ws",
+      "chainId": 50383,
+      "block": "32285437",
+      "blockHash": "0x6451834e1296ae623494892ad44c0e33c72a904ef1c4385c5cbed9e342ac7039",
+      "blockTimestamp": "1792880646",
+      "lagSeconds": 0
+    }
+  },
+  "systemBytecode": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "marginBank": {
+        "address": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+        "bytes": 176,
+        "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+      },
+      "collateral": {
+        "address": "0xed7993A74dAe1e6656B704A424DcD8711aAf4F72",
+        "bytes": 2840,
+        "sha256": "71a71c9e1d879fdc0ce5d209ae470c539c2973d2f924e2995d53fb11deda59fd"
+      },
+      "factory": {
+        "address": "0xE631fAEE547baeE07353E290f0562ea67d856560",
+        "bytes": 176,
+        "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+      },
+      "operatorRegistry": {
+        "address": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a",
+        "bytes": 176,
+        "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+      }
+    }
+  },
+  "sdkSystemConfig": {
+    "status": "failed",
+    "ms": 33,
+    "error": "@somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed"
+  },
+  "marketDiscovery": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "endpoint": "https://hideki-dev.smk.somnia.host/v1/graphql",
+      "count": 21,
+      "coverage": "first 30 indexed perp markets, not exhaustive",
+      "selectedPool": "0x2a1822b02039ddf0e293f3f7243673fc03eaf16c",
+      "markets": [
+        {
+          "pool": "0x2a1822b02039ddf0e293f3f7243673fc03eaf16c",
+          "symbol": "ZRO",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x1667a20a7481d704b1f75e8932d42a6bbafbd539"
+        },
+        {
+          "pool": "0xdcb0ad226727b2ce92857f0af5751389d42b2a3f",
+          "symbol": "LIT",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x6243c81d782ca091f47923e049a9ddc1070cb57a"
+        },
+        {
+          "pool": "0x352636ab146039851ef06d6367a106d5fb4e6409",
+          "symbol": "VVV",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x6ba14290fc5067578020e649ad066df08915e5cf"
+        },
+        {
+          "pool": "0xfa9b9e50cc1745113d57893991af200a74c86b6f",
+          "symbol": "1000PEPE",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x9942cd840dbbc0a51589027fef271dd9be836f08"
+        },
+        {
+          "pool": "0x76c981a52530cdf9497559140aafcd8cd16836e7",
+          "symbol": "PUMP",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xe09c7550c2ef41a6ddabe368cbde83c8ba5259b6"
+        },
+        {
+          "pool": "0x2a73129f26917124bd2a47a9b355c395c537f050",
+          "symbol": "ZEC",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xbfe6f500627a0344270c72a61c4f9f9f31db9a05"
+        },
+        {
+          "pool": "0xd9b6a347a3ae9fd6ba21179d3343f2c8a922f697",
+          "symbol": "TAO",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x450b968dc94e3a854c47e37f38e2f6af6e1650b7"
+        },
+        {
+          "pool": "0x0f464d57c1fd839e4d87a408bbccdab8f77e6394",
+          "symbol": "WLD",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x092ba74067cdd5400f38f8b4e91b1a4cf8f7716d"
+        },
+        {
+          "pool": "0x1cd15ae8bff0fe0a7f49233be8b90734775ba454",
+          "symbol": "NEAR",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xf3a51c26ead3f84c2221336484bb42b8cfca076e"
+        },
+        {
+          "pool": "0x74b05b9b8c8f180b53b7891018f3b254b3e658c9",
+          "symbol": "XLM",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xa1b615be784784420f7dd7ef4a2a5a392bdb7242"
+        },
+        {
+          "pool": "0xde9762b6b441133d1314c68864ae4e63a6ee45c7",
+          "symbol": "AVAX",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xc33db2dab35c46295cb435730f14f91a3cfd0367"
+        },
+        {
+          "pool": "0xf71b619450bafe953f47b9b556416a3a67b443b5",
+          "symbol": "LINK",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x1c3fabc41871ec838960f80329dcd920fec241c9"
+        },
+        {
+          "pool": "0x1be21287cfb865a7c462ff3c4f275e70bcccefe4",
+          "symbol": "SUI",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xfdcfb2f985049cad3ac27472b6ae80c7a53ede89"
+        },
+        {
+          "pool": "0x34fa62909f77699a7a6278d992f72ff31c7a619d",
+          "symbol": "ADA",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x3a76c35c1cc0a0dbde646ce51a30805b077d211b"
+        },
+        {
+          "pool": "0x3d2a99fe1e2bdeaa25024515a2d2202daf9531ad",
+          "symbol": "BNB",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x487fd1e8bcedf4334a2e83aa86b426fd70e4e921"
+        },
+        {
+          "pool": "0xc410012e39765cd5f772e84bacb19554aec040df",
+          "symbol": "DOGE",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0xb09cf2f2f91045f1ff1e4e824f9cf0fa29698757"
+        },
+        {
+          "pool": "0x7058579f3248559963f79adb937c6de9f953e060",
+          "symbol": "XRP",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x655e89a7e52490a421ad4c04fb6a7dd295cf1a5f"
+        },
+        {
+          "pool": "0x63b47ed4a7de0fde659b0d82441dd74828b7297a",
+          "symbol": "HYPE",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x44c24cd26cf41037c6ebf337948a6c9bbc0ee055"
+        },
+        {
+          "pool": "0xb483ec1fb34996638677c20ab087b16f1896fa53",
+          "symbol": "SOL",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x85a0879d19777c343eb317a890d5058ab92b8f5d"
+        },
+        {
+          "pool": "0xd6cb1dd58580b84d76068ac21594219ce03aeddf",
+          "symbol": "ETH",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x44bfa5b28684e8d2156d15b85902da18f02b3a34"
+        },
+        {
+          "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+          "symbol": "BTC",
+          "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+          "stopRegistry": "0x52e2ccebaec9332672c247e9a90aa3d61fb615ef"
+        }
+      ]
+    }
+  },
+  "snapshot": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "snapshot": {
+        "mode": "live-readonly",
+        "market": null,
+        "position": null,
+        "stops": [],
+        "scope": "unavailable",
+        "readError": "RpcError: @somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed",
+        "capturedAt": "2026-10-24T22:24:15.376Z",
+        "complete": false
+      },
+      "liveAcceptance": "NOT_ACCEPTED",
+      "ownerRead": "NOT_CONFIGURED"
+    }
+  },
+  "completedAt": "2026-10-24T22:24:28.384Z",
+  "g0Complete": false,
+  "g0Note": "Read-only evidence only. Missing owner/transaction lifecycle and any failed probes remain blockers. No trading, signing, funding, or submission."
+}

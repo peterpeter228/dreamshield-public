@@ -1,0 +1,142 @@
+{
+  "selectedResidualCancellationDisabled": true,
+  "unsignedTpPreview": {
+    "trigger": "2900",
+    "side": "Sell · reduce-only",
+    "chainId": 50383,
+    "displayed": "No transaction has been requested. A preview is not an active stop.",
+    "signing": "Local owner signing unavailable"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/assets/index-BdzPDt2t.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/assets/index-D3Vli0wr.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=unprotected",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/favicon.ico",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=tp-only",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=unprotected",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=protected",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=partial",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=short",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=stale",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=oco-broken",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=no-position",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=unknown",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=tp-only",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=wrong-side-sl",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=trigger-met",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=residual-stops",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=tp-only",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=wrong-side-sl",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=trigger-met",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=residual-stops",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=residual-stops",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/evidence",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/api/desk?scenario=tp-only",
+      "status": 200
+    }
+  ],
+  "errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  }
+}

@@ -1,0 +1,165 @@
+[
+  {
+    "scenario": "unprotected",
+    "verdict": "Needs protection",
+    "reasons": "Needs protection\n\nNo matching native reduce-only stop-loss was found in this complete snapshot.\n\nReasons: No matching native reduce-only stop-loss protects this position.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 0\nNone\n\nNo native stops in this snapshot.\n\nCheck the assessment before preparing protection.",
+    "rawReasons": "NO_MATCHING_SL",
+    "previewDisabled": false,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "protected",
+    "verdict": "Configuration verified",
+    "reasons": "Configuration verified\n\nNative stop-loss configuration matches this observation. Triggering and fills are not guaranteed.\n\nReasons: The stop is configured to reduce the whole position at trigger time. A standalone stop-loss is configured without a paired take-profit. A matching configuration does not guarantee triggering or fills.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nWhole position at trigger\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≤ 2800\tWhole at trigger\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "WHOLE_POSITION_AT_TRIGGER, SL_ONLY, EXECUTION_NOT_GUARANTEED",
+    "previewDisabled": true,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "partial",
+    "verdict": "Needs review",
+    "reasons": "Needs review\n\nThe fixed stop quantity does not cover the current observed position.\n\nReasons: The fixed stop quantity covers only part of the current position.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nFixed\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≤ 2800\t0.5\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "PARTIAL_COVERAGE",
+    "previewDisabled": true,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "short",
+    "verdict": "Needs protection",
+    "reasons": "Needs protection\n\nNo matching native reduce-only stop-loss was found in this complete snapshot.\n\nReasons: No matching native reduce-only stop-loss protects this position.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 0\nNone\n\nNo native stops in this snapshot.\n\nCheck the assessment before preparing protection.",
+    "rawReasons": "NO_MATCHING_SL",
+    "previewDisabled": false,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "stale",
+    "verdict": "Unknown",
+    "reasons": "Unknown\n\nCurrent protection cannot be verified. Previous observations are historical.\n\nReasons: Reads are stale; refresh before relying on any previous protection result.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 0\nUnknown\n\nNo native stops in this snapshot.\n\nCheck the assessment before preparing protection.",
+    "rawReasons": "STALE_DATA",
+    "previewDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "oco-broken",
+    "verdict": "Needs review",
+    "reasons": "Needs review\n\nA stop-loss exists, but the paired protection is missing, inconsistent or already at its trigger.\n\nReasons: The OCO link is invalid: the paired stop is missing, inconsistent or already at its trigger.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nWhole position at trigger\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≤ 2800\tWhole at trigger\tPending\nSibling #2\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "OCO_LINK_INVALID",
+    "previewDisabled": true,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "no-position",
+    "verdict": "No position",
+    "reasons": "No position\n\nNo current position was observed.\n\nReasons: No current position was observed.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 0\nNone\n\nNo native stops in this snapshot.\n\nCheck the assessment before preparing protection.",
+    "rawReasons": "NO_POSITION",
+    "previewDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "unknown",
+    "verdict": "Unknown",
+    "reasons": "Unknown\n\nCurrent protection cannot be verified. Previous observations are historical.\n\nReasons: The latest read failed; previous observations cannot prove current protection.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 0\nUnknown\n\nNative stop discovery is incomplete.\n\nAn empty result does not prove there are no orders.",
+    "rawReasons": "READ_FAILED",
+    "previewDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "tp-only",
+    "verdict": "Needs protection",
+    "reasons": "Needs protection\n\nNo matching native reduce-only stop-loss was found in this complete snapshot.\n\nReasons: No matching native reduce-only stop-loss protects this position. Take-profit only: TP is not stop-loss protection.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nNone\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≥ 3200\tWhole at trigger\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "NO_MATCHING_SL, TAKE_PROFIT_ONLY",
+    "previewDisabled": false,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "wrong-side-sl",
+    "verdict": "Needs protection",
+    "reasons": "Needs protection\n\nNo matching native reduce-only stop-loss was found in this complete snapshot.\n\nReasons: No matching native reduce-only stop-loss protects this position. Wrong-side stop: its buy/sell side cannot close this position as a stop-loss.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nNone\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · buy\n\t≥ 3200\tWhole at trigger\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "NO_MATCHING_SL, WRONG_SIDE_SL",
+    "previewDisabled": false,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "trigger-met",
+    "verdict": "Needs review",
+    "reasons": "Needs review\n\nA stop condition is met. Execution and remaining exposure must be reconciled.\n\nReasons: The stop trigger condition is already met; reconcile execution and remaining exposure.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nUnknown\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≤ 3000\tWhole at trigger\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "TRIGGER_CONDITION_MET",
+    "previewDisabled": true,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  },
+  {
+    "scenario": "residual-stops",
+    "verdict": "No position",
+    "reasons": "No position\n\nNo current position. Pending stops remain and need review before reopening.\n\nReasons: No current position was observed. Pending stops remain without a position; review them before reopening.\n\nFixture result only. Not a live position or chain verification.",
+    "stops": "Native stops 1\nNone\nStop ID\tTrigger\tQuantity\tStatus\n#1\nreduceOnly · sell\n\t≤ 2800\tWhole at trigger\tPending\nUnpaired\nSelected stop cancellation\nSelect a pending stop\nStop #1\nPrepare selected cancellation\n\nOnly this stop ID. No account-wide cancellation. Local owner mode and fresh evidence required.",
+    "rawReasons": "NO_POSITION, RESIDUAL_STOPS",
+    "previewDisabled": true,
+    "prepareCancellationDisabled": true,
+    "viewport": {
+      "width": 1408,
+      "height": 871
+    },
+    "horizontalOverflow": false
+  }
+]

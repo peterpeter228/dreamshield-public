@@ -1,0 +1,110 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v5.0.5 /workspace/scratch/c01bd6fe117d/dreamshield
+
+ ❯ tests/unit/argon-hash-provenance.test.ts (10 tests | 8 failed) 20ms
+   ❯ Argon hash-path regressions: offline only (10)
+     × rejects hash smuggling on Draft to AwaitingSignature 5ms
+     × marks first Unknown hash recovered and retains owner lock 6ms
+     × does not fail/unlock an unrelated reverted call 3ms
+     × does not fail/unlock a call with wrong attached value 1ms
+     × does not fail/unlock a historical matching reverted call 1ms
+     × does not fail/unlock a matching call predating draft time 1ms
+     × keeps legacy unanchored draft locked for review 1ms
+     × does not fail/unlock a transaction and receipt block mismatch 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > rejects hash smuggling on Draft to AwaitingSignature
+AssertionError: expected [Function] to throw an error
+ ❯ tests/unit/argon-hash-provenance.test.ts:17:166
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > marks first Unknown hash recovered and retains owner lock
+AssertionError: expected undefined to be 'recovered' // Object.is equality
+
+- Expected:
+"recovered"
+
++ Received:
+undefined
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:18:231
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > does not fail/unlock an unrelated reverted call
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:20:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > does not fail/unlock a call with wrong attached value
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:21:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > does not fail/unlock a historical matching reverted call
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:22:220
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > does not fail/unlock a matching call predating draft time
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:23:191
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > keeps legacy unanchored draft locked for review
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:24:156
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/unit/argon-hash-provenance.test.ts > Argon hash-path regressions: offline only > does not fail/unlock a transaction and receipt block mismatch
+AssertionError: expected 'Failed' to be 'NeedsReview' // Object.is equality
+
+Expected: "NeedsReview"
+Received: "Failed"
+
+ ❯ tests/unit/argon-hash-provenance.test.ts:25:212
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 2 passed (10)
+   Start at  12:17:21
+   Duration  548ms (import 82%, transform 13%, tests 5%, worker 1%)
+

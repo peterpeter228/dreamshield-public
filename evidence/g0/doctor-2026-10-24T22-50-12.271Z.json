@@ -1,0 +1,198 @@
+{
+  "startedAt": "2026-10-24T22:50:12.271Z",
+  "readOnly": true,
+  "transactionsSent": 0,
+  "ownerConfigured": false,
+  "poolConfigured": false,
+  "signerConfigured": false,
+  "liveOwnerGate": "BLOCKED_NO_USER_SIGNER",
+  "fixedBlockAcrossSdkCalls": false,
+  "pinnedRiskReadsViaExtractedSdkAbi": true,
+  "versions": {
+    "node": "v24.22.1",
+    "npm": "11.9.0",
+    "sdk": "0.32.1",
+    "viem": "2.57.11",
+    "lockSha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21"
+  },
+  "http": {
+    "status": "failed",
+    "ms": 174,
+    "error": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_chainId\"}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+    "causes": [
+      {
+        "name": "HttpRequestError",
+        "message": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_chainId\"}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "fetch failed",
+        "code": null
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": "ECONNREFUSED"
+      }
+    ]
+  },
+  "websocket": {
+    "status": "failed",
+    "ms": 192,
+    "error": "An unknown RPC error occurred.\n\nVersion: viem@2.57.11",
+    "causes": [
+      {
+        "name": "UnknownRpcError",
+        "message": "An unknown RPC error occurred.\n\nVersion: viem@2.57.11",
+        "code": -1
+      },
+      {
+        "name": "Error",
+        "message": "",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "",
+        "code": null
+      }
+    ]
+  },
+  "systemBytecode": {
+    "status": "failed",
+    "ms": 139,
+    "error": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getCode\",\"params\":[\"0x478769E1177C0773c43A593DCCc4Ad15F15F1394\",\"latest\"]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+    "causes": [
+      {
+        "name": "HttpRequestError",
+        "message": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getCode\",\"params\":[\"0x478769E1177C0773c43A593DCCc4Ad15F15F1394\",\"latest\"]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "fetch failed",
+        "code": null
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": "ECONNREFUSED"
+      }
+    ]
+  },
+  "sdkSystemConfig": {
+    "status": "failed",
+    "ms": 167,
+    "error": "@somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed",
+    "causes": [
+      {
+        "name": "RpcError",
+        "message": "@somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed",
+        "code": null
+      },
+      {
+        "name": "UnknownRpcError",
+        "message": "An unknown RPC error occurred.\n\nDetails: connect ECONNREFUSED 35.75.124.66:443\nVersion: viem@2.57.11",
+        "code": -1
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": null
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": "ECONNREFUSED"
+      }
+    ]
+  },
+  "httpSystemConfigAtBlock": {
+    "status": "failed",
+    "ms": 97,
+    "error": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getBlockByNumber\",\"params\":[\"latest\",false]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+    "causes": [
+      {
+        "name": "HttpRequestError",
+        "message": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getBlockByNumber\",\"params\":[\"latest\",false]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "fetch failed",
+        "code": null
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": "ECONNREFUSED"
+      }
+    ]
+  },
+  "genesisBlock1": {
+    "status": "failed",
+    "ms": 1047,
+    "error": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getBlockByNumber\",\"params\":[\"0x1\",false]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+    "causes": [
+      {
+        "name": "HttpRequestError",
+        "message": "HTTP request failed.\n\nURL: https://api.hideki2.infra.testnet.somnia.network/\nRequest body: {\"method\":\"eth_getBlockByNumber\",\"params\":[\"0x1\",false]}\n\nDetails: fetch failed\nVersion: viem@2.57.11",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "fetch failed",
+        "code": null
+      },
+      {
+        "name": "Error",
+        "message": "connect ECONNREFUSED 35.75.124.66:443",
+        "code": "ECONNREFUSED"
+      }
+    ]
+  },
+  "marketDiscovery": {
+    "status": "failed",
+    "ms": 2656,
+    "error": "@somnia-chain/markets-sdk: indexer IndexedChains failed: fetch failed",
+    "causes": [
+      {
+        "name": "IndexerError",
+        "message": "@somnia-chain/markets-sdk: indexer IndexedChains failed: fetch failed",
+        "code": null
+      },
+      {
+        "name": "TypeError",
+        "message": "fetch failed",
+        "code": null
+      },
+      {
+        "name": "AggregateError",
+        "message": "",
+        "code": "ETIMEDOUT"
+      }
+    ]
+  },
+  "snapshot": {
+    "status": "passed",
+    "ms": 0,
+    "value": {
+      "snapshot": {
+        "mode": "live-readonly",
+        "market": null,
+        "position": null,
+        "stops": [],
+        "scope": "unavailable",
+        "readError": "POOL_NOT_CONFIGURED",
+        "capturedAt": "2026-10-24T22:50:17.190Z",
+        "complete": false
+      },
+      "liveAcceptance": "NOT_ACCEPTED",
+      "ownerRead": "NOT_CONFIGURED"
+    }
+  },
+  "completedAt": "2026-10-24T22:50:17.190Z",
+  "g0Complete": false,
+  "g0Note": "Read-only evidence only. Missing owner/transaction lifecycle and any failed probes remain blockers. No trading, signing, funding, or submission."
+}

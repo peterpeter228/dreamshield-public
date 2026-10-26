@@ -1,0 +1,94 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v5.0.5 /workspace/scratch/c01bd6fe117d/dreamshield
+
+ ❯ tests/unit/argon-protocol.test.ts (13 tests | 11 failed) 20ms
+   ❯ Argon P2 independent verification (offline only) (13)
+     × rejects cancellation if registry changes between SDK preflight and fresh chain snapshot 8ms
+     × rejects unexpected OCO linkage in direct contract readback 1ms
+     × rejects trigger drift in the later complete snapshot 1ms
+     × rejects quantity drift in the later complete snapshot 1ms
+     × rejects sibling drift in the later complete snapshot 1ms
+     × rejects intent drift in the later complete snapshot 1ms
+     × rejects side drift in the later complete snapshot 1ms
+     × rejects operator drift in the later complete snapshot 0ms
+     × rejects type drift in the later complete snapshot 1ms
+     × rejects limit drift in the later complete snapshot 1ms
+     × rejects same stop id from a newly mapped registry 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects cancellation if registry changes between SDK preflight and fresh chain snapshot
+AssertionError: promise resolved "{ …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "account": "0x1111111111111111111111111111111111111111",
++   "approval": null,
++   "approvalRequired": false,
++   "call": {
++     "data": "0x",
++     "to": "0x3333333333333333333333333333333333333333",
++     "value": 0n,
++   },
++   "chainId": 50383,
+  }
+
+ ❯ tests/unit/argon-protocol.test.ts:43:89
+     41|  it('rejects cancellation if registry changes between SDK preflight an…
+     42|   freshRegistry=other;
+     43|   await expect(prepareOwnerCall({...draft,action:'cancel-stop',stopId:…
+       |                                                                                         ^
+     44|   expect(mocks.trader.buildCancelPerpStopOrder).not.toHaveBeenCalled();
+     45|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects unexpected OCO linkage in direct contract readback
+AssertionError: expected 'Applied' not to be 'Applied' // Object.is equality
+ ❯ tests/unit/argon-protocol.test.ts:47:151
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects trigger drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects quantity drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects sibling drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects intent drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects side drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects operator drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects type drift in the later complete snapshot
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects limit drift in the later complete snapshot
+AssertionError: expected 'Applied' not to be 'Applied' // Object.is equality
+ ❯ tests/unit/argon-protocol.test.ts:57:52
+     55|   if(field==='type')subsequent.orderWithTrigger.orderType=0;
+     56|   if(field==='limit')subsequent.orderWithTrigger.limitPrice=99n;
+     57|   expect((await reconcileOperation(op)).state).not.toBe('Applied');
+       |                                                    ^
+     58|  });
+     59|  it('rejects same stop id from a newly mapped registry',async()=>{fres…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  tests/unit/argon-protocol.test.ts > Argon P2 independent verification (offline only) > rejects same stop id from a newly mapped registry
+AssertionError: expected 'Applied' not to be 'Applied' // Object.is equality
+ ❯ tests/unit/argon-protocol.test.ts:59:136
+     57|   expect((await reconcileOperation(op)).state).not.toBe('Applied');
+     58|  });
+     59|  it('rejects same stop id from a newly mapped registry',async()=>{fres…
+       |                                                                                                                                        ^
+     60| });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 2 passed (13)
+   Start at  12:16:29
+   Duration  543ms (import 78%, transform 15%, tests 5%, worker 2%)
+

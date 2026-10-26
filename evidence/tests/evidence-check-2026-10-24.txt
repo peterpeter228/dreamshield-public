@@ -1,0 +1,11 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> dreamshield@0.1.0 verify:evidence
+> node --import tsx scripts/verify-evidence.ts
+
+{
+  "schema": "valid",
+  "liveVerified": false,
+  "liveChecks": "NOT_RUN",
+  "reason": "No owner transaction evidence supplied; schema checks do not establish chain validity."
+}

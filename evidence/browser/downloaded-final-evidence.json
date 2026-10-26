@@ -1,0 +1,180 @@
+{
+  "exportedAt": "2026-10-24T22:51:02.334Z",
+  "scenario": "protected",
+  "displayedSnapshot": {
+    "snapshot": {
+      "mode": "replay",
+      "market": {
+        "chainId": 50383,
+        "pool": "0x2222222222222222222222222222222222222222",
+        "marginBank": "0x4444444444444444444444444444444444444444",
+        "stopRegistry": "0x3333333333333333333333333333333333333333",
+        "symbol": "ETH / USDso",
+        "baseDecimals": 6,
+        "quoteDecimals": 18,
+        "tickSize": "1000000000000000000",
+        "lotSize": "1000",
+        "minQuantity": "1000",
+        "mark": "3000000000000000000000",
+        "feedValid": true,
+        "observedBlock": "100",
+        "blockHash": null,
+        "observedAt": "2026-10-24T22:51:01.822Z",
+        "stopDeposit": "150000000000000000"
+      },
+      "position": {
+        "chainId": 50383,
+        "owner": "0x1111111111111111111111111111111111111111",
+        "pool": "0x2222222222222222222222222222222222222222",
+        "signedSize": "1000000",
+        "entryPrice": "2900000000000000000000",
+        "observedBlock": "100",
+        "observedAt": "2026-10-24T22:51:01.822Z",
+        "source": "fixture"
+      },
+      "stops": [
+        {
+          "id": "1",
+          "owner": "0x1111111111111111111111111111111111111111",
+          "pool": "0x2222222222222222222222222222222222222222",
+          "registry": "0x3333333333333333333333333333333333333333",
+          "intent": "reduceOnly",
+          "isBid": false,
+          "quantity": "0",
+          "triggerPrice": "2800000000000000000000",
+          "triggerOperator": 1,
+          "stopOrderType": 1,
+          "limitPrice": "0",
+          "status": "pending",
+          "siblingId": null,
+          "observedBlock": "100"
+        }
+      ],
+      "scope": "indexedSnapshot",
+      "readError": null,
+      "capturedAt": "2026-10-24T22:51:01.822Z",
+      "complete": true
+    },
+    "assessment": {
+      "verdict": "VERIFIED",
+      "reasonCodes": [
+        "WHOLE_POSITION_AT_TRIGGER",
+        "SL_ONLY",
+        "EXECUTION_NOT_GUARANTEED"
+      ],
+      "summary": "Native stop-loss configuration matches this observation. Triggering and fills are not guaranteed.",
+      "coverageMode": "whole-at-trigger",
+      "coveredRaw": "1000000",
+      "stopIds": [
+        "1"
+      ],
+      "checkedAt": "2026-10-24T22:51:01.822Z",
+      "expiresAt": "2026-10-24T22:51:16.822Z",
+      "scope": "indexedSnapshot"
+    },
+    "operations": [],
+    "capabilities": {
+      "mode": "replay",
+      "ownerEnabled": false,
+      "signerAvailable": false,
+      "reason": "Replay fixtures. No live transaction or current chain state."
+    }
+  },
+  "displayAssessment": {
+    "verdict": "VERIFIED",
+    "reasonCodes": [
+      "WHOLE_POSITION_AT_TRIGGER",
+      "SL_ONLY",
+      "EXECUTION_NOT_GUARANTEED"
+    ],
+    "summary": "Native stop-loss configuration matches this observation. Triggering and fills are not guaranteed.",
+    "coverageMode": "whole-at-trigger",
+    "coveredRaw": "1000000",
+    "stopIds": [
+      "1"
+    ],
+    "checkedAt": "2026-10-24T22:51:01.829Z",
+    "expiresAt": "2026-10-24T22:51:16.822Z",
+    "scope": "indexedSnapshot"
+  },
+  "readFailure": null,
+  "serverEvidence": {
+    "schemaVersion": 1,
+    "project": "DreamShield",
+    "mode": "replay",
+    "exportedAt": "2026-10-24T22:51:02.328Z",
+    "snapshot": {
+      "mode": "replay",
+      "market": {
+        "chainId": 50383,
+        "pool": "0x2222222222222222222222222222222222222222",
+        "marginBank": "0x4444444444444444444444444444444444444444",
+        "stopRegistry": "0x3333333333333333333333333333333333333333",
+        "symbol": "ETH / USDso",
+        "baseDecimals": 6,
+        "quoteDecimals": 18,
+        "tickSize": "1000000000000000000",
+        "lotSize": "1000",
+        "minQuantity": "1000",
+        "mark": "3000000000000000000000",
+        "feedValid": true,
+        "observedBlock": "100",
+        "blockHash": null,
+        "observedAt": "2026-10-24T22:51:01.822Z",
+        "stopDeposit": "150000000000000000"
+      },
+      "position": {
+        "chainId": 50383,
+        "owner": "0x1111111111111111111111111111111111111111",
+        "pool": "0x2222222222222222222222222222222222222222",
+        "signedSize": "1000000",
+        "entryPrice": "2900000000000000000000",
+        "observedBlock": "100",
+        "observedAt": "2026-10-24T22:51:01.822Z",
+        "source": "fixture"
+      },
+      "stops": [
+        {
+          "id": "1",
+          "owner": "0x1111111111111111111111111111111111111111",
+          "pool": "0x2222222222222222222222222222222222222222",
+          "registry": "0x3333333333333333333333333333333333333333",
+          "intent": "reduceOnly",
+          "isBid": false,
+          "quantity": "0",
+          "triggerPrice": "2800000000000000000000",
+          "triggerOperator": 1,
+          "stopOrderType": 1,
+          "limitPrice": "0",
+          "status": "pending",
+          "siblingId": null,
+          "observedBlock": "100"
+        }
+      ],
+      "scope": "indexedSnapshot",
+      "readError": null,
+      "capturedAt": "2026-10-24T22:51:01.822Z",
+      "complete": true
+    },
+    "assessment": {
+      "verdict": "VERIFIED",
+      "reasonCodes": [
+        "WHOLE_POSITION_AT_TRIGGER",
+        "SL_ONLY",
+        "EXECUTION_NOT_GUARANTEED"
+      ],
+      "summary": "Native stop-loss configuration matches this observation. Triggering and fills are not guaranteed.",
+      "coverageMode": "whole-at-trigger",
+      "coveredRaw": "1000000",
+      "stopIds": [
+        "1"
+      ],
+      "checkedAt": "2026-10-24T22:51:02.328Z",
+      "expiresAt": "2026-10-24T22:51:16.822Z",
+      "scope": "indexedSnapshot"
+    },
+    "transactions": [],
+    "liveWorkflowVerified": false,
+    "sha256": "6a9eec1cc1ec7424445b210b6ecf3f978d8235bdfa13616c5e4e62113fa176ec"
+  }
+}

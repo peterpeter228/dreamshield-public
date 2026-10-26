@@ -1,0 +1,190 @@
+# DreamShield Independent Source Review — 2026-10-25
+
+## Scope and Review Boundaries
+This review is a static, read-only evaluation of the source code, test excerpts, and evidence logs provided in the 2026-10-25 packet (bound to code baseline `de3cfe50b5517278e72a4b9a06806af0f22cc342` and main `2d94f34d69a0b45b8f8b074b7c8c154661e279ef`). 
+- **No execution:** No tests, builds, network probes, or wallet actions were executed during this review. Historical offline test passes (90 tests) are accepted as reported context, not newly verified runs.
+- **Excerpt limitations:** `packages/domain/index.ts`, `packages/protocol/index.ts`, `apps/web/src/App.tsx`, and `tests/integration/journal.test.ts` were provided as targeted excerpts. Assessment of logic outside those excerpts (e.g., internal implementation of `assessProtection` and `readLiveSnapshot`) is bounded by their visible callers, types, and test contracts.
+- **Audit / Live status:** Source-only review **does not** suffice for live chain acceptance, real-wallet lifecycle verification, or a formal security audit.
+
+---
+
+## 1. Blocking Code Findings (Proven Bugs)
+
+### [P1-A] Non-recovered reverted receipt releases owner lock without verifying transaction calldata or creation-time provenance
+- **Status:** Proven code defect.
+- **Location:** `packages/protocol/index.ts`, `reconcileOperation` (excerpt lines 140–149); `packages/storage/index.ts`, `transition` (lines 18–26); `apps/server/app.ts`, `/api/operations/:id/state` (line 22) and `/api/operations/:id/reconcile` (line 28).
+- **Concrete Reproducible Failure Path:**
+  1. An owner reserves an operation (`Draft`) and begins sending (`AwaitingSignature`).
+  2. Before or during an uncertain send, a client (or local script holding the local CSRF token) calls `POST /api/operations/:id/state` with `{ state: "Submitted", txHash: "0x<hash_of_old_reverted_tx>" }` (or `{ state: "Unknown", txHash: ... }`). Because `bindRecoveredHash` was not used, `hashProvenance` remains `undefined`.
+  3. The client calls `POST /api/operations/:id/reconcile`.
+  4. `reconcileOperation` checks `chainId === 50383`, canonical block hash, `receipt.from === op.owner`, and `receipt.to === op.draft.registry`.
+  5. It hits `if (receipt.status === 'reverted') return out('Failed', 'RECEIPT_REVERTED');` **without** fetching `rpc.getTransaction({ hash })` to verify calldata (action, stopId, triggerPrice, quantity) or checking whether the transaction block predates the operation's `createdAt` / draft snapshot block.
+  6. The server transitions the operation to terminal `Failed` with `receiptFailed: true`, releasing the `OPERATION_IN_FLIGHT` lock in `Journal.reserve` while the actual in-flight wallet request may still be pending or signing.
+- **Proposed Minimum Fix:**
+  1. In `reconcileOperation` (`packages/protocol/index.ts`), before returning `Failed` on a reverted receipt, fetch the transaction via `rpc.getTransaction({ hash })` and verify that `tx.input` (and `tx.value` for `create-sl`) matches the exact expected calldata for `op.draft`, and that `receipt.blockNumber` is not earlier than the draft's observed block. If mismatched or predating the operation, return `NeedsReview` (`RECEIPT_CALLDATA_OR_AGE_MISMATCH`).
+  2. In `apps/server/app.ts` (`POST /api/operations/:id/state`), if `req.body.state === 'Unknown'` includes a newly supplied `txHash` that was not previously recorded on `Submitted`, either reject the hash on that route (forcing `/recover-hash`) or tag `hashProvenance: 'recovered'`.
+- **Regression Test:**
+  In `tests/unit/recovered-provenance.test.ts`, add a test where `hashProvenance` is `undefined`, `receipt.status` is `'reverted'`, `from`/`to` match, but `rpc.getTransaction` returns calldata for a different `stopId` or an older `blockNumber < draftBlock`. Assert `reconcileOperation` returns `NeedsReview` instead of `Failed`, and `Journal.reserve` still throws `OPERATION_IN_FLIGHT`.
+
+---
+
+### [P2-A] `prepareOwnerCall` cancellation check omits `status === 'pending'` and `registry` match
+- **Status:** Proven code defect (defense-in-depth / pre-flight validation gap).
+- **Location:** `packages/protocol/index.ts`, `prepareOwnerCall` (excerpt lines 113–115).
+- **Concrete Reproducible Failure Path:**
+  1. A `cancel-stop` draft is prepared while stop `#1` is pending.
+  2. Within the 15-second draft validity window, stop `#1` fills or is cancelled, or a snapshot contains a stop entry with matching `id` and `owner` whose `status !== 'pending'` (or different registry).
+  3. The owner clicks "Review in owner wallet", invoking `send()` -> `prepareOwnerCall`.
+  4. Line 114 checks `!fresh.stops.some(s => s.id === draft.stopId && same(s.owner, draft.owner))` without verifying `s.status === 'pending'` and `same(s.registry, draft.registry)`.
+  5. If `fresh.stops` retains non-pending historical stops, pre-flight validation passes and prompts the wallet to sign a guaranteed-to-revert or unnecessary cancellation transaction.
+- **Proposed Minimum Fix:**
+  Tighten line 114 in `packages/protocol/index.ts` to:
+  `!fresh.stops.some(s => s.id === draft.stopId && s.status === 'pending' && same(s.owner, draft.owner) && same(s.registry, draft.registry))`
+- **Regression Test:**
+  Unit test `prepareOwnerCall` with a `cancel-stop` draft where `readLiveSnapshot` returns the matching `stopId` and `owner` but `status: 'filled'` (or `'cancelled'`). Assert `prepareOwnerCall` rejects with `CANCEL_STOP_NOT_VERIFIED` before invoking `buildCancelPerpStopOrder`.
+
+---
+
+### [P2-B] `reconcileOperation` `create-sl` read-back omits `pool` verification and sibling/OCO absence check on the stored contract order
+- **Status:** Proven code defect (incomplete read-back verification).
+- **Location:** `packages/protocol/index.ts`, `reconcileOperation` (excerpt lines 158–166).
+- **Concrete Reproducible Failure Path:**
+  1. During `reconcileOperation` for `create-sl`, `getPendingOrder` returns `[live, stored]` at `readBlock.number`.
+  2. Line 163 verifies `stop.order.owner`, `stored.intent !== 0`, `isBid`, `quantity`, `triggerPrice`, `triggerOperator`, `orderType !== 1`, and `limitPrice !== 0n`, but does **not** verify that `stop.order.pool` (or equivalent pool field on `stored.orderWithTrigger.order`) matches `op.pool`, nor does it verify that the newly created stop in `snapshot.stops` has matching parameters and `status === 'pending'`, rather than merely checking `snapshot.stops.some(s => s.id === ids[0]!.toString())`.
+- **Proposed Minimum Fix:**
+  In `packages/protocol/index.ts` lines 163–165, verify `same(stop.order.pool, op.pool)` (if exposed by the ABI struct) and require the matched stop in `snapshot.stops` to satisfy `s.id === ids[0]!.toString() && s.status === 'pending' && same(s.pool, op.pool) && same(s.registry, op.draft.registry)`.
+- **Regression Test:**
+  Mock `getPendingOrder` / `readLiveSnapshot` in a unit test where `snapshot.stops` contains `ids[0]` with `status: 'cancelled'` or mismatched `pool`; assert `reconcileOperation` returns `NeedsReview` or `Unknown` rather than `Applied`.
+
+---
+
+## 2. Nonblocking Improvements
+
+1. **Duplicate operation entry in UI assessment array (`apps/web/src/App.tsx`, line 17):**
+   `[...data.operations, ...(ownerFlow.operation ? [ownerFlow.operation] : [])]` appends `ownerFlow.operation` without deduplicating by `id`. If `data.operations` already contains the operation in `Draft` state and `ownerFlow.operation` transitions to `AwaitingSignature`, `assessDesk` still works correctly because `.some()` checks for in-flight states. However, if `ownerFlow.operation` transitions from an in-flight state to a terminal state (`Cancelled` in `cancelDraft`) before `reload()` completes, the stale entry in `data.operations` could briefly keep the assessment non-green until `reload()` finishes. Deduplicating by `op.id` (preferring the newer `updatedAt` or `ownerFlow.operation`) is cleaner.
+2. **Idempotency conflict check in `Journal.reserve` vs `/api/drafts` (`apps/server/app.ts` line 21, `packages/storage/index.ts` line 15):**
+   `/api/drafts` hashes `{requestId, owner, pool, action, stopId, triggerPrice}` into `key` and checks `journal.list().find(o => o.idempotencyKey === key)` before calling `journal.reserve(draft, key)`. Because `/api/drafts` short-circuits on matching `key`, the `IDEMPOTENCY_CONFLICT` check inside `Journal.reserve` is bypassed at the HTTP layer if the same `requestId` is reused with identical input parameters even if market state (`revision`/`fingerprint`/`deposit`) changed. Since `requestId` is a random UUID per request, this is nonblocking, but `/api/drafts` should ideally delegate idempotency lookup to `journal.reserve` or compare request parameters explicitly.
+3. **Server-side `/api/evidence` `transactions` field (`apps/server/app.ts` line 19):**
+   `/api/evidence` hardcodes `transactions: []` instead of including `operations: journal?.list() ?? []`. While the browser's `exportEvidence` wrapper (`App.tsx` line 15) includes `displayedSnapshot: data` (which contains `data.operations`), including `operations` directly in the server-signed `body` before computing `sha256` would improve standalone server evidence completeness.
+
+---
+
+## 3. Native SL Assessment Verification
+
+1. **Owner / Pool / Registry / Chain Identity:**
+   - Bound in `MarketSnapshot`, `PositionSnapshot`, `NativeStopSnapshot`, and `RepairDraft` (`packages/domain/types.ts`).
+   - `prepareOwnerCall` (`packages/protocol/index.ts` lines 97–106) enforces `same(account, draft.owner)`, `wallet.getChainId() === 50383`, and `same(market.stopRegistry, draft.registry)`.
+   - `stopParams` (line 90) enforces `draft.chainId === 50383`, `draft.action === 'create-sl'`, and `draft.intent === 'reduceOnly'`.
+2. **`reduceOnly` vs `opening`:**
+   - `RepairDraft.intent` is strictly typed as `'reduceOnly'`. `stopParams` throws `UNSUPPORTED_DRAFT` if `intent !== 'reduceOnly'`.
+   - `prepareOwnerCall` (line 120) checks existing stops with `s.intent === 'reduceOnly'`.
+   - `reconcileOperation` (line 163) verifies `stored.intent === 0` (reduceOnly enum value on-chain).
+3. **Long/Short and Trigger Direction:**
+   - In `prepareOwnerCall` (lines 117–119):
+     - Position `size = BigInt(fresh.position.signedSize)`. Rejects `size === 0n`.
+     - Closing side: `draft.isBid !== (size < 0n)` throws `DRAFT_NO_LONGER_VALID` (long position `size > 0n` requires `isBid === false` to sell; short position `size < 0n` requires `isBid === true` to buy).
+     - Trigger operator: `draft.triggerOperator !== (size > 0n ? 1 : 0)` throws (long SL requires `triggerOperator === 1` (`<=`); short SL requires `triggerOperator === 0` (`>=`)).
+     - Trigger vs mark price: `(size > 0n ? trigger >= mark : trigger <= mark)` throws (long SL must be strictly below mark; short SL must be strictly above mark).
+     - Tick alignment: `trigger % BigInt(fresh.market.tickSize) !== 0n` throws `OFF_GRID_TRIGGER`.
+4. **Expiry / Activity & Freshness:**
+   - `prepareOwnerCall` requires `Date.now() - Date.parse(fresh.market.observedAt) <= 15000` and `fresh.market.feedValid === true`.
+   - `owner.ts` `send()` requires `Date.now() - Date.parse(operation.draft.createdAt) < 15000`.
+   - `desk-assessment.test.ts` confirms snapshots older than 15,000 ms evaluate to `UNKNOWN`.
+5. **Quantity-Zero Whole-Position Semantics & Fixed Partial Coverage:**
+   - `Assessment.coverageMode` (`types.ts`) explicitly distinguishes `'whole-at-trigger' | 'fixed' | 'none' | 'unknown'`.
+   - `stopParams` (`packages/protocol/index.ts` line 91) allows `quantity: 0n` (`!/^\d+$/.test(draft.quantity)` permits `"0"`, whereas `BigInt(draft.triggerPrice) <= 0n` requires positive trigger price).
+   - Note: Because `packages/domain/index.ts` Lines 1–120 (`assessProtection`, `createSlDraft`, `createCancelDraft`) were omitted from the excerpt, the internal branching for `quantity === 0n` vs partial fixed quantity and duplicate/OCO stop aggregation is verified only via `types.ts`, `INDEPENDENT_REVIEW.md`, and `desk-assessment.test.ts`, not direct line inspection in this packet.
+6. **OCO Linkage & Cancellation:**
+   - `NativeStopSnapshot` tracks `siblingId: string | null`.
+   - On `cancel-stop` reconciliation (`packages/protocol/index.ts` line 154), if either `s.id === op.draft.stopId` or `s.siblingId === op.draft.stopId` remains present in the post-receipt snapshot, reconciliation refuses `Applied` and returns `NeedsReview` (`CANCEL_OR_SIBLING_LINK_STILL_PRESENT`).
+7. **Receipt vs Protection & Execution Disclaimer:**
+   - Reconciliation never treats a receipt alone as protection: `reconcileOperation` requires canonical block verification, event log decoding, `getPendingOrder` contract read-back at `readBlock.number >= receipt.blockNumber`, and a complete post-receipt `readLiveSnapshot`.
+   - `KNOWN_LIMITATIONS.md` and UI copy explicitly state that native stops cannot guarantee execution, fill price, or liquidation avoidance.
+
+---
+
+## 4. Unknown Operation Provenance and Idempotency
+
+1. **Journal Transitions & Crash Recovery:**
+   - `Journal` (`packages/storage/index.ts`) uses SQLite `WAL` mode and `BEGIN IMMEDIATE` transactions.
+   - `Journal.recover()` (lines 38–46) runs at server startup (`apps/server/app.ts` line 13) and transitions any interrupted `AwaitingSignature` or `Reconcile` operation to `Unknown`, preserving the owner lock (`!TERMINAL.includes(o.state)` where `TERMINAL = ['Applied', 'Failed', 'Cancelled']`).
+2. **Wallet Rejection vs Unknown Submission:**
+   - In `apps/web/src/owner.ts` (`send`, lines 11–12): `awaiting` is set to `true` only after the server persists `AwaitingSignature`. If `executeNativeSl` throws, it transitions to `Cancelled` **only** if `walletInvoked && (error.code === 4001 || error.cause?.code === 4001)` (standard EIP-1193 user rejection). Any other error transitions the operation to `Unknown`.
+   - If the `Submitted` state update fails after `executeNativeSl` returns `txHash`, `owner.ts` keeps `txHash` in local state, attempts to persist `Unknown` with `txHash`, and instructs the user not to retry.
+3. **Lock Atomicity and Restart:**
+   - `Journal.reserve` checks `const active = this.list().find(o => o.owner.toLowerCase() === draft.owner.toLowerCase() && !TERMINAL.includes(o.state)); if (active) throw new Error('OPERATION_IN_FLIGHT');` inside `BEGIN IMMEDIATE`. Only one non-terminal operation per owner can exist at any time.
+4. **Manual Hash Recovery & Provenance Limitation:**
+   - `Journal.bindRecoveredHash` (`packages/storage/index.ts` lines 27–37) requires `op.state === 'Unknown' || op.state === 'AwaitingSignature'`, validates owner/pool scope and 32-byte hex format, prevents overwriting an existing different `txHash` (`TX_HASH_IMMUTABLE`), sets `state: 'Unknown'`, and sets `hashProvenance: 'recovered'` whenever `!op.txHash`.
+   - In `packages/domain/index.ts` (line 130): `if (next === 'Cancelled' && hash) throw new Error('KNOWN_TRANSACTION_CANNOT_BE_CANCELLED');` and (line 131): `if (operation.hashProvenance === 'recovered' && (next === 'Applied' || next === 'Failed')) throw new Error('ORIGINAL_TRANSACTION_PROVENANCE_REQUIRED');`.
+   - In `packages/protocol/index.ts` (line 146): `if (op.hashProvenance === 'recovered') return out('NeedsReview', 'RECOVERED_HASH_ORIGINAL_TRANSACTION_PROVENANCE_REQUIRED');`.
+   - **Assessment:** Manually recovered hashes via `/recover-hash` properly remain in `NeedsReview` (which is in `isInFlight` and non-terminal), keeping the owner locked and preventing resend/replacement. However, see **[P1-A]** above for the bypass path where a hash is attached via `POST /api/operations/:id/state` (`Submitted` or `Unknown`) without `hashProvenance: 'recovered'`.
+
+---
+
+## 5. Local Owner and Public Read-Only Separation
+
+1. **Loopback / Host / Origin / Session Checks:**
+   - Host header check (`apps/server/app.ts` line 15): When `config.ownerEnabled` is true, requests whose `Host` (stripped of port) is not `127.0.0.1`, `localhost`, or `[::1]` are rejected with `403 LOCAL_HOST_REQUIRED`.
+   - Mutation gate (`apps/server/app.ts` line 20): All non-`GET/HEAD/OPTIONS` requests under `/api` require `config.ownerEnabled && journal`, `req.headers.origin === http://${req.headers.host}`, `req.headers['x-dreamshield-token'] === token` (per-process 32-byte random hex token), and `req.headers['sec-fetch-site'] !== 'cross-site'`.
+2. **Mutation Endpoint Gating:**
+   - `/api/operations/:id/state` restricts client transitions to `['AwaitingSignature', 'Submitted', 'Unknown', 'Cancelled']`; `Reconcile`, `Applied`, `NeedsReview`, and `Failed` are rejected with `403 READBACK_STATE_IS_SERVER_ONLY`.
+   - Proof flags (`readBackVerified`, `receiptFailed`) are only passed internally by `/api/operations/:id/reconcile`.
+3. **Wallet Chain / Account Mismatch & Smart Account Gate:**
+   - UI `eligible` (`apps/web/src/owner.ts` line 5) checks `mode === 'live-owner'`, `ownerEnabled`, `parseInt(wallet.chain, 16) === 50383`, and `wallet.account.toLowerCase() === data.snapshot.position?.owner.toLowerCase()`.
+   - `prepareOwnerCall` and `executeNativeSl` (`packages/protocol/index.ts` lines 97–102, 129) re-verify the connected wallet address and chain ID `50383` immediately before building and again immediately before calling `wallet.sendTransaction`.
+   - `prepareOwnerCall` checks `getCode({ address: account }) !== '0x'` and rejects smart accounts (`SMART_ACCOUNT_NOT_SUPPORTED`).
+   - Operator approval is checked via `isOperatorAuthorized`; if missing, `executeNativeSl` throws `OPERATOR_APPROVAL_REQUIRES_SEPARATE_OWNER_CONFIRMATION` and never auto-sends an approval transaction.
+4. **No Server Signing Secret:**
+   - Verified: `apps/server/app.ts` and `packages/protocol/index.ts` contain no private keys or server-side signing logic.
+5. **Export Integrity:**
+   - `/api/evidence` computes a SHA-256 hash over the serialized server evidence JSON (`apps/server/app.ts` line 19), and `App.tsx` wraps it with client display state and explicitly labels replay mode.
+
+---
+
+## 6. Staleness and Error Behavior
+
+1. **Failed Reads and Timeouts:**
+   - `/api/desk` (`apps/server/app.ts` line 18) returns HTTP `503` (`READ_FAILED`) on unhandled snapshot errors without inferring an empty position or verified protection.
+   - `/readyz` (line 16) returns HTTP `503` whenever `latest` is null or `assessDesk(latest, ...).verdict === 'UNKNOWN'`.
+   - In `App.tsx` (line 17), any client fetch error (`networkError`) is injected into `assessDesk({...data.snapshot, readError: networkError || data.snapshot.readError}, ...)`, withdrawing green immediately.
+2. **Unresolved Cancel / Send Operations:**
+   - `assessDesk` (`packages/domain/desk.ts` lines 4–11) filters operations where `isInFlight(op.state)` (`AwaitingSignature`, `Submitted`, `Unknown`, `Reconcile`, `NeedsReview`) matching `owner` and `pool`.
+   - If any match exists, `assessDesk` overrides any non-`UNKNOWN` base verdict to `'UNKNOWN'` (if any op is `Unknown`), `'NEEDS_REVIEW'` (if any op is `NeedsReview`), or `'PENDING'`, prepends `'OPERATION_UNRESOLVED'` to `reasonCodes`, sets `coverageMode: 'unknown'`, and clears `coveredRaw: null`.
+3. **Reorg and Incomplete Read-back Uncertainty:**
+   - `reconcileOperation` (`packages/protocol/index.ts` lines 142–143, 153, 159, 165) checks `canonical.hash !== receipt.blockHash`, `readBlock.number < receipt.blockNumber`, and `!snapshot.complete || BigInt(snapshot.market.observedBlock) < receipt.blockNumber`, returning `'Unknown'` in all such cases so the operation stays locked and non-green.
+
+---
+
+## 7. Missing Tests
+
+1. **Non-recovered Reverted Receipt Calldata/Origin Verification (for [P1-A]):**
+   - Test that `reconcileOperation` on a `Submitted` (non-recovered) operation does **not** return `Failed` when given a canonical reverted receipt from the same owner to the same registry if the transaction calldata or block number does not match the operation's draft.
+2. **State Endpoint Hash Provenance Enforcement (for [P1-A]):**
+   - Test that `POST /api/operations/:id/state` cannot be used to attach an unverified `txHash` to an `AwaitingSignature` or `Unknown` operation while bypassing `hashProvenance: 'recovered'`.
+3. **Pre-flight Cancel Status Check (for [P2-A]):**
+   - Test that `prepareOwnerCall` with `action: 'cancel-stop'` throws `CANCEL_STOP_NOT_VERIFIED` if the stop exists in `fresh.stops` with matching `id` and `owner` but `status: 'filled'` or `'cancelled'`.
+4. **Full File Inspection Coverage for Excerpted Modules:**
+   - Because `packages/domain/index.ts` (lines 1–120) and `packages/protocol/index.ts` (lines 1–88) were excerpted in this packet, ensure unit test suites explicitly cover duplicate stop ID detection, OCO sibling double-counting prevention, and multi-block tear detection in `readLiveSnapshot` and `assessProtection`.
+
+---
+
+## 8. Live / Competition Gates and External Blockers
+
+1. **G0 (Transport / SDK Read):** Blocked externally by the nested WebSocket DNS `EAI_AGAIN` / connection refusal errors against the Somnia testnet endpoints in the current execution environment.
+2. **G1 (Live Owner Lifecycle):** Blocked externally. No funded testnet owner wallet, active position, operator approval, live native SL creation, live cancellation, or live post-transaction reconciliation has been executed.
+3. **G3 (Responsive Viewport):** Desktop `768px`, `485px`, and zoomed `323px` were checked; exact `375px` at `100%` zoom and physical mobile/touch devices remain unverified.
+4. **G4 (Independent / Argon Audit):** Prior Argon request timed out (`uncertain_no_retry`). This review provides static code analysis of the packet, not a formal audit or live verification.
+5. **G5 (Submission / Deadline):** Organizer deadline timezone ambiguity and private repo judge access remain external operational items.
+
+---
+
+## 9. Minimal Bounded Fix Order
+
+1. **Fix [P1-A] (Transaction Calldata & Provenance Check before `Failed`):**
+   - In `apps/server/app.ts` (`POST /api/operations/:id/state`), disallow attaching a `txHash` when transitioning to `Unknown` (require `/recover-hash` for recovery), or mark `hashProvenance: 'recovered'` if `txHash` was not already set during `Submitted`.
+   - In `packages/protocol/index.ts` (`reconcileOperation`), call `rpc.getTransaction({ hash })` before `if (receipt.status === 'reverted')` and verify that the transaction's input calldata and block number match `op.draft`; otherwise return `NeedsReview`.
+2. **Fix [P2-A] & [P2-B] (Tighten `prepareOwnerCall` and `reconcileOperation` stop checks):**
+   - Require `s.status === 'pending' && same(s.registry, draft.registry)` in `prepareOwnerCall` (`cancel-stop`).
+   - Require `s.status === 'pending' && same(s.pool, op.pool)` on the matched snapshot stop in `reconcileOperation` (`create-sl`).
+3. **Add Regression Tests:**
+   - Add offline unit/integration tests covering [P1-A], [P2-A], and [P2-B] and rerun `npm run typecheck`, `npm test`, and `npm run build`.

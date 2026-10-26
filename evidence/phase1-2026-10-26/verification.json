@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "project": "DreamShield",
+  "phase": "Phase1 offline differentiation",
+  "phaseLabel": "2026-10-26",
+  "capturedAtHostClock": "2026-10-25T16:12:21.750575+00:00",
+  "clockNote": "Host/browser clocks report October 25; preserved as observed. Phase label follows task date.",
+  "runtime": "Node 24.22.1",
+  "checks": {
+    "typecheck": "passed",
+    "offlineTests": {
+      "passed": 156,
+      "files": 10
+    },
+    "productionBuild": "passed with existing large lazy protocol-chunk warning",
+    "desktopBrowser": "all 12 scenarios, friendly labels, selected cancellation disabled, unsigned preview, actual export",
+    "viewportCss": {
+      "width": 1408,
+      "height": 871
+    },
+    "observedBrowserRequests": 25,
+    "observedMutationRequests": 0
+  },
+  "liveWorkflowVerified": false,
+  "liveG1": "BLOCKED_EXTERNAL / NOT_RUN",
+  "walletConnected": false,
+  "transactions": [],
+  "sourceFiles": [
+    {
+      "path": "package.json",
+      "sha256": "ac2a63bdd9dedeed6bc29bbbf226fce4b8d1525c2e49b17bf747b1c33ce7f69f"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "2b2f61dda26f6b893464826ca7e243d54d6aac4692db7f52fc2fcc858d1174bc"
+    },
+    {
+      "path": "tsconfig.server.json",
+      "sha256": "27a48cedb16c9bd730cdf2f65b3d5bc62164e2ad57020e359f641240f09c5695"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "43223999dc624bb0948516a1c7b61c94063c11c059829b4dc77bb6ec2ec3be3d"
+    },
+    {
+      "path": "tests/integration/api.test.ts",
+      "sha256": "be8130ed410d20805e685f389790409e0e514f656e22d454e3cc19e1824f664f"
+    },
+    {
+      "path": "tests/integration/desk-assessment.test.ts",
+      "sha256": "436fe8dcfebfbb6fb073180be5ba0d24b2cd017bd333e554f9e1f520b97fdadb"
+    },
+    {
+      "path": "tests/integration/journal.test.ts",
+      "sha256": "89a2235c7e3e56fbd65e2fd88a17593fc4a577190acfc3680f2a2a53af3b899d"
+    },
+    {
+      "path": "tests/integration/owner-recovery-api.test.ts",
+      "sha256": "64b3df66480da092c31f9379833490b66bb4b0cc645b1eb5fd583b182e22984c"
+    },
+    {
+      "path": "tests/unit/domain.test.ts",
+      "sha256": "6085f4721ed903c8e596498b1428bae0f143077341c8a931d3eb33658d46a834"
+    },
+    {
+      "path": "tests/unit/argon-hash-provenance.test.ts",
+      "sha256": "62b73342584548438209407e2076afdecd6935c0262b11feca5c44e0d46fe49b"
+    },
+    {
+      "path": "tests/unit/argon-protocol.test.ts",
+      "sha256": "fc72aa7b3e094f52795f40e13c6a881d4dd185214c78ac3d5262ef381ff7e87a"
+    },
+    {
+      "path": "tests/unit/protocol.test.ts",
+      "sha256": "2fb1b43a2beab399efb621d51e6580d01eb0eb235e103d7a6c734811d93f2f97"
+    },
+    {
+      "path": "tests/unit/recovered-provenance.test.ts",
+      "sha256": "ad2b6613813a629b3d22cd2a5d88e76cc3d7ff26314b0047adbdd9cb45ec770a"
+    },
+    {
+      "path": "tests/unit/transaction-encoding.test.ts",
+      "sha256": "d108340778b3f4fb07980ef2e988d5fe82e94e4a09a0be27b845d275b8ce5c16"
+    },
+    {
+      "path": "packages/domain/index.ts",
+      "sha256": "fc5d341b4a5c0c9a892bbe5942e98543393903bc1776bd7693a6d553e8b31f7e"
+    },
+    {
+      "path": "packages/domain/desk.ts",
+      "sha256": "b189418d269348c710adb133cf579c1e81ce1ce133a86e80e984fab2d7281195"
+    },
+    {
+      "path": "packages/domain/types.ts",
+      "sha256": "d1235a8be44c57f139a5b0801b88f0304b39a1a29d295fbdf69fd42e0b528c52"
+    },
+    {
+      "path": "packages/protocol/index.ts",
+      "sha256": "3c514ffd4b65eff4a97ff401b2d027e9f5901eeab8de7de6a646079a8b2b704e"
+    },
+    {
+      "path": "packages/protocol/sdk-abi.ts",
+      "sha256": "24a1b31f7740add41898b58104fe98ddfd4f22437a6e23dc8aeb01d49d064084"
+    },
+    {
+      "path": "packages/protocol/transaction-abi.ts",
+      "sha256": "22bae13fee63fce31f3b1e7560f0d4355d18bd65a61c7b4a4378e27c99da3cf6"
+    },
+    {
+      "path": "packages/storage/index.ts",
+      "sha256": "0a8d18bece95f7cafa6a212e093ce0343247a1d10939f7351f959099d9fbea51"
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "675adde91d60bacd0851b4faabbef97834ce9b5d5783d85068513e2385537227"
+    },
+    {
+      "path": "apps/web/src/Protection.tsx",
+      "sha256": "60610cb5c3ff6816e542db4858c67efbd264dae8fa80a4e188273101fce0e4a9"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "dee65cc785415c2497ffe843ed29f2d2af9631e25afb412cbcff2ef6f223306c"
+    },
+    {
+      "path": "apps/web/src/env.d.ts",
+      "sha256": "35d26ea66c86da9701e4f4b467913481ffeae910761cea34c775c5dacb7f8eaa"
+    },
+    {
+      "path": "apps/web/src/owner.ts",
+      "sha256": "c549441a04937b88c59087b8ee3bff310bc5d41ea8ce39e8c437594fb4b5de09"
+    },
+    {
+      "path": "apps/web/src/OwnerPanel.tsx",
+      "sha256": "3263f152ff4ed55fe5d42ee8206c3e4b69dc1b988b52fe0205506ee4bd35b13c"
+    },
+    {
+      "path": "apps/web/src/Repair.tsx",
+      "sha256": "e2e95ee8895ddddec4ac8e442e2830ae00f14c4136d11021845dc77305cb1266"
+    },
+    {
+      "path": "apps/web/src/Timeline.tsx",
+      "sha256": "ea501eb8e05506c33ac91842702e504f0edd79b0d18f5ab0185a17ddff6f5c8f"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "2aa9ecf94a4ffaf931ce8f12aee7349bf20076a11f9abe363ddc0df7365dcee2"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "sha256": "71afecc1931c702ff0516201f8ffe2af956552af6e37a8c5aea428057cde242b"
+    },
+    {
+      "path": "apps/server/app.ts",
+      "sha256": "3337d02ac2bcda5e1728362739d5e5c6f653a618145658dcc0f67240e2d675dc"
+    },
+    {
+      "path": "apps/server/config.ts",
+      "sha256": "7965601918af7ddb66ad6bf04483c0ce48669db4d62bbb100d531086c785b4f4"
+    },
+    {
+      "path": "apps/server/index.ts",
+      "sha256": "daa7c6f427e22fd81cda4c5c8681eda77909eb1d1d1a48bf3dd79ba9e2351d4d"
+    },
+    {
+      "path": "fixtures/scenarios.ts",
+      "sha256": "560c63fe8b573d797d96b50b2c85c8a1e9c85934d20958baf3bf63877b0ef2c7"
+    }
+  ],
+  "buildFiles": [
+    {
+      "path": "dist/web/index.html",
+      "sha256": "f351afc9aa82973119b3dd620dbacdf657073b466a98c6dbff0967fea00ecaef"
+    },
+    {
+      "path": "dist/web/assets/index-D3Vli0wr.css",
+      "sha256": "5d58ea6ec9179eefa1383bd9cbdb672d4a1ec8619360a9bc81764553f45d332d"
+    },
+    {
+      "path": "dist/web/assets/secp256k1-BROTJ0Ba.js",
+      "sha256": "126c2abaadc7beb0ffc3827ec8b88b9ada54fd07763b84a7bd67cdde40ca1b78"
+    },
+    {
+      "path": "dist/web/assets/utils-Bpv4vmSW.js",
+      "sha256": "5114638bb111b647e478a947be5beed5558487685dc8284144566df3fc03d851"
+    },
+    {
+      "path": "dist/web/assets/browser-C98-KJkq.js",
+      "sha256": "e8e9b778ada1e5461b3eeec8652789626c61c7f8334e2c130b932ca80bd199f0"
+    },
+    {
+      "path": "dist/web/assets/ccip-Cq-iflo4.js",
+      "sha256": "7cb882996d1822657862ea6a20eb5edc96a89d766ca8283a8248f5165fc824e9"
+    },
+    {
+      "path": "dist/web/assets/index-BdzPDt2t.js",
+      "sha256": "c16edfa65d79d80bbcdb5127d397f5e461e24f4d59c36b461e4c5fcca4ae3b9a"
+    },
+    {
+      "path": "dist/web/assets/native-BKj27wfc.js",
+      "sha256": "b629b3a9496d3cc8648d220c474222cedfe89ec9e796b3e62af16f7e1c33da11"
+    },
+    {
+      "path": "dist/web/assets/protocol-BIr9Y2SV.js",
+      "sha256": "2b01d106b1f90966de3ec1aaea63140484d50e537fd6e7b3371955155922c1ff"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/phase1-2026-10-26/NOTES.md",
+      "sha256": "766044ff6bdd5e593e34a672b07e85be575bd13afe4e43d45189716ae9c0bda2"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/offline-checks.txt",
+      "sha256": "2ced6ff15cb399a2e80ed655bb7452593fb835dcc46b52985f21a2e63b56cf17"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/browser-scenarios.json",
+      "sha256": "755e1fa836b06de1011fc61576bfcf3a0d4b36425f6662d34f86c702247db313"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/browser-guards.json",
+      "sha256": "f3a358cef83e69a22156ad80c25949b230f752bacca355fa822bb54d2b1ea21c"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/downloaded-residual-stops-evidence.json",
+      "sha256": "561dd249edaf1a630c4fd252ceccd7575eb6c057851e935e34d16b85242d8cad"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/tp-only.png",
+      "sha256": "9592a8b121ac97b30e09da13aacf21430e2031a0f6fdb30d6f15479293090953"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/wrong-side-sl.png",
+      "sha256": "3a07a933b75bf4b5d1e76ac001867b42d8ba231011926fdea22e197871c4c4de"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/trigger-met.png",
+      "sha256": "40a7ef8b233472d32068f15c310b499ef99211fc8e00c325228a34fa178d3d25"
+    },
+    {
+      "path": "evidence/phase1-2026-10-26/residual-stops.png",
+      "sha256": "ff20b6139947570e5e59522eb7268112c0c0dad711a9eeb3bfba92a8599048b0"
+    }
+  ]
+}

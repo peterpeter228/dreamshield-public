@@ -1,0 +1,105 @@
+DreamShield Phase2 local/offline verification
+Phase label: 2026-10-26 (not a rewritten host clock)
+Observed host start UTC: 2026-10-25T23:06:48.438884+00:00
+No chain probes, wallet actions, transactions, external filings or publication.
+
+$ npm exec --yes --package=node@24.22.1 -- sh -c 'node --version && npm run typecheck && npm test && npm run build'
+v24.22.1
+
+> dreamshield@0.1.0 typecheck
+> tsc --noEmit
+
+
+> dreamshield@0.1.0 test
+> vitest run --root .
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/workspace/dreamshield[39m
+
+ [32m✓[39m tests/integration/desk-assessment.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m tests/integration/journal.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+ [32m✓[39m tests/integration/owner-recovery-api.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 115[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-protocol.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m tests/integration/api.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+ [32m✓[39m tests/unit/transaction-encoding.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-hash-provenance.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 133[2mms[22m[39m
+ [32m✓[39m tests/unit/recovered-provenance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m10 passed[39m[22m[90m (10)[39m
+[2m      Tests [22m [1m[32m156 passed[39m[22m[90m (156)[39m
+[2m   Start at [22m 07:06:50
+[2m   Duration [22m 975ms[2m (import 84%, tests 11%, transform 3%, worker 1%)[22m
+
+
+> dreamshield@0.1.0 build
+> vite build && tsc -p tsconfig.server.json
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 776 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/web/index.html                        0.41 kB │ gzip:   0.29 kB
+dist/web/assets/index-D3Vli0wr.css         9.83 kB │ gzip:   2.82 kB
+dist/web/assets/secp256k1-BROTJ0Ba.js      0.05 kB │ gzip:   0.07 kB
+dist/web/assets/browser-C98-KJkq.js        0.20 kB │ gzip:   0.18 kB
+dist/web/assets/native-BKj27wfc.js         0.30 kB │ gzip:   0.17 kB
+dist/web/assets/utils-Bpv4vmSW.js          2.19 kB │ gzip:   0.97 kB
+dist/web/assets/ccip-Cq-iflo4.js           2.84 kB │ gzip:   1.31 kB
+dist/web/assets/index-BdzPDt2t.js        259.13 kB │ gzip:  81.04 kB
+dist/web/assets/protocol-BIr9Y2SV.js   1,440.76 kB │ gzip: 357.11 kB
+
+✓ built in 1.66s
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+exitCode: 0
+
+$ npm exec --yes --package=node@24.22.1 -- npm run submission:check
+
+> dreamshield@0.1.0 submission:check
+> node --import tsx scripts/submission-check.ts
+
+{
+  "status": "BLOCKED",
+  "missing": [
+    "whitelistVerified",
+    "reviewerRepositoryAccess",
+    "realPerpsOrder",
+    "nativeProtectionReadback",
+    "xPost1",
+    "xPost2"
+  ],
+  "submitted": false,
+  "buildUrl": null
+}
+
+exitCode: 2
+
+$ npm exec --yes --package=node@24.22.1 -- npm run verify:evidence
+
+> dreamshield@0.1.0 verify:evidence
+> node --import tsx scripts/verify-evidence.ts
+
+{
+  "schema": "valid",
+  "liveVerified": false,
+  "liveChecks": "NOT_RUN",
+  "reason": "No owner transaction evidence supplied; schema checks do not establish chain validity."
+}
+
+exitCode: 2
+
+Throwaway document/metadata smoke check (in-memory Python; no permanent wording tests):
+PASS: 2 issue files, template/status fields, metadata report paths; all original submission values preserved.
+PASS: README exact X posts section, 2 explicitly unpublished/no-URL slots, readiness/differentiation/demo/feedback links.
+PASS: 102 local Markdown links resolve, including 7 heading anchors (no external fetches).
+PASS: actual checker JSON agrees with readiness and preserved live/external blockers; offline output records 156 tests/10 files on v24.22.1.
+PASS: no X/Twitter publication URLs in touched Markdown, no transaction/block hashes or G1 PASS/VERIFIED claims in new pack.
+LIMIT: link/metadata/template checks are local; report observations remain historical, current reproduction/dedup NOT_RUN, no live/browser/organizer acceptance exercised.
+Harness correction: initial count assertion used an unstyled contiguous literal, but Vitest inserted ANSI styling between count tokens. Count assertion passed after removing ANSI only for parsing; raw command output retained unchanged. No application or tests changed and no command rerun.

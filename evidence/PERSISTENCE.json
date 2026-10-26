@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "repository": "peterpeter228/dreamshield",
+  "commit": "de3cfe50b5517278e72a4b9a06806af0f22cc342",
+  "tree": "231369ae342607534f69d1b0ee485ca4e59aa0f5",
+  "expectedPriorMain": "94486c9978809f5913e8e3aa929c60a93a12737e",
+  "force": false,
+  "mainReadback": "de3cfe50b5517278e72a4b9a06806af0f22cc342",
+  "verifiedFiles": 92,
+  "mismatches": [],
+  "verifiedAt": "2026-10-24T22:59:29Z",
+  "distributionNote": "Historical readback of the original private repository only. These commit/tree/count identities do not describe or prove the cleaned delivery repository; its root commit and readback are recorded separately outside this distribution.",
+  "scope": "Code, offline tests, desktop replay QA and historical/current readonly probes; not live owner acceptance"
+}
