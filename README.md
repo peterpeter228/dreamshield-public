@@ -4,14 +4,14 @@ A native perps stop-protection desk for DreamDEX on Somnia Tokyo testnet. Detect
 
 Intended users: isolated Somnia Tokyo testnet perps account owners checking native stop-loss coverage after position or stop changes.
 
-**Current status:** runnable local replay and development; **G1 NOT_RUN / submission BLOCKED**. Product limits: one isolated owner, one doctor-verified market, chain **50383**, smallest valid **1–2 lots** and **1–2 concurrent native stops** (owner may tighten). No live trade, stop placement, cancellation, public deployment, social post or competition submission is claimed. See [STATE](docs/STATE.md) for product boundaries, historical versus current results and [evidence](evidence/manifest.json).
+**Current status:** runnable replay and private development; **G1 NOT_RUN / submission BLOCKED**. Locked MVP: one isolated owner, one doctor-verified **BTC** market, chain **50383**, position = **exactly one market-minimum order** (~13 grid lots; `AUTH-20261027-DREAM-LOT-SIZE`) and **1–2 concurrent native stops** (owner may tighten). No live trade, stop placement, cancellation, public deployment, social post or competition submission is claimed. G1 live signs still wait for owner isolated EOA. See [STATE](docs/STATE.md) for the exact private scope/authorization, historical versus current results and [evidence](evidence/manifest.json).
 
 ## Run locally
 
 Requirements: Node **24.22.1**, npm and Git. No API key or wallet secret required.
 
-    git clone https://github.com/peterpeter228/dreamshield-public.git
-    cd dreamshield-public
+    git clone https://github.com/peterpeter228/dreamshield.git
+    cd dreamshield
     npm ci
     npm run typecheck
     npm test
@@ -35,7 +35,7 @@ The UI explains reasons with friendly labels; exported assessments retain their 
 
 The doctor checks live public HTTP/WS endpoints, chain/genesis identity, contracts and pinned SDK integration without signing or sending. Its report separates transport, verified market and owner completeness; a market diagnosis without an owner is not complete owner acceptance. A doctor pass is **not** an executed trading workflow or proof of owner-machine reachability. Network failures and incomplete reads remain failures/unknowns, not empty accounts. Use only a market the doctor actually verifies; never copy an unverified pool address from an example.
 
-Actual 2026-10-27 final doctor: **PASS / transport-and-verified-market, exit 0** under Node v24.22.1; BTC/USDso diagnosed/verified, owner **NOT_CONFIGURED**, `g0Complete: false`, G1 NOT_RUN, no signing/send. [Artifact](evidence/g0/doctor-2026-10-27T05-32-53.000Z.json), [command/exit log](evidence/tests/mvp-doctor-final-2026-10-27.txt). Owner and accepted owner pool remain null; [STATE](docs/STATE.md#current-read-only-verified-market--not-owner-acceptance) records exact addresses/parameters and the unresolved locked 1–2-lot versus verified minimum/grid sizing blocker. No automatic market switch or larger executable amount is authorized.
+Actual 2026-10-27 final doctor: **PASS / transport-and-verified-market, exit 0** under Node v24.22.1; BTC/USDso diagnosed/verified, owner **NOT_CONFIGURED**, `g0Complete: false`, G1 NOT_RUN, no signing/send. [Artifact](evidence/g0/doctor-2026-10-27T05-32-53.000Z.json), [command/exit log](evidence/tests/mvp-doctor-final-2026-10-27.txt). Owner and accepted owner pool remain null; [STATE](docs/STATE.md#current-read-only-verified-market--not-owner-acceptance) records exact addresses/parameters. Size is locked to BTC market-min (~13 grid lots) per `AUTH-20261027-DREAM-LOT-SIZE`; stops max 1–2. No automatic market switch or amount above market-min is authorized.
 
 ## Modes
 
@@ -68,11 +68,7 @@ The recorded official requirement is 2–3 real posts tagging `@DreamDEXSomnia`.
 
 ## Verify and submit honestly
 
-**Official submission: BLOCKED.** Local replay, offline engineering evidence and two historical-evidence Feedback reports are available; real orders/readback, whitelist approval, reviewer access and published X links remain missing or unverified. Whitelist remains WAITING_EXTERNAL; no organizer contact was performed. Plan against **2026-11-02 06:59 Asia/Shanghai**, not the conflicting later body time. See the [readiness checklist](docs/SUBMISSION_READINESS.md), [Feedback index](feedback/README.md), [differentiation](docs/DIFFERENTIATION.md), and [demo script](docs/DEMO_SCRIPT.md).
-
-    npm run test:judge
-
-This distribution preserves `test:judge` as the explicit **offline aggregate**: typecheck → offline tests → production build → `verify:evidence -- evidence/manifest.json --allow-incomplete`, with `&&` failure propagation. The final stage reports OFFLINE_SCHEMA_ONLY and cannot establish live acceptance, reviewer access or submission. Run the separate strict readiness commands below independently; never use the offline allowance to claim G1.
+**Official submission: BLOCKED.** Local replay, historical offline verification and two historical-evidence Feedback reports are available; real orders/readback, whitelist approval, reviewer access and published X links remain missing or unverified. Whitelist ticket **DX-0327 WAITING_EXTERNAL** is not permission to contact organizers. Plan against **2026-11-02 06:59 Asia/Shanghai**, not the conflicting later body time. See the [PASS/FAIL/BLOCKED readiness checklist](docs/SUBMISSION_READINESS.md), [local Feedback index](feedback/README.md), [differentiation](docs/DIFFERENTIATION.md), and [demo script](docs/DEMO_SCRIPT.md).
 
     npm run verify:evidence -- evidence/manifest.json --submission evidence/submission.json
     npm run submission:check
@@ -83,12 +79,12 @@ Run independently: strict checks exit **2 / BLOCKED** while live evidence or sub
 
 `packages/domain`: pure bigint protection assessment and operation rules. `packages/protocol`: pinned Markets SDK 0.32.1 adapter and read-only doctor. `packages/storage`: durable SQLite operation journal. `apps/server`: mode and origin enforcement. `apps/web`: evidence-first responsive desk. `fixtures`: explicitly synthetic replay. `evidence`: machine-readable results and honest gate status.
 
-The published dependency `@somnia-chain/markets-sdk@0.32.1` is pinned in [package.json](package.json) and [package-lock.json](package-lock.json). See the extracted [read-only SDK ABI](packages/protocol/sdk-abi.ts), [transaction ABI](packages/protocol/transaction-abi.ts), retained [MIT notice](packages/protocol/SDK-LICENSE.txt), and [third-party provenance](docs/THIRD_PARTY_NOTICES.md). Do not treat historical research addresses or examples as verified live configuration; the doctor must revalidate them in the execution environment.
+Dependencies are pinned in package-lock.json. The SDK is used through its published package. Do not treat source-guide addresses or examples as verified live configuration; the doctor must revalidate them in the execution environment.
 
 ## Review and operation evidence
 
-See [independent review](review/INDEPENDENT_REVIEW.md), [operations](docs/OPERATIONS.md), and [actual evidence notes](evidence/mvp-2026-10-27/NOTES.md). Final original-source **Node 24.22.1** typecheck/test/build exited **0**, **401 offline tests/16 files**; [measured inputs/logs](evidence/mvp-2026-10-27/classification-verification.json). Every loader rejection shares status and file-only/nonattestation fields: missing metadata/files `MISSING`, replay/read-only `HISTORICAL_OR_REPLAY`, malformed/unsupported input `INVALID`; [16 actual CLI invocations](evidence/tests/mvp-classification-cli-2026-10-27.txt) exercised both checkers without changing default claims. Prior 399/16 wrapper and original 391/15 measurements, the initial incidental assertion failure, and synthetic capture/persistence remain historical. A separate built replay re-exercise at prior source `02fdeb` covered all 12 scenarios, unsigned preview/signing disabled, actual download and aging/read-failure revocation; UI/server bytes are unchanged, not a final-source browser rerun. Final source/distribution identities and independent refreshed runtime outcomes belong to the external delivery receipt. Real owner execution remains NOT_RUN; the historical Argon review is not a formal audit, post-fix approval or live acceptance.
+See [independent review](review/INDEPENDENT_REVIEW.md), [operations](docs/OPERATIONS.md), and [actual evidence notes](evidence/mvp-2026-10-27/NOTES.md). Final classification-normalized **Node 24.22.1** typecheck/test/build exited **0**, **401/401 offline tests/16 files**; [final measured inputs/logs](evidence/mvp-2026-10-27/classification-verification.json). All loader rejections now share status and file-only/nonattestation fields: missing metadata/files MISSING, replay/read-only HISTORICAL_OR_REPLAY, malformed/unsupported input INVALID. Both rejection eligibility flags stay false; no trading/auth change. Sixteen actual checker invocations exercised these cases and synthetic live-owner acceptance; default strict checkers still exit 2/BLOCKED with real claims false/null and G1 NOT_RUN. Prior 399/16 wrapper and original 391/15, original browser/synthetic capture/restart and six/14-invocation CLI results remain historical. The integration-owner built replay re-exercise also preceded this CLI-only correction; UI/server source unchanged, not final-source browser/persistence reruns. Initial 390-pass/1-fail assertion history remains disclosed; durability/rollback checks retained. Historical 90/119/156-test checkpoints and 2026-10-24 network failures remain in [STATE](docs/STATE.md). Argon remediation is not a formal audit, post-fix external approval or live acceptance.
 
 For the single consolidated remaining owner checklist, see [owner handoff](docs/OWNER_HANDOFF.md).
 
-The 2026-10-27 read-only check observed https://github.com/peterpeter228/dreamshield-public PUBLIC, with authenticated viewer permission ADMIN and main `8e85e468a231350ebacbb2dbce0f5c746d47bd66`; this is not reviewer-access or updated-sync evidence. Inherited historical logs contain absolute workstation paths, so this update is a **NOT_PUSHED** local delivery: a disclosed ordinary base patch and separate clean-history local candidate, without rewriting existing history. Current exported logs are labelled sanitized derivatives; historical source/build fingerprints remain historical. See [STATE](docs/STATE.md). No visibility change, Submit Build or X publication was performed.
+Supplied locked-scope facts identify https://github.com/peterpeter228/dreamshield-public as PUBLIC proof. The integration owner's 2026-10-27 read-only check observed PUBLIC, viewerPermission ADMIN and main `8e85e468a231350ebacbb2dbce0f5c746d47bd66`; this is not reviewer access or a new synced implementation. Inherited historical logs contain absolute workstation paths, so the selected WP3 fallback is **NOT_PUSHED** local delivery with contamination disclosure and a separate clean local candidate, not a history rewrite. Actual delivery artifacts/verification belong in [STATE](docs/STATE.md) and the receipt; none is claimed here. Product remains PRIVATE. No visibility change, Submit Build or X publication is authorized.
