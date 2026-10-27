@@ -1,0 +1,33 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: a978c4b6aa7180064bca11814ee33fdd475eeda73b222b41085e537103363d4e. Exported raw SHA-256 is recorded separately.
+
+Captured: 2026-10-27T06:24:33.498375+00:00
+Runtime: v24.22.1
+Command: npm run verify:evidence
+
+> dreamshield@0.1.0 verify:evidence
+> node --import tsx scripts/verify-evidence.ts
+
+{
+  "status": "BLOCKED",
+  "schema": "valid",
+  "liveVerified": false,
+  "liveChecks": "NOT_RUN_OR_INVALID",
+  "offlineSchemaOnly": false,
+  "manifestPath": "evidence/manifest.json",
+  "submissionPath": "evidence/submission.json",
+  "evidence": {
+    "valid": false,
+    "errors": [
+      "liveEvidence: no doctor/lifecycle references supplied"
+    ],
+    "eligibility": {
+      "realPerpsOrder": false,
+      "nativeProtectionReadback": false
+    },
+    "currentChainRevalidation": "NOT_RUN",
+    "originAuthentication": "NOT_ESTABLISHED"
+  },
+  "reason": "File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance."
+}
+
+Exit: 2

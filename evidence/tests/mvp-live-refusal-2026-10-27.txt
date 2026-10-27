@@ -1,0 +1,13 @@
+Started UTC: 2026-10-27T05:38:46.663215+00:00
+Runtime: v24.22.1
+Command: ["npm", "run", "live:testnet"]
+--- stdout ---
+
+> dreamshield@0.1.0 live:testnet
+> node --import tsx scripts/live-testnet.ts
+
+
+--- stderr ---
+BLOCKED_LIVE: This command never loads a private key or broadcasts. Use the reviewed local owner browser workflow with an isolated testnet account after prerequisites and wallet confirmations. See docs/LIVE_HANDOFF.md.
+
+Exit code: 2

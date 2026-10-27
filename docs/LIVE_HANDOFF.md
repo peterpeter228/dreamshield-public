@@ -1,19 +1,52 @@
-# Owner testnet handoff (not executed)
+# Owner testnet handoff — G1 NOT_RUN
 
-No private key or seed phrase is required by DreamShield. Use an isolated browser-wallet EOA that you control, not a main funds wallet. The project does not assume a prior wallet address is authorized.
+**Execution status: BLOCKED_EXTERNAL / NOT_RUN.** This is a bounded handoff, not authorization to connect a wallet, sign, trade, fund or clean up an account. No private key or seed phrase is required by DreamShield. Supply only the public address of one disposable isolated EOA that you control; do not use a main-funds account or infer the trading owner from the registration payout wallet.
 
-## Before any wallet request
-1. Confirm Tokyo chain ID 50383 in wallet and both configured HTTP/WS transports.
-2. Choose one market from `doctor:readonly`, verify pool/registry/code, decimals, tick/lot/min quantity and valid mark.
-3. Provide the public owner address locally. Verify browser signer == owner. Linked bot permission does not authorize native stops.
-4. Confirm test collateral eligibility and balance, STT gas, dynamic registry deposit per stop, and the exact maximum permitted test position/fees. These are not yet known, so no executable amount is preapproved.
-5. Use official app for the initial perps order if needed; preserve actual receipt, decoded order/fill and current position. No fill is not a position.
-6. Preview one native whole-position reduceOnly SL with valid trigger, exact deposit and fresh snapshot. Wallet native confirmation is required.
-7. Record hash immediately; if outcome is unknown, reconcile that operation before another request. Never retry because a timeout elapsed.
-8. Independently read the stop and position after receipt. A mined hash alone is not coverage verification.
-9. Only when explicitly ready, cancel the selected test SL, observe the protection gap, create a replacement and verify. Canceling protection does not close the position. End by recording residual position, stops, orders and balances.
+This guide documents product limits and safety boundaries, not execution permission. Wallet session/signing/trading, mainnet, Submit Build, X publication, organizer contact, Feedback filing and visibility changes were not performed. [STATE](STATE.md) distinguishes actual evidence from historical and untested behavior.
 
-G1 remains NOT_RUN until all corresponding same-chain/account/market evidence exists. No mainnet, externally managed funds, signatures by an assistant, or real-money trading is authorized.
+## Locked owner and market limits
+
+1. **50383 only**, one isolated EOA and one doctor-verified market. Configure **`DEMO_OWNER_ADDRESS` / `DEMO_POOL_ADDRESS`** for doctor and application; no alias names or invented addresses. A no-owner doctor market diagnosis is not owner acceptance. A sandbox result is not owner-machine reachability.
+2. Accept a market only after live verification of chain/genesis, pool/bank/registry/code binding, decimals, tick, lot, minimum quantity and valid mark. Prefer a listed verified BTC-style candidate; a source-guide address or index row is not verification. Never disable retired-genesis guards.
+3. Position bound: the smallest valid tradable size derived from verified decimals/minimum quantity/lot grid, limited to **1–2 lots** of paper USDso exposure; maximum **1–2 concurrent native stops**. The owner may tighten either bound. Serialize bigint atomic quantities as decimals; do not use floating-point atoms or silently round off-grid values. Exact native call values/fees remain unapproved until observed and separately accepted by the owner.
+4. **STT faucet gas and paper USDso only.** Read the required native-stop deposit from the verified registry for the actual call. The exchange TP/SL note of **0.15 STT** is not an approved hardcoded native-stop deposit. No mainnet funds, server keys, automatic funding or cleanup.
+
+### Observed market and unresolved executable sizing
+
+The final Node v24.22.1 [doctor](../evidence/g0/doctor-2026-10-27T05-32-53.000Z.json) passed **transport-and-verified-market / exit 0** at 2026-10-27T05:32:53.000Z; [command/exit log](../evidence/tests/mvp-doctor-final-2026-10-27.txt). It verified BTC/USDso pool `0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0`, registry `0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef`, base/quote decimals **8/18**, atomic tick **100000000000000000**, lot **1000**, minimum **13000**. Exact genesis/block/native-deposit observation is retained in [STATE](STATE.md#current-read-only-verified-market--not-owner-acceptance); the observed registry deposit is not a hardcoded constant or approved spend. Owner remains NOT_CONFIGURED, `g0Complete: false`, accepted owner pool null, G1 NOT_RUN and no signing/send.
+
+One minimum order is **13 SDK grid lots**. Keep the locked **1–2-lot** budget unchanged and mark executable owner sizing **BLOCKED** until the owner clarifies/tightens units or separately accepts a verified alternative market. Do not reinterpret the bound as 1–2 minimum-size orders, round below minimum, enlarge the budget or switch markets automatically. This is an owner-execution prerequisite, not a failure of the scoped read-only result; no trade/amount is authorized.
+
+## Safe unsigned path — no wallet click
+
+Replay permits **Preview stop** and actual evidence download without wallet permissions. A preview is not an active stop. In local-owner mode the unsigned sequence is **Preview stop → Reserve fresh owner draft → inspect exact owner/pool/registry/action/trigger/deposit → export evidence → Discard unsigned draft**. Reservation and discard affect the local unsigned journal draft, not chain state; never click **Review in owner wallet**.
+
+The current reservation/discard UI requires an already established exact-owner wallet identity. This ticket does not authorize establishing that session: do not click Connect, request permissions or switch the wallet to make the control available. With no supplied owner/session/accepted pool, this owner-browser sequence is **NOT_RUN**. An offline stubbed no-send harness can establish engineering behavior only, not a live owner dry run. Never discard/reset a Submitted, Unknown or NeedsReview operation or delete its journal to clear a lock.
+
+## Read-only capture and export
+
+In an enabled local-owner instance, **Evidence details → Capture owner evidence · no signing** records observations without a wallet connection. The local-Origin/CSRF-protected `POST /api/owner/evidence/capture` accepts `kind: opening | missing-sl | gap | residual`, with `openingTxHash` only for an existing opening transaction. It performs chain reads and local persistence, never order preparation/sending or caller-asserted verification. Opening capture starts a lifecycle ID; subsequent captures use the same current owner/market scope. Initial/cancel/replacement proof is retained from original operations and reconciliation, not inferred from a terminal state label.
+
+`GET /api/evidence` is side-effect free; optional `?lifecycleId=` selects existing history. The browser downloads the exact server response text, without a client wrapper or rewritten assessment; mode, operation provenance, incomplete reads and the nested `lifecycle` remain inspectable. Export/capture does not clear locks, run the lifecycle, authenticate file origin or establish current protection. Use [OPERATIONS](OPERATIONS.md#evidence-references-and-checkers) for raw-file hashes and both path-ingesting checkers. `liveEvidence: null` and false live claims remain unchanged without real matching evidence and separate authorization.
+
+### Exercised engineering boundary — not real G1
+
+The [current evidence note](../evidence/mvp-2026-10-27/NOTES.md) records actual built synthetic local-owner capture UI: opening/missing-sl, duplicate rejected, **0 operations**, no wallet Connect/Review. Separately, built HTTP processes **586857 → 586870** captured opening/missing-sl/gap/residual across restart, retained **NeedsReview**, exported without mutation and preserved incomplete residuals. Read methods were stubbed; send/wallet methods threw. A 14-invocation actual CLI harness consumed relative paths and rejected invalid/replay proof. These are offline/synthetic engineering outcomes, not owner sessions, real opening/fills/stops/balances or an exercised owner reserve/export/discard path; all real G1 stages below remain NOT_RUN.
+
+## Real G1 sequence — separate owner authorization required
+
+Every stage below is **NOT_RUN**. First establish actual permitted transport, isolated owner public address, verified market, tightened bounds if any and an explicitly authorized wallet session. The browser signer must equal that owner; linked bot permission is not permission for native stops. No opening-order button or lifecycle runner is provided here.
+
+| Stage | Required same-chain/owner/market proof |
+|---|---|
+| Opening | Owner executes outside this ticket; the supported proof is a canonical direct-EOA SDK perps `placeOrder` transaction with official decoded owner/pool-bound taker fill sequence and nonzero pinned receipt-block position. No fill is not a position. Capture only the existing opening hash; stop/receipt-only, delegated, batch or smart-account transactions cannot satisfy this opening proof path and retain an explicit order error. |
+| Missing SL | Capture a complete fresh observation and recomputed NEEDS_PROTECTION assessment before creating protection. |
+| Initial native SL | Separately owner-confirmed native reduceOnly stop within the locked bounds, exact registry-read deposit and immutable original operation/call binding; canonical receipt/events plus independent matching native readback and position reconciliation. Hash ≠ coverage. |
+| Selected cancel and gap | Explicitly authorized cancellation of that verified stop, receipt/events and direct absence/readback, plus a nonzero position with an observed protection gap. Canceling a stop does not close the position. |
+| Replacement | Distinct original operation/transaction/stop linked to the gap, with independent matching native readback and reconciliation. Never reuse the initial hash or silently resend an uncertain request. |
+| Residuals | Record remaining position, native stops, resting orders, wallet STT/collateral and bank unlocked/locked collateral with observation block/hash and independent per-read completeness/errors. Native-stop ID discovery is indexer bracketed, not intrinsically block-pinnable: actual post-pagination SDK indexed block must fall between discovery start and canonical final HTTP block, with registry mutation-free logs across the bracket. Export these bounds; processing ahead/regression/unavailable freshness and failed reads remain incomplete, never zero/cleared or retried into acceptance. |
+
+Chronology, freshness at each observation, complete identity and receipt/readback links must pass the shared file validator. Historical complete proof does not establish current coverage. If any outcome is uncertain, record its original hash when available, stop and reconcile that original operation before another request; timeout is not permission to retry. Receipt success never replaces a fill, readback or residual review.
 
 ## Unknown outcome with a recovered hash
 

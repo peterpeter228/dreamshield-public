@@ -4,7 +4,7 @@ A native perps stop-protection desk for DreamDEX on Somnia Tokyo testnet. Detect
 
 Intended users: isolated Somnia Tokyo testnet perps account owners checking native stop-loss coverage after position or stop changes.
 
-**Current status:** runnable local replay and development. Not a production risk engine. No live trade, stop placement, cancellation, public deployment, social post or competition submission is claimed. See [STATE](docs/STATE.md) and [evidence](evidence/manifest.json).
+**Current status:** runnable local replay and development; **G1 NOT_RUN / submission BLOCKED**. Product limits: one isolated owner, one doctor-verified market, chain **50383**, smallest valid **1–2 lots** and **1–2 concurrent native stops** (owner may tighten). No live trade, stop placement, cancellation, public deployment, social post or competition submission is claimed. See [STATE](docs/STATE.md) for product boundaries, historical versus current results and [evidence](evidence/manifest.json).
 
 ## Run locally
 
@@ -18,7 +18,7 @@ Requirements: Node **24.22.1**, npm and Git. No API key or wallet secret require
     npm run build
     npm run demo:replay
 
-Open http://127.0.0.1:3000. The replay scenario selector uses clearly labelled fictional positions, never silently replaces live data. Refresh, inspect protection reasons, change scenarios and export the evidence JSON. The server binds loopback by default.
+Open http://127.0.0.1:3000. Express serves built `dist/web`, not unbuilt Vite source; rebuild before restarting after source changes. The scenario selector uses labelled fictional positions, never silently replaces live data. Refresh, inspect protection reasons, change scenarios and export evidence JSON; loopback is default. Actual built replay smoke exercised all 12 scenarios, unsigned preview/disabled signing and selected cancellation, 15-second aging/read-failure revocation and exact-body download at CSS1376×771 DPR1. No wallet Connect/Review click. [Current evidence note](evidence/mvp-2026-10-27/NOTES.md) separates those observed results from synthetic capture/persistence and still-NOT_RUN real owner/G1.
 
 The 12 replay scenarios retain the original eight: `unprotected`, `protected`, `partial`, `short`, `stale`, `oco-broken`, `no-position` and `unknown`. Four additional cases expose distinct safety questions:
 
@@ -33,15 +33,17 @@ The UI explains reasons with friendly labels; exported assessments retain their 
 
     npm run doctor:readonly
 
-The doctor checks live public endpoints, chain identity, contracts and SDK integration. A doctor pass is **not** an executed trading workflow. Network failures remain failures, not empty accounts.
+The doctor checks live public HTTP/WS endpoints, chain/genesis identity, contracts and pinned SDK integration without signing or sending. Its report separates transport, verified market and owner completeness; a market diagnosis without an owner is not complete owner acceptance. A doctor pass is **not** an executed trading workflow or proof of owner-machine reachability. Network failures and incomplete reads remain failures/unknowns, not empty accounts. Use only a market the doctor actually verifies; never copy an unverified pool address from an example.
+
+Actual 2026-10-27 final doctor: **PASS / transport-and-verified-market, exit 0** under Node v24.22.1; BTC/USDso diagnosed/verified, owner **NOT_CONFIGURED**, `g0Complete: false`, G1 NOT_RUN, no signing/send. [Artifact](evidence/g0/doctor-2026-10-27T05-32-53.000Z.json), [command/exit log](evidence/tests/mvp-doctor-final-2026-10-27.txt). Owner and accepted owner pool remain null; [STATE](docs/STATE.md#current-read-only-verified-market--not-owner-acceptance) records exact addresses/parameters and the unresolved locked 1–2-lot versus verified minimum/grid sizing blocker. No automatic market switch or larger executable amount is authorized.
 
 ## Modes
 
 - `replay` (default): fixtures, no wallet mutation endpoints.
 - `live-readonly`: set `APP_MODE=live-readonly DEMO_OWNER_ADDRESS=<public-address> DEMO_POOL_ADDRESS=<verified-pool>`. No signer and no transaction routes.
-- `live-owner`: isolated local instance only. Read [owner handoff](docs/LIVE_HANDOFF.md) first. Explicit `READ_ONLY=false ALLOW_TESTNET_WRITES=true` are required. Never expose it through a tunnel or reverse proxy. Use a disposable testnet wallet; signing remains in its native wallet confirmation. Do not add private keys to environment files.
+- `live-owner`: isolated local instance only. Read [live handoff](docs/LIVE_HANDOFF.md) first. Explicit `READ_ONLY=false ALLOW_TESTNET_WRITES=true` are required for owner routes; those settings are not execution authorization. The no-send boundary is unsigned preview → reserve fresh unsigned draft → inspect/export → discard. Never click **Review in owner wallet** under this ticket. Never expose owner mode through a tunnel or reverse proxy. No server signing keys; do not add private keys to environment files or request wallet permissions for read-only use.
 
-Environment variables are read from the process; `.env.example` is a template, not automatically loaded. Export chosen values or use your shell's normal environment mechanism.
+Environment variables are read from the process; `.env.example` is a template, not automatically loaded. Export chosen values or use your shell's normal environment mechanism. Both doctor and application use **`DEMO_OWNER_ADDRESS` / `DEMO_POOL_ADDRESS`**, with no alternate-name aliases. Supply only the isolated owner's public address; the registration payout wallet is not the trading owner. Use STT faucet gas and paper USDso; derive atomic size from verified decimals/minimum/lot grid and read the native-stop deposit from the verified registry. The exchange TP/SL 0.15 STT note is not a hardcoded native deposit.
 
 ## What protection means
 
@@ -66,18 +68,16 @@ The recorded official requirement is 2–3 real posts tagging `@DreamDEXSomnia`.
 
 ## Verify and submit honestly
 
-**Official submission: BLOCKED.** Local replay, offline verification and two historical-evidence Feedback reports are available; real orders/readback, whitelist verification, judge access and published X links remain missing or unverified. See the [PASS/FAIL/BLOCKED readiness checklist](docs/SUBMISSION_READINESS.md), [local Feedback index](feedback/README.md), [differentiation](docs/DIFFERENTIATION.md), and [demo script](docs/DEMO_SCRIPT.md).
+**Official submission: BLOCKED.** Local replay, offline engineering evidence and two historical-evidence Feedback reports are available; real orders/readback, whitelist approval, reviewer access and published X links remain missing or unverified. Whitelist remains WAITING_EXTERNAL; no organizer contact was performed. Plan against **2026-11-02 06:59 Asia/Shanghai**, not the conflicting later body time. See the [readiness checklist](docs/SUBMISSION_READINESS.md), [Feedback index](feedback/README.md), [differentiation](docs/DIFFERENTIATION.md), and [demo script](docs/DEMO_SCRIPT.md).
 
     npm run test:judge
 
-`test:judge` is an explicit **offline aggregate**: typecheck, the existing test suite, production build, and evidence-schema verification, in that order with `&&` failure propagation. Only its final stage uses the verifier's existing offline option: `npm run verify:evidence -- evidence/manifest.json --allow-incomplete`. That option permits valid but incomplete live evidence; it does not turn malformed evidence into a pass or establish live acceptance, judge access, publication or submission.
+This distribution preserves `test:judge` as the explicit **offline aggregate**: typecheck → offline tests → production build → `verify:evidence -- evidence/manifest.json --allow-incomplete`, with `&&` failure propagation. The final stage reports OFFLINE_SCHEMA_ONLY and cannot establish live acceptance, reviewer access or submission. Run the separate strict readiness commands below independently; never use the offline allowance to claim G1.
 
-Standalone readiness checks remain strict:
-
-    npm run verify:evidence
+    npm run verify:evidence -- evidence/manifest.json --submission evidence/submission.json
     npm run submission:check
 
-These standalone commands deliberately exit nonzero while real owner evidence or submission prerequisites are missing; do not bypass their strict readiness checks with `--allow-incomplete`. Unit tests, a successful build and the offline aggregate do not satisfy live gates. See [submission draft](docs/SUBMISSION_DRAFT.md), [demo script](docs/DEMO_SCRIPT.md), [official-rule verification](research/competition-verification.md) and [known limitations](docs/KNOWN_LIMITATIONS.md).
+Run independently: strict checks exit **2 / BLOCKED** while live evidence or submission prerequisites are missing. `submission:check [submission-metadata-path]` defaults to `evidence/submission.json`; `verify:evidence [manifest-path] --submission <submission-metadata-path>` preserves historical-manifest input and explicitly ingests the same live references. `liveEvidence` starts null; actual doctor/lifecycle file paths and raw-file SHA-256 digests resolve relative to the containing metadata file, not the working directory. See [reference format and checksum limits](docs/OPERATIONS.md#evidence-references-and-checkers). File-only checks do not probe the current chain, authenticate file origin, edit metadata or turn replay into live proof. Offline tests/build and incomplete-schema mode never satisfy live gates. See [draft-only Build fields](docs/SUBMISSION_DRAFT.md), [official-rule verification](research/competition-verification.md) and [known limitations](docs/KNOWN_LIMITATIONS.md).
 
 ## Architecture
 
@@ -87,6 +87,8 @@ The published dependency `@somnia-chain/markets-sdk@0.32.1` is pinned in [packag
 
 ## Review and operation evidence
 
-See [independent review](review/INDEPENDENT_REVIEW.md), [local operation guide](docs/OPERATIONS.md), and [browser acceptance record](tests/browser/QA-2026-10-24.md). The historical recovery-suite result recorded 119 offline tests passing; its logs are in evidence/tests/argon-2026-10-25. That result is not a fresh pass claim for the expanded replay scenarios; see [STATE](docs/STATE.md) for current verification scope. SDK DNS/connection failures were observed on 2026-10-24; Phase2 did not recheck transport, so present reachability is unverified. Live owner evidence remains unavailable. The 2026-10-25 Argon static review was independently verified and remediated; see [verification matrix](review/ARGON_VERIFICATION_2026-10-25.md). It is not a formal audit or live acceptance.
+See [independent review](review/INDEPENDENT_REVIEW.md), [operations](docs/OPERATIONS.md), and [actual evidence notes](evidence/mvp-2026-10-27/NOTES.md). Final original-source **Node 24.22.1** typecheck/test/build exited **0**, **401 offline tests/16 files**; [measured inputs/logs](evidence/mvp-2026-10-27/classification-verification.json). Every loader rejection shares status and file-only/nonattestation fields: missing metadata/files `MISSING`, replay/read-only `HISTORICAL_OR_REPLAY`, malformed/unsupported input `INVALID`; [16 actual CLI invocations](evidence/tests/mvp-classification-cli-2026-10-27.txt) exercised both checkers without changing default claims. Prior 399/16 wrapper and original 391/15 measurements, the initial incidental assertion failure, and synthetic capture/persistence remain historical. A separate built replay re-exercise at prior source `02fdeb` covered all 12 scenarios, unsigned preview/signing disabled, actual download and aging/read-failure revocation; UI/server bytes are unchanged, not a final-source browser rerun. Final source/distribution identities and independent refreshed runtime outcomes belong to the external delivery receipt. Real owner execution remains NOT_RUN; the historical Argon review is not a formal audit, post-fix approval or live acceptance.
 
 For the single consolidated remaining owner checklist, see [owner handoff](docs/OWNER_HANDOFF.md).
+
+The 2026-10-27 read-only check observed https://github.com/peterpeter228/dreamshield-public PUBLIC, with authenticated viewer permission ADMIN and main `8e85e468a231350ebacbb2dbce0f5c746d47bd66`; this is not reviewer-access or updated-sync evidence. Inherited historical logs contain absolute workstation paths, so this update is a **NOT_PUSHED** local delivery: a disclosed ordinary base patch and separate clean-history local candidate, without rewriting existing history. Current exported logs are labelled sanitized derivatives; historical source/build fingerprints remain historical. See [STATE](docs/STATE.md). No visibility change, Submit Build or X publication was performed.

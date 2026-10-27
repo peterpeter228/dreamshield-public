@@ -1,0 +1,360 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: 35ef57a1208d594cd92efac19671011ace5befa8b0c95af762568af6d0c2cabb. Exported raw SHA-256 is recorded separately.
+
+{
+  "classification": "SYNTHETIC_AND_REPLAY_FILE_ONLY_NOT_G1",
+  "runtime": "v24.22.1",
+  "invocations": 16,
+  "metadataPathsRelative": true,
+  "results": [
+    {
+      "kind": "live-owner",
+      "checker": "submission-check",
+      "exit": 0,
+      "evidence": {
+        "valid": true,
+        "errors": [],
+        "status": "CAPTURED_COMPLETE",
+        "eligibility": {
+          "realPerpsOrder": true,
+          "nativeProtectionReadback": true
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "live-owner",
+      "checker": "verify-evidence",
+      "exit": 0,
+      "evidence": {
+        "valid": true,
+        "errors": [],
+        "status": "CAPTURED_COMPLETE",
+        "eligibility": {
+          "realPerpsOrder": true,
+          "nativeProtectionReadback": true
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "replay",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "replay",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "live-readonly",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "live-readonly",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "unsupported",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "INVALID",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "unsupported",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "INVALID",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "missing",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "liveEvidence: no doctor/lifecycle references supplied"
+        ],
+        "status": "MISSING",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "missing",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "liveEvidence: no doctor/lifecycle references supplied"
+        ],
+        "status": "MISSING",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "malformed",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "Expected JSON object"
+        ],
+        "status": "INVALID",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "malformed",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "Expected JSON object"
+        ],
+        "status": "INVALID",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "missing-file",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "doctor: <smoke>/artifacts/absent.json: ENOENT: no such file or directory, open '<smoke>/artifacts/absent.json'"
+        ],
+        "status": "MISSING",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "missing-file",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "doctor: <smoke>/artifacts/absent.json: ENOENT: no such file or directory, open '<smoke>/artifacts/absent.json'"
+        ],
+        "status": "MISSING",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "actual-download",
+      "checker": "submission-check",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "kind": "actual-download",
+      "checker": "verify-evidence",
+      "exit": 2,
+      "evidence": {
+        "valid": false,
+        "errors": [
+          "lifecycle: downloaded wrapper requires live-owner mode; replay/read-only exports cannot establish G1 acceptance"
+        ],
+        "status": "HISTORICAL_OR_REPLAY",
+        "eligibility": {
+          "realPerpsOrder": false,
+          "nativeProtectionReadback": false
+        },
+        "fileOnly": true,
+        "originAuthenticated": false,
+        "currentChainRevalidated": false,
+        "historical": true,
+        "currentChainRevalidation": "NOT_RUN",
+        "originAuthentication": "NOT_ESTABLISHED"
+      }
+    }
+  ]
+}
+
+Exit: 0

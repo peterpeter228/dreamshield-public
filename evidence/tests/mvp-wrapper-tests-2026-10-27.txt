@@ -1,0 +1,36 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: c8d4b0026e8e48ec15ed5b243da03f4d1362647c48485507b0d4a0118cac4269. Exported raw SHA-256 is recorded separately.
+
+Captured: 2026-10-27T06:21:40.215871+00:00
+Runtime: v24.22.1
+Command: ["npm", "test"]
+
+> dreamshield@0.1.0 test
+> vitest run --root .
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m<repo>[39m
+
+ [32m✓[39m tests/integration/journal.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 207[2mms[22m[39m
+ [32m✓[39m tests/integration/owner-recovery-api.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 88[2mms[22m[39m
+ [32m✓[39m tests/unit/doctor.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 341[2mms[22m[39m
+ [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+ [32m✓[39m tests/integration/api.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 96[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-hash-provenance.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 127[2mms[22m[39m
+ [32m✓[39m tests/integration/live-evidence-api.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 656[2mms[22m[39m
+ [32m✓[39m tests/integration/desk-assessment.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/unit/live-evidence.test.ts [2m([22m[2m165 tests[22m[2m)[22m[33m 466[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol-evidence.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-protocol.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m tests/unit/live-evidence-files.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m tests/unit/transaction-encoding.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m tests/unit/doctor-protocol.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/recovered-provenance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m16 passed[39m[22m[90m (16)[39m
+[2m      Tests [22m [1m[32m399 passed[39m[22m[90m (399)[39m
+[2m   Start at [22m 14:21:38
+[2m   Duration [22m 1.49s[2m (import 65%, tests 32%, transform 3%, worker 1%)[22m
+
+
+Exit: 0

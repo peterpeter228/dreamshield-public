@@ -1,0 +1,205 @@
+{
+  "startedAt": "2026-10-27T05:38:41.897916+00:00",
+  "runtime": "v24.22.1",
+  "baseCommit": "2d316ae517986a7a70372dc9ff582be1c63e9abc",
+  "sourceSha256": {
+    "apps/server/app.ts": "2b60f72d041c46ef8a5ccf0764d220766c7657e50e28ace30dfb90759de88640",
+    "apps/server/config.ts": "7965601918af7ddb66ad6bf04483c0ce48669db4d62bbb100d531086c785b4f4",
+    "apps/server/evidence.ts": "d6ee0d79f256c955a32d90a198c205195b05aa4e3c360f7659398812c829127f",
+    "apps/server/index.ts": "daa7c6f427e22fd81cda4c5c8681eda77909eb1d1d1a48bf3dd79ba9e2351d4d",
+    "apps/web/src/App.tsx": "259d64238155ebf59577311f7828ed85ef077054cb4c744a7ca6e2a5024ce8f8",
+    "apps/web/src/OwnerPanel.tsx": "97232ec70e710ad6c225b3146ff0682b0ab34870ab3f811b76db9d3ec97ab17c",
+    "apps/web/src/Protection.tsx": "6140d6aadae0749dc51fe4c02610b23d23443e7273debcee4db1f7ee2b1c48cb",
+    "apps/web/src/Repair.tsx": "e2e95ee8895ddddec4ac8e442e2830ae00f14c4136d11021845dc77305cb1266",
+    "apps/web/src/Timeline.tsx": "ea501eb8e05506c33ac91842702e504f0edd79b0d18f5ab0185a17ddff6f5c8f",
+    "apps/web/src/env.d.ts": "35d26ea66c86da9701e4f4b467913481ffeae910761cea34c775c5dacb7f8eaa",
+    "apps/web/src/main.tsx": "2aa9ecf94a4ffaf931ce8f12aee7349bf20076a11f9abe363ddc0df7365dcee2",
+    "apps/web/src/owner.ts": "11b7f5702c4c940bdc831245680331565951c6b3419ac7ccfeb37fb2ff233c98",
+    "apps/web/src/style.css": "e5b3292376261b6a66c1eee1404a1776109040b54bebb89a8ae3cddacc5c658a",
+    "apps/web/src/ui.tsx": "675adde91d60bacd0851b4faabbef97834ce9b5d5783d85068513e2385537227",
+    "fixtures/scenarios.ts": "560c63fe8b573d797d96b50b2c85c8a1e9c85934d20958baf3bf63877b0ef2c7",
+    "package-lock.json": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21",
+    "package.json": "ac2a63bdd9dedeed6bc29bbbf226fce4b8d1525c2e49b17bf747b1c33ce7f69f",
+    "packages/domain/desk.ts": "b189418d269348c710adb133cf579c1e81ce1ce133a86e80e984fab2d7281195",
+    "packages/domain/index.ts": "fc5d341b4a5c0c9a892bbe5942e98543393903bc1776bd7693a6d553e8b31f7e",
+    "packages/domain/live-evidence.ts": "e4a5dcdb55000eaf3423fc8a1e8f144e62513a94dc9903a72dd9ac576e34adfe",
+    "packages/domain/types.ts": "2622d6673fe8bb40896b83c5669f72fb2663ec9dd2257bf39b6f4775a84e9502",
+    "packages/protocol/evidence.ts": "e5fa414513ee32a1329554e41876d4af3872290745246c6a73a415d2a8776763",
+    "packages/protocol/index.ts": "b71cb5097c7eb34d928a5e524cb7a1dba91f72d56cb5a90e2cac0944534e987a",
+    "packages/protocol/sdk-abi.ts": "24a1b31f7740add41898b58104fe98ddfd4f22437a6e23dc8aeb01d49d064084",
+    "packages/protocol/transaction-abi.ts": "22bae13fee63fce31f3b1e7560f0d4355d18bd65a61c7b4a4378e27c99da3cf6",
+    "packages/storage/index.ts": "5c48a938131982e7bbf82000e612ba0dc01525f9899f6cb438db9dac781b406b",
+    "scripts/doctor-readonly.ts": "f6d0ca4a0e4c8350b688a29a925897b5c4cba019cfb972360f1d94454c1c9287",
+    "scripts/doctor-result.ts": "f8ffd259062d03f7c9cb34b63cf4b5e7501dd79be81fc7af54f569ceb1dbec1b",
+    "scripts/live-evidence-files.ts": "7144cbd6580215c10c2284f5484b35284a02b387a0fb7619cfc773b265fefbb8",
+    "scripts/live-testnet.ts": "b16cec97c565c9fdb574b9c1263cabce4b4464232e6271aff21e6504b58ee370",
+    "scripts/submission-check.ts": "87ce9c41c5bab371f5fe6d4abcd5c864acb7dcd0ab6435c4ffc4eded82f58d27",
+    "scripts/verify-evidence.ts": "68c357782fb1190e53cdd63163a8adc9d0bc7057623848885e79ae71634b09c3",
+    "tests/fixtures/live-evidence.ts": "c73c47ed9dd29190a7d83b544cce97640a52f334d47185f625e8f973effc0b79",
+    "tests/integration/api.test.ts": "be8130ed410d20805e685f389790409e0e514f656e22d454e3cc19e1824f664f",
+    "tests/integration/desk-assessment.test.ts": "436fe8dcfebfbb6fb073180be5ba0d24b2cd017bd333e554f9e1f520b97fdadb",
+    "tests/integration/journal.test.ts": "cb3dc05ca198908d4f6ab2234ae5fba0c0aa26af9cb3485dabcf0b7fefbba9ac",
+    "tests/integration/live-evidence-api.test.ts": "329fbff18e592fa1b6498a10ce9669ce915872f4e4f06f396748342d12481f8f",
+    "tests/integration/owner-recovery-api.test.ts": "64b3df66480da092c31f9379833490b66bb4b0cc645b1eb5fd583b182e22984c",
+    "tests/unit/argon-hash-provenance.test.ts": "62b73342584548438209407e2076afdecd6935c0262b11feca5c44e0d46fe49b",
+    "tests/unit/argon-protocol.test.ts": "3d6a68bdd619a5d005bf8a0dab7a04c3a2882cb2a449d49eb5f56af0234c0823",
+    "tests/unit/doctor-protocol.test.ts": "e04ce4e5e67499f1c213a6e6dd4057de4ba05fd9e574474a6ada87b278191922",
+    "tests/unit/doctor.test.ts": "3699006e0afe85a18ba14acd84d5aaf6eb6d4ccc81b41d27aefe436425cb33a4",
+    "tests/unit/domain.test.ts": "6085f4721ed903c8e596498b1428bae0f143077341c8a931d3eb33658d46a834",
+    "tests/unit/live-evidence.test.ts": "ce05c1517d7b3dbd9497fd02d852bb4d15f1b5cde06b19d6170c13bba65cfdbd",
+    "tests/unit/protocol-evidence.test.ts": "a26425819c6c6e97bee874925104548918eff828a161535f2f86df63fdd22355",
+    "tests/unit/protocol.test.ts": "2fb1b43a2beab399efb621d51e6580d01eb0eb235e103d7a6c734811d93f2f97",
+    "tests/unit/recovered-provenance.test.ts": "ad2b6613813a629b3d22cd2a5d88e76cc3d7ff26314b0047adbdd9cb45ec770a",
+    "tests/unit/transaction-encoding.test.ts": "d108340778b3f4fb07980ef2e988d5fe82e94e4a09a0be27b845d275b8ce5c16",
+    "tsconfig.json": "2b2f61dda26f6b893464826ca7e243d54d6aac4692db7f52fc2fcc858d1174bc",
+    "tsconfig.server.json": "27a48cedb16c9bd730cdf2f65b3d5bc62164e2ad57020e359f641240f09c5695",
+    "vite.config.ts": "43223999dc624bb0948516a1c7b61c94063c11c059829b4dc77bb6ec2ec3be3d"
+  },
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "evidence/tests/mvp-typecheck-2026-10-27.txt"
+    },
+    {
+      "name": "test",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 1,
+      "log": "evidence/tests/mvp-test-2026-10-27.txt"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "log": "evidence/tests/mvp-build-2026-10-27.txt"
+    },
+    {
+      "name": "submission",
+      "command": [
+        "npm",
+        "run",
+        "submission:check"
+      ],
+      "exitCode": 2,
+      "log": "evidence/tests/mvp-submission-2026-10-27.txt"
+    },
+    {
+      "name": "evidence",
+      "command": [
+        "npm",
+        "run",
+        "verify:evidence"
+      ],
+      "exitCode": 2,
+      "log": "evidence/tests/mvp-evidence-2026-10-27.txt"
+    },
+    {
+      "name": "live-refusal",
+      "command": [
+        "npm",
+        "run",
+        "live:testnet"
+      ],
+      "exitCode": 2,
+      "log": "evidence/tests/mvp-live-refusal-2026-10-27.txt"
+    },
+    {
+      "name": "test-final",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "log": "evidence/tests/mvp-test-final-2026-10-27.txt"
+    }
+  ],
+  "completedAt": "2026-10-27T05:38:46.858848+00:00",
+  "initialSourceSha256": {
+    "apps/server/app.ts": "2b60f72d041c46ef8a5ccf0764d220766c7657e50e28ace30dfb90759de88640",
+    "apps/server/config.ts": "7965601918af7ddb66ad6bf04483c0ce48669db4d62bbb100d531086c785b4f4",
+    "apps/server/evidence.ts": "d6ee0d79f256c955a32d90a198c205195b05aa4e3c360f7659398812c829127f",
+    "apps/server/index.ts": "daa7c6f427e22fd81cda4c5c8681eda77909eb1d1d1a48bf3dd79ba9e2351d4d",
+    "apps/web/src/App.tsx": "259d64238155ebf59577311f7828ed85ef077054cb4c744a7ca6e2a5024ce8f8",
+    "apps/web/src/OwnerPanel.tsx": "97232ec70e710ad6c225b3146ff0682b0ab34870ab3f811b76db9d3ec97ab17c",
+    "apps/web/src/Protection.tsx": "6140d6aadae0749dc51fe4c02610b23d23443e7273debcee4db1f7ee2b1c48cb",
+    "apps/web/src/Repair.tsx": "e2e95ee8895ddddec4ac8e442e2830ae00f14c4136d11021845dc77305cb1266",
+    "apps/web/src/Timeline.tsx": "ea501eb8e05506c33ac91842702e504f0edd79b0d18f5ab0185a17ddff6f5c8f",
+    "apps/web/src/env.d.ts": "35d26ea66c86da9701e4f4b467913481ffeae910761cea34c775c5dacb7f8eaa",
+    "apps/web/src/main.tsx": "2aa9ecf94a4ffaf931ce8f12aee7349bf20076a11f9abe363ddc0df7365dcee2",
+    "apps/web/src/owner.ts": "11b7f5702c4c940bdc831245680331565951c6b3419ac7ccfeb37fb2ff233c98",
+    "apps/web/src/style.css": "e5b3292376261b6a66c1eee1404a1776109040b54bebb89a8ae3cddacc5c658a",
+    "apps/web/src/ui.tsx": "675adde91d60bacd0851b4faabbef97834ce9b5d5783d85068513e2385537227",
+    "fixtures/scenarios.ts": "560c63fe8b573d797d96b50b2c85c8a1e9c85934d20958baf3bf63877b0ef2c7",
+    "package-lock.json": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21",
+    "package.json": "ac2a63bdd9dedeed6bc29bbbf226fce4b8d1525c2e49b17bf747b1c33ce7f69f",
+    "packages/domain/desk.ts": "b189418d269348c710adb133cf579c1e81ce1ce133a86e80e984fab2d7281195",
+    "packages/domain/index.ts": "fc5d341b4a5c0c9a892bbe5942e98543393903bc1776bd7693a6d553e8b31f7e",
+    "packages/domain/live-evidence.ts": "e4a5dcdb55000eaf3423fc8a1e8f144e62513a94dc9903a72dd9ac576e34adfe",
+    "packages/domain/types.ts": "2622d6673fe8bb40896b83c5669f72fb2663ec9dd2257bf39b6f4775a84e9502",
+    "packages/protocol/evidence.ts": "e5fa414513ee32a1329554e41876d4af3872290745246c6a73a415d2a8776763",
+    "packages/protocol/index.ts": "b71cb5097c7eb34d928a5e524cb7a1dba91f72d56cb5a90e2cac0944534e987a",
+    "packages/protocol/sdk-abi.ts": "24a1b31f7740add41898b58104fe98ddfd4f22437a6e23dc8aeb01d49d064084",
+    "packages/protocol/transaction-abi.ts": "22bae13fee63fce31f3b1e7560f0d4355d18bd65a61c7b4a4378e27c99da3cf6",
+    "packages/storage/index.ts": "5c48a938131982e7bbf82000e612ba0dc01525f9899f6cb438db9dac781b406b",
+    "scripts/doctor-readonly.ts": "f6d0ca4a0e4c8350b688a29a925897b5c4cba019cfb972360f1d94454c1c9287",
+    "scripts/doctor-result.ts": "f8ffd259062d03f7c9cb34b63cf4b5e7501dd79be81fc7af54f569ceb1dbec1b",
+    "scripts/live-evidence-files.ts": "7144cbd6580215c10c2284f5484b35284a02b387a0fb7619cfc773b265fefbb8",
+    "scripts/live-testnet.ts": "b16cec97c565c9fdb574b9c1263cabce4b4464232e6271aff21e6504b58ee370",
+    "scripts/submission-check.ts": "87ce9c41c5bab371f5fe6d4abcd5c864acb7dcd0ab6435c4ffc4eded82f58d27",
+    "scripts/verify-evidence.ts": "68c357782fb1190e53cdd63163a8adc9d0bc7057623848885e79ae71634b09c3",
+    "tests/fixtures/live-evidence.ts": "c73c47ed9dd29190a7d83b544cce97640a52f334d47185f625e8f973effc0b79",
+    "tests/integration/api.test.ts": "be8130ed410d20805e685f389790409e0e514f656e22d454e3cc19e1824f664f",
+    "tests/integration/desk-assessment.test.ts": "436fe8dcfebfbb6fb073180be5ba0d24b2cd017bd333e554f9e1f520b97fdadb",
+    "tests/integration/journal.test.ts": "f4045a68d6f6527113c38c9364b43f78a735481c910723db9f42f335dccf5098",
+    "tests/integration/live-evidence-api.test.ts": "329fbff18e592fa1b6498a10ce9669ce915872f4e4f06f396748342d12481f8f",
+    "tests/integration/owner-recovery-api.test.ts": "64b3df66480da092c31f9379833490b66bb4b0cc645b1eb5fd583b182e22984c",
+    "tests/unit/argon-hash-provenance.test.ts": "62b73342584548438209407e2076afdecd6935c0262b11feca5c44e0d46fe49b",
+    "tests/unit/argon-protocol.test.ts": "3d6a68bdd619a5d005bf8a0dab7a04c3a2882cb2a449d49eb5f56af0234c0823",
+    "tests/unit/doctor-protocol.test.ts": "e04ce4e5e67499f1c213a6e6dd4057de4ba05fd9e574474a6ada87b278191922",
+    "tests/unit/doctor.test.ts": "3699006e0afe85a18ba14acd84d5aaf6eb6d4ccc81b41d27aefe436425cb33a4",
+    "tests/unit/domain.test.ts": "6085f4721ed903c8e596498b1428bae0f143077341c8a931d3eb33658d46a834",
+    "tests/unit/live-evidence.test.ts": "ce05c1517d7b3dbd9497fd02d852bb4d15f1b5cde06b19d6170c13bba65cfdbd",
+    "tests/unit/protocol-evidence.test.ts": "a26425819c6c6e97bee874925104548918eff828a161535f2f86df63fdd22355",
+    "tests/unit/protocol.test.ts": "2fb1b43a2beab399efb621d51e6580d01eb0eb235e103d7a6c734811d93f2f97",
+    "tests/unit/recovered-provenance.test.ts": "ad2b6613813a629b3d22cd2a5d88e76cc3d7ff26314b0047adbdd9cb45ec770a",
+    "tests/unit/transaction-encoding.test.ts": "d108340778b3f4fb07980ef2e988d5fe82e94e4a09a0be27b845d275b8ce5c16",
+    "tsconfig.json": "2b2f61dda26f6b893464826ca7e243d54d6aac4692db7f52fc2fcc858d1174bc",
+    "tsconfig.server.json": "27a48cedb16c9bd730cdf2f65b3d5bc62164e2ad57020e359f641240f09c5695",
+    "vite.config.ts": "43223999dc624bb0948516a1c7b61c94063c11c059829b4dc77bb6ec2ec3be3d"
+  },
+  "doctor": {
+    "path": "evidence/g0/doctor-2026-10-27T05-32-53.000Z.json",
+    "readonlyResult": "PASS",
+    "scope": "transport-and-verified-market",
+    "owner": "NOT_CONFIGURED",
+    "g0Complete": false,
+    "g1": "NOT_RUN"
+  },
+  "finalOfflineTests": {
+    "passed": 391,
+    "files": 15,
+    "exitCode": 0
+  },
+  "sourceInventorySha256": "e3912a5062b6c06a19ac4cc49df63d77583e7a8fa734f6b893273af06711d4c4",
+  "smokes": {
+    "browser": "evidence/mvp-2026-10-27/browser.json",
+    "syntheticOwnerUi": "evidence/mvp-2026-10-27/owner-ui.json",
+    "separateProcessPersistence": "evidence/mvp-2026-10-27/persistence-smoke.json",
+    "fileReferences": "evidence/mvp-2026-10-27/cli-smoke.json"
+  },
+  "finalizedAt": "2026-10-27T05:46:12.481900+00:00",
+  "testedSourceCommit": "90e590d233dacbca6869a1409bbd11221f1485a5",
+  "sourceIdentityNote": "c1a6f89 was a partial code/evidence checkpoint; 90e590d includes the unchanged tested Protection.tsx/style.css bytes. Final docs/metadata commits are separate."
+}

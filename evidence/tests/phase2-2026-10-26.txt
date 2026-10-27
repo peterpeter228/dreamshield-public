@@ -1,3 +1,5 @@
+Distribution derivative: absolute workstation paths replaced with <repo>; commands, outcomes and capture timing remain historical. This file has a new distribution SHA-256, not the original raw-log digest.
+
 DreamShield Phase2 local/offline verification
 Phase label: 2026-10-26 (not a rewritten host clock)
 Observed host start UTC: 2026-10-25T23:06:48.438884+00:00
@@ -14,7 +16,7 @@ v24.22.1
 > vitest run --root .
 
 
-[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/workspace/dreamshield[39m
+ RUN  v5.0.5 <repo>
 
  [32m✓[39m tests/integration/desk-assessment.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
  [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 38[2mms[22m[39m

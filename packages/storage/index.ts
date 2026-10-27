@@ -2,8 +2,9 @@ import { DatabaseSync } from 'node:sqlite';
 import { randomUUID } from 'node:crypto';
 import { transitionOperation } from '../domain/index.js';
 import type { Operation, OperationState, RepairDraft } from '../domain/types.js';
+import type {EvidenceObservation,EvidenceOperation,OperationEvidenceProof} from '../domain/live-evidence.js';
 const TERMINAL = ['Applied','Failed','Cancelled'];
-export interface ReconciliationProof { readBackVerified?: boolean; receiptFailed?: boolean; }
+export interface ReconciliationProof { readBackVerified?: boolean; receiptFailed?: boolean; evidence?:OperationEvidenceProof; reason?:string; }
 export class Journal {
  private db:DatabaseSync;
  constructor(path:string){this.db=new DatabaseSync(path);this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000; CREATE TABLE IF NOT EXISTS operations(id TEXT PRIMARY KEY, idempotency_key TEXT UNIQUE NOT NULL, owner TEXT NOT NULL, pool TEXT NOT NULL, state TEXT NOT NULL, body TEXT NOT NULL); CREATE TABLE IF NOT EXISTS cursors(key TEXT PRIMARY KEY, value TEXT NOT NULL); CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY, body TEXT NOT NULL); PRAGMA user_version=1;`);}
@@ -16,6 +17,10 @@ export class Journal {
   try{
    const op=this.get(id);if(!op)throw new Error('NOT_FOUND');
    const next=transitionOperation(op,state,{txHash,error:error?.slice(0,300),...proof});
+   if(proof.evidence){
+    next.evidence=proof.evidence;
+    this.db.prepare('INSERT INTO events VALUES(?,?)').run(`reconciliation:${randomUUID()}`,JSON.stringify({kind:'reconciliation-proof',operationId:id,owner:op.owner,pool:op.pool,state,reason:proof.reason??null,proof:proof.evidence}));
+   }
    this.db.prepare('UPDATE operations SET state=?,body=? WHERE id=?').run(state,JSON.stringify(next),id);
    this.db.exec('COMMIT');return next;
   }catch(e){this.db.exec('ROLLBACK');throw e;}
@@ -43,6 +48,34 @@ export class Journal {
    }
   }
   return count;
+ }
+ /** Immutable observations share the journal event transaction, never operation state. */
+ recordObservation(observation:EvidenceObservation):void {
+  this.db.exec('BEGIN IMMEDIATE');
+  try {
+   const existing=this.observations(observation.identity.owner,observation.identity.pool,observation.lifecycleId);
+   if(existing.some(row=>row.kind===observation.kind))throw new Error('LIFECYCLE_STAGE_ALREADY_CAPTURED');
+   if(observation.kind!=='opening'&&!existing.some(row=>row.kind==='opening'))throw new Error('OPENING_CAPTURE_REQUIRED');
+   this.db.prepare('INSERT INTO events VALUES(?,?)').run(`observation:${observation.id}`,JSON.stringify({kind:'evidence-observation',observation}));
+   if(observation.kind==='opening')this.setCursor(this.evidenceScope(observation.identity.owner,observation.identity.pool),observation.lifecycleId);
+   this.db.exec('COMMIT');
+  }catch(error){this.db.exec('ROLLBACK');throw error;}
+ }
+ private evidenceScope(owner:string,pool:string){return `lifecycle:${owner.toLowerCase()}:${pool.toLowerCase()}`;}
+ currentLifecycle(owner:string,pool:string):string|null{return this.getCursor(this.evidenceScope(owner,pool));}
+ observations(owner:string,pool:string,lifecycleId?:string):EvidenceObservation[]{
+  return this.db.prepare('SELECT body FROM events ORDER BY rowid').all().flatMap(row=>{
+   const event=JSON.parse(String(row.body));const observation=event.kind==='evidence-observation'?event.observation as EvidenceObservation:null;
+   return observation&&observation.identity.owner.toLowerCase()===owner.toLowerCase()&&observation.identity.pool.toLowerCase()===pool.toLowerCase()&&(!lifecycleId||observation.lifecycleId===lifecycleId)?[observation]:[];
+  });
+ }
+ evidenceOperations(owner:string,pool:string):EvidenceOperation[]{
+  const firstProof=new Map<string,OperationEvidenceProof>();
+  for(const row of this.db.prepare('SELECT body FROM events ORDER BY rowid').all()){
+   const event=JSON.parse(String(row.body));
+   if(event.kind==='reconciliation-proof'&&event.state==='Applied'&&event.owner.toLowerCase()===owner.toLowerCase()&&event.pool.toLowerCase()===pool.toLowerCase()&&!firstProof.has(event.operationId))firstProof.set(event.operationId,event.proof);
+  }
+  return this.list().filter(op=>op.owner.toLowerCase()===owner.toLowerCase()&&op.pool.toLowerCase()===pool.toLowerCase()).map(({evidence,...operation})=>({operation,proof:firstProof.get(operation.id)??evidence??null}));
  }
  recordEvent(id:string,body:unknown):boolean{return this.db.prepare('INSERT OR IGNORE INTO events VALUES(?,?)').run(id,JSON.stringify(body)).changes===1;}
  setCursor(key:string,value:string){this.db.prepare('INSERT INTO cursors VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value').run(key,value);}

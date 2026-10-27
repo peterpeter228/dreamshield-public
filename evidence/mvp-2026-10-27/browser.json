@@ -1,0 +1,83 @@
+{
+  "classification": "BUILT_REPLAY_BROWSER_NOT_LIVE",
+  "capturedAt": "2026-10-27T05:43:03.471Z",
+  "viewport": {
+    "width": 1376,
+    "height": 771,
+    "devicePixelRatio": 1
+  },
+  "scenarios": [
+    {
+      "scenario": "protected",
+      "verdict": "VERIFIED",
+      "display": "Configuration verifiedNative stop-loss configuration matches this observation. Triggering and fills are not guaranteed.Reasons: The stop is configured to reduce the whole position at trigger time. A standalone stop-loss is configured without a paired take-profit. A matching configuration does not guarantee triggering or fills.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "partial",
+      "verdict": "NEEDS_REVIEW",
+      "display": "Needs reviewThe fixed stop quantity does not cover the current observed position.Reasons: The fixed stop quantity covers only part of the current position.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "short",
+      "verdict": "NEEDS_PROTECTION",
+      "display": "Needs protectionNo matching native reduce-only stop-loss was found in this complete snapshot.Reasons: No matching native reduce-only stop-loss protects this position.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "stale",
+      "verdict": "UNKNOWN",
+      "display": "UnknownCurrent protection cannot be verified. Previous observations are historical.Reasons: Reads are stale; refresh before relying on any previous protection result.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "oco-broken",
+      "verdict": "NEEDS_REVIEW",
+      "display": "Needs reviewA stop-loss exists, but the paired protection is missing, inconsistent or already at its trigger.Reasons: The OCO link is invalid: the paired stop is missing, inconsistent or already at its trigger.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "no-position",
+      "verdict": "NO_POSITION",
+      "display": "No positionNo current position was observed.Reasons: No current position was observed.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "unknown",
+      "verdict": "UNKNOWN",
+      "display": "UnknownCurrent protection cannot be verified. Previous observations are historical.Reasons: The latest read failed; previous observations cannot prove current protection.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "tp-only",
+      "verdict": "NEEDS_PROTECTION",
+      "display": "Needs protectionNo matching native reduce-only stop-loss was found in this complete snapshot.Reasons: No matching native reduce-only stop-loss protects this position. Take-profit only: TP is not stop-loss protection.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "wrong-side-sl",
+      "verdict": "NEEDS_PROTECTION",
+      "display": "Needs protectionNo matching native reduce-only stop-loss was found in this complete snapshot.Reasons: No matching native reduce-only stop-loss protects this position. Wrong-side stop: its buy/sell side cannot close this position as a stop-loss.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "trigger-met",
+      "verdict": "NEEDS_REVIEW",
+      "display": "Needs reviewA stop condition is met. Execution and remaining exposure must be reconciled.Reasons: The stop trigger condition is already met; reconcile execution and remaining exposure.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "residual-stops",
+      "verdict": "NO_POSITION",
+      "display": "No positionNo current position. Pending stops remain and need review before reopening.Reasons: No current position was observed. Pending stops remain without a position; review them before reopening.Fixture result only. Not a live position or chain verification."
+    },
+    {
+      "scenario": "unprotected",
+      "verdict": "NEEDS_PROTECTION",
+      "display": "Needs protectionNo matching native reduce-only stop-loss was found in this complete snapshot.Reasons: No matching native reduce-only stop-loss protects this position.Fixture result only. Not a live position or chain verification."
+    }
+  ],
+  "aging": {
+    "elapsedMs": 16170,
+    "display": "UnknownCurrent protection cannot be verified. Previous observations are historical.Reasons: Reads are stale; refresh before relying on any previous protection result.Fixture result only. Not a live position or chain verification."
+  },
+  "readFailure": {
+    "display": "UnknownCurrent protection cannot be verified. Previous observations are historical.Reasons: The latest read failed; previous observations cannot prove current protection.Fixture result only. Not a live position or chain verification."
+  },
+  "unsignedPreview": "observed; signing disabled; replay-preview.png",
+  "replayDownload": "replay-evidence.json; exact server bytes",
+  "ownerCaptureControlsInReplay": true,
+  "walletConnectClicked": false,
+  "walletReviewClicked": false
+}

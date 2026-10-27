@@ -1,0 +1,8 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: 8075250e936a2ff00ca75f6e96de5b526d0acd4ecc2fd889efab2f76882617b5. Exported raw SHA-256 is recorded separately.
+
+Runtime: v24.22.1
+{"wrapperMode":"replay","result":{"valid":true,"errors":[],"status":"CAPTURED_COMPLETE","eligibility":{"realPerpsOrder":true,"nativeProtectionReadback":true},"fileOnly":true,"originAuthenticated":false,"currentChainRevalidated":false,"historical":true,"currentChainRevalidation":"NOT_RUN","originAuthentication":"NOT_ESTABLISHED"}}
+{"wrapperMode":"live-readonly","result":{"valid":true,"errors":[],"status":"CAPTURED_COMPLETE","eligibility":{"realPerpsOrder":true,"nativeProtectionReadback":true},"fileOnly":true,"originAuthenticated":false,"currentChainRevalidated":false,"historical":true,"currentChainRevalidation":"NOT_RUN","originAuthentication":"NOT_ESTABLISHED"}}
+{"wrapperMode":"live-owner","result":{"valid":true,"errors":[],"status":"CAPTURED_COMPLETE","eligibility":{"realPerpsOrder":true,"nativeProtectionReadback":true},"fileOnly":true,"originAuthenticated":false,"currentChainRevalidated":false,"historical":true,"currentChainRevalidation":"NOT_RUN","originAuthentication":"NOT_ESTABLISHED"}}
+
+Exit: 0

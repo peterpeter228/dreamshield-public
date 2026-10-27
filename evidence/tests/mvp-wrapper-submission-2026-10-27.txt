@@ -1,0 +1,39 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: 0c994268ccff722392d2dda9d47151128ee2f36c8784a36fa8980c182819fbc1. Exported raw SHA-256 is recorded separately.
+
+Captured: 2026-10-27T06:24:32.896731+00:00
+Runtime: v24.22.1
+Command: npm run submission:check
+
+> dreamshield@0.1.0 submission:check
+> node --import tsx scripts/submission-check.ts
+
+{
+  "status": "BLOCKED",
+  "metadataPath": "<repo>/evidence/submission.json",
+  "missing": [
+    "whitelistVerified",
+    "reviewerRepositoryAccess",
+    "realPerpsOrder",
+    "nativeProtectionReadback",
+    "xPost1",
+    "xPost2",
+    "validLiveEvidence"
+  ],
+  "evidence": {
+    "valid": false,
+    "errors": [
+      "liveEvidence: no doctor/lifecycle references supplied"
+    ],
+    "eligibility": {
+      "realPerpsOrder": false,
+      "nativeProtectionReadback": false
+    },
+    "currentChainRevalidation": "NOT_RUN",
+    "originAuthentication": "NOT_ESTABLISHED"
+  },
+  "submitted": false,
+  "buildUrl": null,
+  "metadataModified": false
+}
+
+Exit: 2

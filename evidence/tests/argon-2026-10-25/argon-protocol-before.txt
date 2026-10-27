@@ -1,6 +1,8 @@
+Distribution derivative: absolute workstation paths replaced with <repo>; commands, outcomes and capture timing remain historical. This file has a new distribution SHA-256, not the original raw-log digest.
+
 npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
 
- RUN  v5.0.5 /workspace/scratch/c01bd6fe117d/dreamshield
+ RUN  v5.0.5 <repo>
 
  ❯ tests/unit/argon-protocol.test.ts (13 tests | 11 failed) 20ms
    ❯ Argon P2 independent verification (offline only) (13)

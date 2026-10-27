@@ -1,0 +1,12 @@
+Started UTC: 2026-10-27T05:38:41.904402+00:00
+Runtime: v24.22.1
+Command: ["npm", "run", "typecheck"]
+--- stdout ---
+
+> dreamshield@0.1.0 typecheck
+> tsc --noEmit
+
+
+--- stderr ---
+
+Exit code: 0

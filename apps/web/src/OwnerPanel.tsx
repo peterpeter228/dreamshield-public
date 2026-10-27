@@ -1,3 +1,24 @@
 import {useEffect,useState} from 'react';
-import type {OwnerFlow} from './owner';
+import type {EvidenceCaptureKind,OwnerFlow} from './owner';
 export function OwnerPanel({flow}:{flow:OwnerFlow}){const [recoveredHash,setRecoveredHash]=useState('');useEffect(()=>setRecoveredHash(''),[flow.operation?.id]);const missingHash=!!flow.operation&&!flow.operation.txHash&&['Unknown','AwaitingSignature'].includes(flow.operation.state);const expired=flow.operation?Date.now()-Date.parse(flow.operation.draft.createdAt)>=15000:true;return <>{flow.message&&<p className="notice" role="status">{flow.message}</p>}{flow.operation&&<div className="draft"><h3>Reserved owner operation</h3><dl><dt>Operation ID</dt><dd>{flow.operation.id}</dd><dt>Owner</dt><dd>{flow.operation.owner}</dd><dt>Pool</dt><dd>{flow.operation.pool}</dd><dt>Action</dt><dd>{flow.operation.draft.action}{flow.operation.draft.stopId?` #${flow.operation.draft.stopId}`:''}</dd><dt>State</dt><dd>{flow.operation.state}</dd><dt>Registry</dt><dd>{flow.operation.draft.registry}</dd><dt>Trigger (raw)</dt><dd>{flow.operation.draft.triggerPrice}</dd><dt>Deposit (raw)</dt><dd>{flow.operation.draft.deposit}</dd></dl>{missingHash&&<div><label htmlFor="recovered-hash">Original transaction hash from wallet activity</label><input id="recovered-hash" value={recoveredHash} onChange={e=>setRecoveredHash(e.target.value.trim())} placeholder="0x…" autoComplete="off"/><p>Recover only the hash for this exact operation and owner. This will not resend or prove success. A manually recovered hash can be inspected, but original-request provenance is not yet provable here: the account stays locked in NeedsReview even if that receipt succeeded or reverted. If no hash can be found, keep the outcome unresolved.</p></div>}{flow.operation.state==='Draft'?<button className="primary full" disabled={!flow.eligible||flow.busy||expired} onClick={()=>void flow.send()}>{flow.busy?'Validating…':expired?'Draft expired — prepare again':'Review in owner wallet'}</button>:['AwaitingSignature','Submitted','Unknown','Reconcile','NeedsReview'].includes(flow.operation.state)?<button className="secondary full" disabled={flow.busy||!flow.eligible||(missingHash&&!/^0x[0-9a-fA-F]{64}$/.test(recoveredHash))} onClick={()=>void flow.reconcile(flow.operation!.id,missingHash?recoveredHash:undefined)}>Reconcile this operation</button>:null}{flow.operation.state==='Draft'&&<button className="text-button" disabled={!flow.eligible||flow.busy} onClick={()=>void flow.cancelDraft(flow.operation!.id)}>Discard unsigned draft</button>}{flow.operation.hashProvenance==='recovered'&&<p className="notice">Recovered-hash evidence only. Original-operation provenance needs manual investigation; automatic unlock is unavailable. Read-only position checks remain available.</p>}<p>Testnet 50383 only. Check the native wallet confirmation. Never repeat an uncertain transaction.</p></div>}</>}
+export function OwnerEvidence({flow}:{flow:OwnerFlow}){
+  const [kind,setKind]=useState<EvidenceCaptureKind|''>('');
+  const [openingTxHash,setOpeningTxHash]=useState('');
+  if(!flow.captureEligible)return null;
+  const opening=kind==='opening';
+  return <form className="draft evidence-capture" onSubmit={event=>{event.preventDefault();if(kind)void flow.capture({kind,...(opening?{openingTxHash}: {})})}}>
+    <h3>Capture owner evidence · no signing</h3>
+    <p>Reads chain data and persists an observation in durable owner/pool scope history only. No wallet connection, permissions, preparation, signature or send is requested. This does not run the lifecycle, create protection or clear unresolved operations.</p>
+    <label htmlFor="capture-kind">Observation kind</label>
+    <select id="capture-kind" value={kind} disabled={flow.busy} required onChange={event=>setKind(event.target.value as EvidenceCaptureKind|'')}>
+      <option value="">Select an observation</option>
+      <option value="opening">Opening · inspect supplied transaction</option>
+      <option value="missing-sl">Missing stop-loss · current read</option>
+      <option value="gap">Protection gap · current read</option>
+      <option value="residual">Residual exposure and balances · current read</option>
+    </select>
+    {opening&&<><label htmlFor="opening-tx-hash">Existing opening transaction hash</label><input id="opening-tx-hash" value={openingTxHash} onChange={event=>setOpeningTxHash(event.target.value.trim())} disabled={flow.busy} required pattern="0x[0-9a-fA-F]{64}" placeholder="0x…" autoComplete="off" spellCheck={false} aria-describedby="opening-capture-help"/><p id="opening-capture-help">Supply a transaction already sent outside this desk. Its hash alone does not prove an owner-bound fill or position.</p></>}
+    <button type="submit" className="secondary" disabled={flow.busy||!kind||(opening&&!/^0x[0-9a-fA-F]{64}$/.test(openingTxHash))}>Capture observation (read + persist only)</button>
+    {flow.evidenceMessage&&<p role="status">{flow.evidenceMessage}</p>}
+  </form>
+}

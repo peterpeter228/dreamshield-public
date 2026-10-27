@@ -1,0 +1,213 @@
+Distribution derivative: absolute local paths replaced with labelled placeholders; commands, outcomes and capture timing remain historical. SHA-256 covers these exported derivative bytes.
+
+Runtime: v24.22.1
+Command: node --import tsx <temporary-cli-smoke>
+All complete fixtures are synthetic only; default metadata unchanged
+--- stdout ---
+{
+  "syntheticOnly": true,
+  "currentChainRevalidation": "NOT_RUN",
+  "defaultMetadataModified": false,
+  "cases": [
+    {
+      "name": "synthetic-complete-relative-paths-only-not-live",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"READY_FOR_OWNER_SUBMISSION\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [],\n  \"evidence\": {\n    \"valid\": true,\n    \"errors\": [],\n    \"status\": \"CAPTURED_COMPLETE\",\n    \"eligibility\": {\n      \"realPerpsOrder\": true,\n      \"nativeProtectionReadback\": true\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "synthetic-complete-relative-paths-only-not-live",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"CAPTURED_COMPLETE\",\n  \"schema\": \"valid\",\n  \"liveVerified\": true,\n  \"liveChecks\": \"CAPTURED_FILE_VALIDATION_ONLY\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": true,\n    \"errors\": [],\n    \"status\": \"CAPTURED_COMPLETE\",\n    \"eligibility\": {\n      \"realPerpsOrder\": true,\n      \"nativeProtectionReadback\": true\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "valid-proof-cannot-override-false-claims",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": true,\n    \"errors\": [],\n    \"status\": \"CAPTURED_COMPLETE\",\n    \"eligibility\": {\n      \"realPerpsOrder\": true,\n      \"nativeProtectionReadback\": true\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "valid-proof-cannot-override-false-claims",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"CAPTURED_COMPLETE\",\n  \"schema\": \"valid\",\n  \"liveVerified\": true,\n  \"liveChecks\": \"CAPTURED_FILE_VALIDATION_ONLY\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": true,\n    \"errors\": [],\n    \"status\": \"CAPTURED_COMPLETE\",\n    \"eligibility\": {\n      \"realPerpsOrder\": true,\n      \"nativeProtectionReadback\": true\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "raw-file-digest-tampering",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"validLiveEvidence\",\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: SHA-256 mismatch at <synthetic-reference-root>/proof/lifecycle.json\"\n    ],\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "raw-file-digest-tampering",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"schema\": \"valid\",\n  \"liveVerified\": false,\n  \"liveChecks\": \"NOT_RUN_OR_INVALID\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: SHA-256 mismatch at <synthetic-reference-root>/proof/lifecycle.json\"\n    ],\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-gap-observation",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"validLiveEvidence\",\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle.gap: exactly one complete observation is required\",\n      \"lifecycle.observations: immutable observations must be ordered opening, missing-sl, gap, residual\"\n    ],\n    \"status\": \"INVALID\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-gap-observation",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"schema\": \"valid\",\n  \"liveVerified\": false,\n  \"liveChecks\": \"NOT_RUN_OR_INVALID\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle.gap: exactly one complete observation is required\",\n      \"lifecycle.observations: immutable observations must be ordered opening, missing-sl, gap, residual\"\n    ],\n    \"status\": \"INVALID\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovered-needs-review",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"validLiveEvidence\",\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle.operations[0].operation: only unambiguous original Applied operations can establish lifecycle actions\",\n      \"lifecycle.operations: exactly three proven sent actions (initial SL, selected cancel, replacement SL) are required; unsigned cancelled drafts are not actions\",\n      \"lifecycle.operations: initial/replacement actions must follow the distinct missing-SL/gap observations\"\n    ],\n    \"status\": \"INVALID\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovered-needs-review",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"schema\": \"valid\",\n  \"liveVerified\": false,\n  \"liveChecks\": \"NOT_RUN_OR_INVALID\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle.operations[0].operation: only unambiguous original Applied operations can establish lifecycle actions\",\n      \"lifecycle.operations: exactly three proven sent actions (initial SL, selected cancel, replacement SL) are required; unsigned cancelled drafts are not actions\",\n      \"lifecycle.operations: initial/replacement actions must follow the distinct missing-SL/gap observations\"\n    ],\n    \"status\": \"INVALID\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "actual-downloaded-replay-rejected",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"validLiveEvidence\",\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: missing referenced lifecycle artifact\"\n    ],\n    \"status\": \"MISSING\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "actual-downloaded-replay-rejected",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"schema\": \"valid\",\n  \"liveVerified\": false,\n  \"liveChecks\": \"NOT_RUN_OR_INVALID\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: missing referenced lifecycle artifact\"\n    ],\n    \"status\": \"MISSING\",\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"fileOnly\": true,\n    \"originAuthenticated\": false,\n    \"currentChainRevalidated\": false,\n    \"historical\": true,\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-referenced-file",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/submission-check.ts",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"metadataPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"missing\": [\n    \"validLiveEvidence\",\n    \"realPerpsOrder\",\n    \"nativeProtectionReadback\"\n  ],\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: <synthetic-reference-root>/proof/absent.json: ENOENT: no such file or directory, open '<synthetic-reference-root>/proof/absent.json'\"\n    ],\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"submitted\": false,\n  \"buildUrl\": null,\n  \"metadataModified\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-referenced-file",
+      "command": [
+        "<pinned-node>",
+        "--import",
+        "tsx",
+        "scripts/verify-evidence.ts",
+        "evidence/manifest.json",
+        "--submission",
+        "<synthetic-reference-root>/meta/submission.json"
+      ],
+      "exitCode": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"schema\": \"valid\",\n  \"liveVerified\": false,\n  \"liveChecks\": \"NOT_RUN_OR_INVALID\",\n  \"offlineSchemaOnly\": false,\n  \"manifestPath\": \"evidence/manifest.json\",\n  \"submissionPath\": \"<synthetic-reference-root>/meta/submission.json\",\n  \"evidence\": {\n    \"valid\": false,\n    \"errors\": [\n      \"lifecycle: <synthetic-reference-root>/proof/absent.json: ENOENT: no such file or directory, open '<synthetic-reference-root>/proof/absent.json'\"\n    ],\n    \"eligibility\": {\n      \"realPerpsOrder\": false,\n      \"nativeProtectionReadback\": false\n    },\n    \"currentChainRevalidation\": \"NOT_RUN\",\n    \"originAuthentication\": \"NOT_ESTABLISHED\"\n  },\n  \"reason\": \"File-only internal consistency; no origin authentication or current chain coverage. Offline allowance cannot satisfy live acceptance.\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}
+
+--- stderr ---
+
+Exit code: 0

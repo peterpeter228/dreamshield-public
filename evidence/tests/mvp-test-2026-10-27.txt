@@ -1,0 +1,93 @@
+Distribution derivative: absolute local paths replaced with labelled placeholders; commands, outcomes and capture timing remain historical. SHA-256 covers these exported derivative bytes.
+
+Started UTC: 2026-10-27T05:38:42.666180+00:00
+Runtime: v24.22.1
+Command: ["npm", "test"]
+--- stdout ---
+
+> dreamshield@0.1.0 test
+> vitest run --root .
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m<repo>[39m
+
+ [32m✓[39m tests/unit/doctor.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 222[2mms[22m[39m
+ [32m✓[39m tests/integration/owner-recovery-api.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol-evidence.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [31m❯[39m tests/integration/journal.test.ts [2m([22m[2m20 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 64[2mms[22m[39m
+   [32m✓[39m durable journal [2m(9)[22m
+     [32m✓[39m idempotency and single owner lock are transactional[32m 3[2mms[22m[39m
+     [32m✓[39m recovers interrupted AwaitingSignature to unknown and keeps the owner locked[32m 5[2mms[22m[39m
+     [32m✓[39m recovers interrupted Reconcile to unknown and keeps the owner locked[32m 5[2mms[22m[39m
+     [32m✓[39m requires a submitted hash and preserves it on every later transition[32m 1[2mms[22m[39m
+     [32m✓[39m cannot mark applied without independent read-back proof[32m 1[2mms[22m[39m
+     [32m✓[39m requires a verified reverted receipt before releasing a failed operation[32m 1[2mms[22m[39m
+     [32m✓[39m unknown without a hash cannot become applied even with a proof flag[32m 1[2mms[22m[39m
+     [32m✓[39m NeedsReview is reconcilable and never releases the owner lock[32m 1[2mms[22m[39m
+     [32m✓[39m deduplicates events and persists cursor[32m 0[2mms[22m[39m
+   [32m✓[39m mode boundary [2m(3)[22m
+     [32m✓[39m defaults to replay no writes[32m 0[2mms[22m[39m
+     [32m✓[39m rejects contradictory writes and public owner[32m 0[2mms[22m[39m
+     [32m✓[39m allows explicit local owner only[32m 0[2mms[22m[39m
+   [32m✓[39m recovered transaction hash binding [2m(2)[22m
+     [32m✓[39m binds a recovered hash on an unresolved original operation without releasing its owner lock[32m 1[2mms[22m[39m
+     [32m✓[39m rejects wrong scope, malformed hashes, replacement, and terminal-state recovery[32m 1[2mms[22m[39m
+   [32m✓[39m recovery never unlocks uncertain transactions [2m(2)[22m
+     [32m✓[39m atomically makes awaiting recovery Unknown and prevents late cancellation or new reservation[32m 2[2mms[22m[39m
+     [32m✓[39m rejects attaching a hash to cancellation itself[32m 1[2mms[22m[39m
+   [31m❯[39m atomic durable reconciliation evidence (synthetic storage proof only) [2m(3)[22m
+[31m     [31m×[31m persists Operation.evidence and immutable state-bound proof events across restart[39m[32m 21[2mms[22m[39m
+     [32m✓[39m rolls back operation and proof event on cyclic-proof failure[32m 12[2mms[22m[39m
+     [32m✓[39m rolls back operation and proof event on operation-serialization failure[32m 5[2mms[22m[39m
+   [32m✓[39m durable scoped observation cursor [2m(1)[22m
+     [32m✓[39m retains the newer opening as current when an older capture completes late[32m 2[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-hash-provenance.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 97[2mms[22m[39m
+ [32m✓[39m tests/integration/api.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+ [32m✓[39m tests/integration/desk-assessment.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m tests/integration/live-evidence-api.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 505[2mms[22m[39m
+ [32m✓[39m tests/unit/live-evidence.test.ts [2m([22m[2m165 tests[22m[2m)[22m[33m 343[2mms[22m[39m
+ [32m✓[39m tests/unit/doctor-protocol.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-protocol.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m tests/unit/transaction-encoding.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/recovered-provenance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m14 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m390 passed[39m[22m[90m (391)[39m
+[2m   Start at [22m 13:38:43
+[2m   Duration [22m 1.21s[2m (import 59%, tests 25%, transform 15%, worker 1%)[22m
+
+
+--- stderr ---
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/integration/journal.test.ts[2m > [22matomic durable reconciliation evidence (synthetic storage proof only)[2m > [22mpersists Operation.evidence and immutable state-bound proof events across restart
+[31m[1mAssertionError[22m: expected { kind: 'reconciliation-proof', …(6) } to deeply equal { kind: 'reconciliation-proof', …(5) }[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[33m@@ -111,7 +111,8 @@[39m
+[2m        "input": "0x",[22m
+[2m        "to": "0x3",[22m
+[2m        "value": "1",[22m
+[2m      },[22m
+[2m    },[22m
+[31m+   "reason": null,[39m
+[2m    "state": "Unknown",[22m
+[2m  }[22m
+
+[36m [2m❯[22m tests/integration/journal.test.ts:[2m201:48[22m[39m
+    [90m199|[39m    expect(applied.evidence).toEqual(evidence);expect(j.get(operation.i…
+    [90m200|[39m    const events=records(path).events;expect(events).toHaveLength(2);
+    [90m201|[39m    expect(JSON.parse(String(events[0]!.body))).toEqual({kind:'reconcil…
+    [90m   |[39m                                                [31m^[39m
+    [90m202|[39m    expect(JSON.parse(String(events[1]!.body))).toEqual({kind:'reconcil…
+    [90m203|[39m    expect(j.recordEvent(String(events[1]!.id),{kind:'forged-replacemen…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+Exit code: 1

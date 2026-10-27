@@ -1,0 +1,11 @@
+Distribution derivative: labelled export; absolute local paths, where present, replaced with neutral references. Original commands, outcomes, timing and source fingerprints remain historical. Original raw SHA-256: 1944c2177d8348087f0a656361d1efddbc905f9894340b530a9c7430da6bb344. Exported raw SHA-256 is recorded separately.
+
+Captured: 2026-10-27T06:21:38.264869+00:00
+Runtime: v24.22.1
+Command: ["npm", "run", "typecheck"]
+
+> dreamshield@0.1.0 typecheck
+> tsc --noEmit
+
+
+Exit: 0

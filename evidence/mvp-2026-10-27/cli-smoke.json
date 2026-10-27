@@ -1,0 +1,78 @@
+{
+  "classification": "SYNTHETIC_FILE_INGESTION_ONLY_NOT_G1",
+  "currentChainRevalidation": "NOT_RUN",
+  "defaultMetadataModified": false,
+  "cases": [
+    {
+      "case": "synthetic-complete-relative-paths-only-not-live",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 0
+    },
+    {
+      "case": "synthetic-complete-relative-paths-only-not-live",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 0
+    },
+    {
+      "case": "valid-proof-cannot-override-false-claims",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "valid-proof-cannot-override-false-claims",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 0
+    },
+    {
+      "case": "raw-file-digest-tampering",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "raw-file-digest-tampering",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "missing-gap-observation",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "missing-gap-observation",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "recovered-needs-review",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "recovered-needs-review",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "actual-downloaded-replay-rejected",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "actual-downloaded-replay-rejected",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "missing-referenced-file",
+      "checker": "scripts/submission-check.ts",
+      "exitCode": 2
+    },
+    {
+      "case": "missing-referenced-file",
+      "checker": "scripts/verify-evidence.ts",
+      "exitCode": 2
+    }
+  ],
+  "harnessExitCode": 0
+}

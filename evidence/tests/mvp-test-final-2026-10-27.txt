@@ -1,0 +1,38 @@
+Distribution derivative: absolute local paths replaced with labelled placeholders; commands, outcomes and capture timing remain historical. SHA-256 covers these exported derivative bytes.
+
+Runtime: v24.22.1
+Command: npm test
+Reason: removed incidental exact event-shape/serialization-count assertions; durability/atomicity assertions retained
+--- stdout ---
+
+> dreamshield@0.1.0 test
+> vitest run --root .
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m<repo>[39m
+
+ [32m✓[39m tests/integration/journal.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+ [32m✓[39m tests/integration/owner-recovery-api.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 72[2mms[22m[39m
+ [32m✓[39m tests/unit/doctor.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 246[2mms[22m[39m
+ [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m tests/integration/api.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+ [32m✓[39m tests/integration/desk-assessment.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-hash-provenance.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 115[2mms[22m[39m
+ [32m✓[39m tests/integration/live-evidence-api.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 539[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol-evidence.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m tests/unit/live-evidence.test.ts [2m([22m[2m165 tests[22m[2m)[22m[33m 389[2mms[22m[39m
+ [32m✓[39m tests/unit/argon-protocol.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m tests/unit/protocol.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/doctor-protocol.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/transaction-encoding.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/unit/recovered-provenance.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m391 passed[39m[22m[90m (391)[39m
+[2m   Start at [22m 13:39:20
+[2m   Duration [22m 1.15s[2m (import 65%, tests 30%, transform 4%, worker 1%)[22m
+
+
+--- stderr ---
+
+Exit code: 0

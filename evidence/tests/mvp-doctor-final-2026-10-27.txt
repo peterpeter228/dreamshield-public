@@ -1,0 +1,674 @@
+Distribution derivative: absolute local paths replaced with labelled placeholders; commands, outcomes and capture timing remain historical. SHA-256 covers these exported derivative bytes.
+
+Final semantic read-only doctor; no signing/send
+Started UTC: 2026-10-27T05:32:52.833506+00:00
+Command: ["<pinned-node>", "--import", "tsx", "scripts/doctor-readonly.ts"]
+--- stdout ---
+{
+  "schemaVersion": 1,
+  "artifactType": "dreamshield-readonly-doctor",
+  "startedAt": "2026-10-27T05:32:53.000Z",
+  "readOnly": true,
+  "signingRequested": false,
+  "transactionsSent": 0,
+  "signerConfigured": false,
+  "ownerConfigured": false,
+  "poolConfigured": false,
+  "liveOwnerGate": "BLOCKED_NO_USER_SIGNER",
+  "g1Status": "NOT_RUN",
+  "fixedBlockAcrossSdkCalls": false,
+  "pinnedRiskReadsViaExtractedSdkAbi": true,
+  "reachabilityScope": "This execution environment only; not proof of owner-machine reachability.",
+  "probes": {
+    "versions": {
+      "name": "versions",
+      "status": "passed",
+      "ms": 74,
+      "value": {
+        "node": "v24.22.1",
+        "npm": "11.21.1",
+        "sdk": "0.32.1",
+        "viem": "2.57.11",
+        "lockSha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21",
+        "expected": {
+          "node": "24.22.1",
+          "sdk": "0.32.1",
+          "viem": "2.57.11"
+        }
+      }
+    },
+    "sourceIdentity": {
+      "name": "sourceIdentity",
+      "status": "passed",
+      "ms": 7,
+      "value": {
+        "commit": "2d316ae517986a7a70372dc9ff582be1c63e9abc",
+        "verifier": "dreamshield-doctor-readonly/v1",
+        "dirty": true,
+        "doctorSha256": "f6d0ca4a0e4c8350b688a29a925897b5c4cba019cfb972360f1d94454c1c9287",
+        "helperSha256": "f8ffd259062d03f7c9cb34b63cf4b5e7501dd79be81fc7af54f569ceb1dbec1b"
+      }
+    },
+    "protocolSetup": {
+      "name": "protocolSetup",
+      "status": "passed",
+      "ms": 437,
+      "value": {
+        "network": {
+          "chainId": 50383,
+          "http": "https://api.hideki2.infra.testnet.somnia.network",
+          "ws": "wss://api.hideki2.infra.testnet.somnia.network/ws",
+          "indexer": "https://hideki-dev.smk.somnia.host/v1/graphql",
+          "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+          "collateral": "0xed7993A74dAe1e6656B704A424DcD8711aAf4F72",
+          "factory": "0xE631fAEE547baeE07353E290f0562ea67d856560",
+          "operatorRegistry": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a"
+        },
+        "marketValidator": "readLiveSnapshot (existing chain, retired-genesis, factory/bank/registry/code validation)"
+      }
+    },
+    "httpSetup": {
+      "name": "httpSetup",
+      "status": "passed",
+      "ms": 1,
+      "value": {
+        "endpoint": "https://api.hideki2.infra.testnet.somnia.network",
+        "retryCount": 0
+      }
+    },
+    "http": {
+      "name": "http",
+      "status": "passed",
+      "ms": 1906,
+      "value": {
+        "endpoint": "https://api.hideki2.infra.testnet.somnia.network",
+        "chainId": 50383,
+        "block": "34269926",
+        "blockHash": "0x954c8a0f625ca6d26dce62723c6726a4085db787647bbe44bf778a5081027dbc",
+        "blockTimestamp": "1793079175",
+        "lagSeconds": 0
+      }
+    },
+    "websocketSetup": {
+      "name": "websocketSetup",
+      "status": "passed",
+      "ms": 1,
+      "value": {
+        "endpoint": "wss://api.hideki2.infra.testnet.somnia.network/ws",
+        "retryCount": 0,
+        "reconnect": false
+      }
+    },
+    "websocket": {
+      "name": "websocket",
+      "status": "passed",
+      "ms": 716,
+      "value": {
+        "endpoint": "wss://api.hideki2.infra.testnet.somnia.network/ws",
+        "session": "actual JSON-RPC WebSocket client",
+        "chainId": 50383,
+        "block": "34269933",
+        "blockHash": "0xd7c65937deb6ee532172f93eb064921952b7d1db09b2e56363afeaacc78135a0",
+        "blockTimestamp": "1793079175",
+        "lagSeconds": 1
+      }
+    },
+    "sdkSetup": {
+      "name": "sdkSetup",
+      "status": "passed",
+      "ms": 3,
+      "value": {
+        "signer": false
+      }
+    },
+    "sdkSystemConfig": {
+      "name": "sdkSystemConfig",
+      "status": "passed",
+      "ms": 714,
+      "value": {
+        "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+        "collateralToken": "0xed7993A74dAe1e6656B704A424DcD8711aAf4F72",
+        "perpPoolFactory": "0xE631fAEE547baeE07353E290f0562ea67d856560",
+        "liquidationEngine": "0xA66d3C24Ad4a389d863846905D8173e1017e9F4D",
+        "insuranceFund": "0x50826894D47C6D4f3BeA38BFDC7Dc5c5be171b80",
+        "feeRecipient": "0xd58596620Ee6951B2958a931949e4ff7ce6222be",
+        "maxLeverageLimit": 20,
+        "fullyWired": true
+      }
+    },
+    "systemBytecode": {
+      "name": "systemBytecode",
+      "status": "passed",
+      "ms": 1879,
+      "value": {
+        "block": "34269950",
+        "blockHash": "0x62c84a6d94cacbdbdb673087abda092cc2fd8349e7a972cd7379a61915d15dc0",
+        "contracts": {
+          "marginBank": {
+            "address": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+            "bytes": 176,
+            "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+          },
+          "collateral": {
+            "address": "0xed7993A74dAe1e6656B704A424DcD8711aAf4F72",
+            "bytes": 2840,
+            "sha256": "71a71c9e1d879fdc0ce5d209ae470c539c2973d2f924e2995d53fb11deda59fd"
+          },
+          "factory": {
+            "address": "0xE631fAEE547baeE07353E290f0562ea67d856560",
+            "bytes": 176,
+            "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+          },
+          "operatorRegistry": {
+            "address": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a",
+            "bytes": 176,
+            "sha256": "c8fa94d0a02836da8c283d9a4c63aa6f6fe0c9979270b2f5b5a0fb25ad66dc77"
+          }
+        }
+      }
+    },
+    "httpSystemConfigAtBlock": {
+      "name": "httpSystemConfigAtBlock",
+      "status": "passed",
+      "ms": 465,
+      "value": {
+        "block": "34269962",
+        "blockHash": "0x2c18dbe13096ea097d47f1af2e69937393119c55e9c59bd58e502d15eca184e2",
+        "value": {
+          "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+          "collateralToken": "0xed7993A74dAe1e6656B704A424DcD8711aAf4F72",
+          "perpPoolFactory": "0xE631fAEE547baeE07353E290f0562ea67d856560",
+          "liquidationEngine": "0xA66d3C24Ad4a389d863846905D8173e1017e9F4D",
+          "insuranceFund": "0x50826894D47C6D4f3BeA38BFDC7Dc5c5be171b80",
+          "feeRecipient": "0xd58596620Ee6951B2958a931949e4ff7ce6222be",
+          "maxLeverageLimit": 20,
+          "fullyWired": true
+        }
+      }
+    },
+    "genesisBlock1": {
+      "name": "genesisBlock1",
+      "status": "passed",
+      "ms": 232,
+      "value": {
+        "hash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+        "parentHash": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+        "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+        "miner": "0x0000000000000000000000000000000000000000",
+        "stateRoot": "0x3a08e0c8b57522b902293184dc7cbe1fe3f4947d84101c217e031c937a29b79e",
+        "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+        "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "difficulty": "0",
+        "number": "1",
+        "gasLimit": "15000000000",
+        "gasUsed": "0",
+        "baseFeePerGas": "6000000000",
+        "timestamp": "1789646421",
+        "size": "543",
+        "extraData": "0x8e9e1e233bb7076f74baa6d5f6bf192ea0f6df26f55ec9c5bb2a6a754c646509",
+        "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": "0x0000000000000000",
+        "transactions": [],
+        "totalDifficulty": null
+      }
+    },
+    "marketDiscovery": {
+      "name": "marketDiscovery",
+      "status": "passed",
+      "ms": 1025,
+      "value": {
+        "endpoint": "https://hideki-dev.smk.somnia.host/v1/graphql",
+        "limit": 30,
+        "reportedCount": 21,
+        "candidateCount": 21,
+        "exhaustive": false,
+        "coverage": "At most the first 30 indexed perp markets; indexed rows are candidates, not accepted markets.",
+        "markets": [
+          {
+            "pool": "0x2a1822b02039ddf0e293f3f7243673fc03eaf16c",
+            "symbol": "ZRO",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x1667a20a7481d704b1f75e8932d42a6bbafbd539",
+            "index": 0
+          },
+          {
+            "pool": "0xdcb0ad226727b2ce92857f0af5751389d42b2a3f",
+            "symbol": "LIT",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x6243c81d782ca091f47923e049a9ddc1070cb57a",
+            "index": 1
+          },
+          {
+            "pool": "0x352636ab146039851ef06d6367a106d5fb4e6409",
+            "symbol": "VVV",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x6ba14290fc5067578020e649ad066df08915e5cf",
+            "index": 2
+          },
+          {
+            "pool": "0xfa9b9e50cc1745113d57893991af200a74c86b6f",
+            "symbol": "1000PEPE",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x9942cd840dbbc0a51589027fef271dd9be836f08",
+            "index": 3
+          },
+          {
+            "pool": "0x76c981a52530cdf9497559140aafcd8cd16836e7",
+            "symbol": "PUMP",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xe09c7550c2ef41a6ddabe368cbde83c8ba5259b6",
+            "index": 4
+          },
+          {
+            "pool": "0x2a73129f26917124bd2a47a9b355c395c537f050",
+            "symbol": "ZEC",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xbfe6f500627a0344270c72a61c4f9f9f31db9a05",
+            "index": 5
+          },
+          {
+            "pool": "0xd9b6a347a3ae9fd6ba21179d3343f2c8a922f697",
+            "symbol": "TAO",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x450b968dc94e3a854c47e37f38e2f6af6e1650b7",
+            "index": 6
+          },
+          {
+            "pool": "0x0f464d57c1fd839e4d87a408bbccdab8f77e6394",
+            "symbol": "WLD",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x092ba74067cdd5400f38f8b4e91b1a4cf8f7716d",
+            "index": 7
+          },
+          {
+            "pool": "0x1cd15ae8bff0fe0a7f49233be8b90734775ba454",
+            "symbol": "NEAR",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xf3a51c26ead3f84c2221336484bb42b8cfca076e",
+            "index": 8
+          },
+          {
+            "pool": "0x74b05b9b8c8f180b53b7891018f3b254b3e658c9",
+            "symbol": "XLM",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xa1b615be784784420f7dd7ef4a2a5a392bdb7242",
+            "index": 9
+          },
+          {
+            "pool": "0xde9762b6b441133d1314c68864ae4e63a6ee45c7",
+            "symbol": "AVAX",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xc33db2dab35c46295cb435730f14f91a3cfd0367",
+            "index": 10
+          },
+          {
+            "pool": "0xf71b619450bafe953f47b9b556416a3a67b443b5",
+            "symbol": "LINK",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x1c3fabc41871ec838960f80329dcd920fec241c9",
+            "index": 11
+          },
+          {
+            "pool": "0x1be21287cfb865a7c462ff3c4f275e70bcccefe4",
+            "symbol": "SUI",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xfdcfb2f985049cad3ac27472b6ae80c7a53ede89",
+            "index": 12
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278d992f72ff31c7a619d",
+            "symbol": "ADA",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x3a76c35c1cc0a0dbde646ce51a30805b077d211b",
+            "index": 13
+          },
+          {
+            "pool": "0x3d2a99fe1e2bdeaa25024515a2d2202daf9531ad",
+            "symbol": "BNB",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x487fd1e8bcedf4334a2e83aa86b426fd70e4e921",
+            "index": 14
+          },
+          {
+            "pool": "0xc410012e39765cd5f772e84bacb19554aec040df",
+            "symbol": "DOGE",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0xb09cf2f2f91045f1ff1e4e824f9cf0fa29698757",
+            "index": 15
+          },
+          {
+            "pool": "0x7058579f3248559963f79adb937c6de9f953e060",
+            "symbol": "XRP",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x655e89a7e52490a421ad4c04fb6a7dd295cf1a5f",
+            "index": 16
+          },
+          {
+            "pool": "0x63b47ed4a7de0fde659b0d82441dd74828b7297a",
+            "symbol": "HYPE",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x44c24cd26cf41037c6ebf337948a6c9bbc0ee055",
+            "index": 17
+          },
+          {
+            "pool": "0xb483ec1fb34996638677c20ab087b16f1896fa53",
+            "symbol": "SOL",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x85a0879d19777c343eb317a890d5058ab92b8f5d",
+            "index": 18
+          },
+          {
+            "pool": "0xd6cb1dd58580b84d76068ac21594219ce03aeddf",
+            "symbol": "ETH",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x44bfa5b28684e8d2156d15b85902da18f02b3a34",
+            "index": 19
+          },
+          {
+            "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+            "symbol": "BTC",
+            "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+            "stopRegistry": "0x52e2ccebaec9332672c247e9a90aa3d61fb615ef",
+            "index": 20
+          }
+        ]
+      }
+    },
+    "marketCandidate:20": {
+      "name": "marketCandidate:20",
+      "status": "passed",
+      "ms": 4308,
+      "value": {
+        "chainId": 50383,
+        "genesisHash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+        "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+        "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+        "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+        "symbol": "BTC / USDso",
+        "baseDecimals": 8,
+        "quoteDecimals": 18,
+        "tickSize": "100000000000000000",
+        "lotSize": "1000",
+        "minQuantity": "13000",
+        "mark": "79697229383435467000000",
+        "feedValid": true,
+        "observedBlock": "34270007",
+        "blockHash": "0x8aff16490660ff00445718c50125d42320cfc03f7f57d41378e61554c0633d24",
+        "observedAt": "2026-10-27T05:33:03.000Z",
+        "stopDeposit": "150000000000000000",
+        "selectionSource": "discovery"
+      }
+    },
+    "marketVerification": {
+      "name": "marketVerification",
+      "status": "passed",
+      "ms": 0,
+      "value": {
+        "selectedMarket": {
+          "chainId": 50383,
+          "genesisHash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+          "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+          "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+          "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+          "symbol": "BTC / USDso",
+          "baseDecimals": 8,
+          "quoteDecimals": 18,
+          "tickSize": "100000000000000000",
+          "lotSize": "1000",
+          "minQuantity": "13000",
+          "mark": "79697229383435467000000",
+          "feedValid": true,
+          "observedBlock": "34270007",
+          "blockHash": "0x8aff16490660ff00445718c50125d42320cfc03f7f57d41378e61554c0633d24",
+          "observedAt": "2026-10-27T05:33:03.000Z",
+          "stopDeposit": "150000000000000000",
+          "selectionSource": "discovery"
+        },
+        "candidatesAttempted": 1,
+        "acceptance": "verified market only; not owner completeness or protection"
+      }
+    },
+    "genesisValidation": {
+      "name": "genesisValidation",
+      "status": "passed",
+      "ms": 0,
+      "value": {
+        "hash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+        "capturedBlock1Hash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+        "validator": "Existing readLiveSnapshot retired-genesis guard, with matching independently captured block 1."
+      }
+    },
+    "ownerSnapshot": {
+      "name": "ownerSnapshot",
+      "status": "blocked",
+      "reason": "OWNER_NOT_CONFIGURED"
+    },
+    "execution": {
+      "name": "execution",
+      "status": "passed"
+    },
+    "websocketCleanup": {
+      "name": "websocketCleanup",
+      "status": "passed",
+      "ms": 0,
+      "value": {
+        "closed": true
+      }
+    },
+    "sdkCleanup": {
+      "name": "sdkCleanup",
+      "status": "passed",
+      "ms": 1,
+      "value": {
+        "closed": true
+      }
+    },
+    "artifactPersistence": {
+      "name": "artifactPersistence",
+      "status": "passed"
+    }
+  },
+  "versions": {
+    "node": "v24.22.1",
+    "npm": "11.21.1",
+    "sdk": "0.32.1",
+    "viem": "2.57.11",
+    "lockSha256": "61890044899ef64ddfb2404e39e20979aac2dcd3a404abacddf39e84d3ea5c21",
+    "expected": {
+      "node": "24.22.1",
+      "sdk": "0.32.1",
+      "viem": "2.57.11"
+    }
+  },
+  "source": {
+    "commit": "2d316ae517986a7a70372dc9ff582be1c63e9abc",
+    "verifier": "dreamshield-doctor-readonly/v1",
+    "dirty": true,
+    "doctorSha256": "f6d0ca4a0e4c8350b688a29a925897b5c4cba019cfb972360f1d94454c1c9287",
+    "helperSha256": "f8ffd259062d03f7c9cb34b63cf4b5e7501dd79be81fc7af54f569ceb1dbec1b"
+  },
+  "marketSelection": {
+    "source": "discovery",
+    "candidateBound": 30,
+    "exhaustive": false,
+    "preference": "Verified BTC-style market, otherwise first verified candidate in indexed order; no liquidity claim.",
+    "attempts": [
+      {
+        "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+        "symbol": "BTC",
+        "bank": "0x478769e1177c0773c43a593dccc4ad15f15f1394",
+        "stopRegistry": "0x52e2ccebaec9332672c247e9a90aa3d61fb615ef",
+        "index": 20,
+        "validator": "readLiveSnapshot",
+        "status": "passed",
+        "snapshot": {
+          "mode": "live-readonly",
+          "market": {
+            "chainId": 50383,
+            "genesisHash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+            "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+            "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+            "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+            "symbol": "BTC / USDso",
+            "baseDecimals": 8,
+            "quoteDecimals": 18,
+            "tickSize": "100000000000000000",
+            "lotSize": "1000",
+            "minQuantity": "13000",
+            "mark": "79697229383435467000000",
+            "feedValid": true,
+            "observedBlock": "34270007",
+            "blockHash": "0x8aff16490660ff00445718c50125d42320cfc03f7f57d41378e61554c0633d24",
+            "observedAt": "2026-10-27T05:33:03.000Z",
+            "stopDeposit": "150000000000000000"
+          },
+          "position": null,
+          "stops": [],
+          "scope": "unavailable",
+          "readError": "OWNER_NOT_CONFIGURED",
+          "capturedAt": "2026-10-27T05:33:00.460Z",
+          "complete": false
+        },
+        "validationProblems": [],
+        "canonicalBlock": {
+          "number": "34270007",
+          "hash": "0x8aff16490660ff00445718c50125d42320cfc03f7f57d41378e61554c0633d24",
+          "timestamp": "1793079183"
+        }
+      }
+    ]
+  },
+  "ownerSnapshot": null,
+  "selectedMarket": {
+    "chainId": 50383,
+    "genesisHash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+    "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+    "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+    "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+    "symbol": "BTC / USDso",
+    "baseDecimals": 8,
+    "quoteDecimals": 18,
+    "tickSize": "100000000000000000",
+    "lotSize": "1000",
+    "minQuantity": "13000",
+    "mark": "79697229383435467000000",
+    "feedValid": true,
+    "observedBlock": "34270007",
+    "blockHash": "0x8aff16490660ff00445718c50125d42320cfc03f7f57d41378e61554c0633d24",
+    "observedAt": "2026-10-27T05:33:03.000Z",
+    "stopDeposit": "150000000000000000",
+    "selectionSource": "discovery"
+  },
+  "identity": {
+    "chainId": 50383,
+    "genesisHash": "0xa60bd432616fe5205e91031065ea1a2aa2ee9e42dcec3664d6cbe2e16a478f9c",
+    "owner": null,
+    "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+    "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+    "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef"
+  },
+  "g0Note": "G0 requires the complete configured owner scope as well as required read-only checks. No owner means no position/balance/protection claim. G1 is NOT_RUN; no signing, trading, funding, cancellation or submission.",
+  "artifact": {
+    "path": "evidence/g0/doctor-2026-10-27T05-32-53.000Z.json",
+    "status": "written"
+  },
+  "requiredChecks": [
+    {
+      "name": "versions",
+      "status": "passed"
+    },
+    {
+      "name": "sourceIdentity",
+      "status": "passed"
+    },
+    {
+      "name": "protocolSetup",
+      "status": "passed"
+    },
+    {
+      "name": "httpSetup",
+      "status": "passed"
+    },
+    {
+      "name": "http",
+      "status": "passed"
+    },
+    {
+      "name": "websocketSetup",
+      "status": "passed"
+    },
+    {
+      "name": "websocket",
+      "status": "passed"
+    },
+    {
+      "name": "systemBytecode",
+      "status": "passed"
+    },
+    {
+      "name": "sdkSetup",
+      "status": "passed"
+    },
+    {
+      "name": "sdkSystemConfig",
+      "status": "passed"
+    },
+    {
+      "name": "httpSystemConfigAtBlock",
+      "status": "passed"
+    },
+    {
+      "name": "genesisBlock1",
+      "status": "passed"
+    },
+    {
+      "name": "marketVerification",
+      "status": "passed"
+    },
+    {
+      "name": "genesisValidation",
+      "status": "passed"
+    },
+    {
+      "name": "websocketCleanup",
+      "status": "passed"
+    },
+    {
+      "name": "sdkCleanup",
+      "status": "passed"
+    },
+    {
+      "name": "execution",
+      "status": "passed"
+    },
+    {
+      "name": "artifactPersistence",
+      "status": "passed"
+    },
+    {
+      "name": "marketDiscovery",
+      "status": "passed"
+    }
+  ],
+  "readonlyResult": "PASS",
+  "successScope": "transport-and-verified-market",
+  "statuses": {
+    "transport": "PASS",
+    "market": "PASS",
+    "owner": "NOT_CONFIGURED"
+  },
+  "blockers": [],
+  "ownerAcceptanceBlockers": [
+    "OWNER_NOT_CONFIGURED"
+  ],
+  "g0Complete": false,
+  "exitCode": 0,
+  "completedAt": "2026-10-27T05:33:04.770Z"
+}
+Evidence: evidence/g0/doctor-2026-10-27T05-32-53.000Z.json
+
+--- stderr ---
+
+Exit code: 0
+Completed UTC: 2026-10-27T05:33:05.024109+00:00

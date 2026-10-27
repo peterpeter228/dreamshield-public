@@ -1,0 +1,22 @@
+{
+  "classification": "OFFLINE_HTTP_ENGINEERING_ONLY_NOT_G1",
+  "runtime": "v24.22.1",
+  "separateServerPids": [
+    586857,
+    586870
+  ],
+  "lifecycleId": "9d6feca5-a184-4b0d-80d5-8741d8c7e406",
+  "observations": [
+    "opening",
+    "missing-sl",
+    "gap",
+    "residual"
+  ],
+  "persistedLock": "NeedsReview",
+  "liveWorkflowVerified": false,
+  "output": "<offline-smoke-artifacts>",
+  "distributionDerivative": {
+    "originalSha256": "4d12b30a3504033a8ed13c3daa612520384ed4814fbf54e01a7ae874ea23ca95",
+    "transformation": "Absolute local artifact paths replaced with labelled placeholders; original engineering result and capture timing unchanged."
+  }
+}

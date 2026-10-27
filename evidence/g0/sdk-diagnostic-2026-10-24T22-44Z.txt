@@ -1,17 +1,19 @@
+Distribution derivative: absolute workstation paths replaced with <repo>; diagnostic content and capture timing remain historical. This file has a new distribution SHA-256, not the original raw-log digest.
+
 RpcError: @somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed
-    at verify (file:///workspace/scratch/c01bd6fe117d/dreamshield/node_modules/@somnia-chain/markets-sdk/dist/client.js:1170:19)
+    at verify (file://<repo>/node_modules/@somnia-chain/markets-sdk/dist/client.js:1170:19)
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
-    at async gated.<computed> [as readContract] (file:///workspace/scratch/c01bd6fe117d/dreamshield/node_modules/@somnia-chain/markets-sdk/dist/client.js:1237:13)
-    at async Module.getPerpSystemConfig (file:///workspace/scratch/c01bd6fe117d/dreamshield/node_modules/@somnia-chain/markets-sdk/dist/perp/system.js:37:15)
-    at async file:///workspace/scratch/c01bd6fe117d/dreamshield/[eval1]:1:123 {
+    at async gated.<computed> [as readContract] (file://<repo>/node_modules/@somnia-chain/markets-sdk/dist/client.js:1237:13)
+    at async Module.getPerpSystemConfig (file://<repo>/node_modules/@somnia-chain/markets-sdk/dist/perp/system.js:37:15)
+    at async file://<repo>/[eval1]:1:123 {
   operation: 'getBlock',
   [cause]: UnknownRpcError: An unknown RPC error occurred.
   
   Details: getaddrinfo EAI_AGAIN api.hideki2.infra.testnet.somnia.network
   Version: viem@2.57.11
-      at withRetry.delay.count.count (/workspace/scratch/c01bd6fe117d/dreamshield/node_modules/viem/utils/buildRequest.ts:264:25)
+      at withRetry.delay.count.count (<repo>/node_modules/viem/utils/buildRequest.ts:264:25)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
-      at async attemptRetry (/workspace/scratch/c01bd6fe117d/dreamshield/node_modules/viem/utils/promise/withRetry.ts:67:22) {
+      at async attemptRetry (<repo>/node_modules/viem/utils/promise/withRetry.ts:67:22) {
     details: 'getaddrinfo EAI_AGAIN api.hideki2.infra.testnet.somnia.network',
     docsPath: undefined,
     metaMessages: undefined,

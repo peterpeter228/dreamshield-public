@@ -1,3 +1,5 @@
+Distribution derivative: absolute workstation paths replaced with <repo>; commands, outcomes and capture timing remain historical. This file has a new distribution SHA-256, not the original raw-log digest.
+
 Started: 2026-10-25T16:07:39.655650+00:00
 Command: Node 24.22.1 environment; npm run typecheck && npm test && npm run build
 
@@ -11,7 +13,7 @@ v24.22.1
 > vitest run --root .
 
 
-[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/workspace/dreamshield[39m
+ RUN  v5.0.5 <repo>
 
  [32m✓[39m tests/unit/domain.test.ts [2m([22m[2m77 tests[22m[2m)[22m[32m 43[2mms[22m[39m
  [32m✓[39m tests/integration/journal.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 43[2mms[22m[39m
