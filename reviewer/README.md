@@ -4,6 +4,8 @@ A native perps stop-protection desk for DreamDEX on Somnia Tokyo testnet (chain 
 
 ## Current status
 
+Open the [read-only reviewer demo](https://dreamshield-read-only-reviewer-demo-read-only-7qstzfkd68.openbot.site). It offers synthetic scenarios and the historical November 4 recording, with no wallet connection or transaction entrypoint. The recording remains UNKNOWN / READ_FAILED, not G1. Hosting expires on December 5, 2026 at 09:11 UTC.
+
 DreamShield reads position/stop observations, explains coverage gaps, prepares unsigned native stop calls and reconciles canonical readback instead of treating a receipt as a fill. Public mode is read-only. Local owner mode has no server signing key.
 
 The browser also implements a narrow **direct EOA-controller → threshold-1 Safe → operation-0 create-SL** path using the pinned official accounts SDK. Preparation and explicit wallet execution are separate. The code path can be checked offline; the user's current controlling provider, eligible state and execution authorization are **not established**. DreamShield has never signed or broadcast a stop in the supplied evidence. **No DreamShield-originated real order, G1 or completed submission is claimed.**
@@ -80,19 +82,20 @@ After a page reload, unresolved Safe operations remain locked. In the local live
 - The actual operation-1 opening is unsupported by the strict operation-0 verifier. No MultiSend support or relaxed attestation was added.
 - No supplied evidence proves the current injected provider controls a historical direct EOA owner on chain50383. Historical owners/code are not present signing authority.
 - Actual execution also needs independently eligible fresh state and separately bounded exact payload/account/provider authorization. The captured position already has an SL: do not create another, cancel it or open a position to manufacture eligibility.
-- Current native browser QA is parent-owned and separate from offline tests and HTTP smoke. No completed demo, public site/video, reviewer access, publication or submission receipt is asserted by this source package.
+- Public reviewer source and the read-only demo are available. Browser QA remains separate from offline tests and HTTP smoke. These artifacts do not establish a live wallet connection, a DreamShield-originated order, G1, or a completed submission.
 - Testnet only. No mainnet, automated trading strategy, custody, guaranteed returns or formal audit claim.
 
 ## X posts and submission
 
 | Post | Status | URL |
 |---|---|---|
-| Product/user value | Not published | None |
-| Technical/demo evidence | Not published | None |
+| Product/user value | Published by user | [Post 1](https://x.com/bbchjfgg/status/2118280088601161963) |
+| Historical risk/demo evidence | Published by user | [Post 2](https://x.com/bbchjfgg/status/2118280206180094237) |
+| Public source/run instructions | Published by user | [Post 3](https://x.com/bbchjfgg/status/2118280270898139369) |
 
-The [official bounty](https://dorahacks.io/hackathon/dreamdex-perps-bounty/detail) requires a repository, README what/who/run, real Tokyo perps orders and 2–3 genuine posts tagging `@DreamDEXSomnia`. Current corroborated deadline: **2026-11-15T14:30:00Z**. Hunter maintains the existing business packet; drafts are not posts. This package does not duplicate or publish them.
+The [official bounty](https://dorahacks.io/hackathon/dreamdex-perps-bounty/detail) requires a repository, README what/who/run, real Tokyo perps orders and 2–3 genuine posts tagging `@DreamDEXSomnia`. Current corroborated deadline: **2026-11-15T14:30:00Z**. The user published the three posts linked above. Rio checked their public pages and approved content. Hunter maintains the business packet; this documentation update sends no posts.
 
-Real product-issued order/readback, public current-source access, genuine X links and actual Build receipt remain unmet or unverified. Do not label official-UI reference trades as DreamShield execution. No trading-volume, Arena rank or mainnet funding requirement is inferred for the builder MVP.
+Public current-source access, the read-only demo and the three genuine X links are available. A real DreamShield-issued order/readback, G1 and an actual Build receipt remain unmet or unverified. Do not label official-UI reference trades as DreamShield execution. No trading-volume, Arena rank or mainnet funding requirement is inferred for the builder MVP.
 
 ```sh
 npm run verify:evidence -- evidence/manifest.json --submission evidence/submission.json
