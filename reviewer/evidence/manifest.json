@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "project": "DreamShield",
+  "status": "local-recorded-offline-live-blocked",
+  "historicalManifestOmitted": true,
+  "recordedEvidence": "evidence/recorded/opening-2026-11-04.sanitized.json",
+  "liveWorkflowVerified": false
+}

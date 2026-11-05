@@ -1,0 +1,12 @@
+{
+  "whitelistVerified": false,
+  "reviewerRepositoryAccess": false,
+  "realPerpsOrder": false,
+  "nativeProtectionReadback": false,
+  "liveEvidence": null,
+  "demoReady": false,
+  "xPost1": null,
+  "xPost2": null,
+  "buildUrl": null,
+  "demoScope": "Current native browser QA NOT_RUN; local replay/recorded source only"
+}

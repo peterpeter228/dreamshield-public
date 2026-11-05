@@ -1,0 +1,750 @@
+{
+  "limits": [
+    {
+      "case": "gas-observing callee",
+      "gas": "2200",
+      "sameOutput": true,
+      "a": {
+        "error": "out of gas",
+        "out": "0x",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "2200"
+      },
+      "b": {
+        "error": "out of gas",
+        "out": "0x",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "2200"
+      }
+    },
+    {
+      "case": "gas-observing callee",
+      "gas": "2500",
+      "sameOutput": true,
+      "a": {
+        "error": "out of gas",
+        "out": "0x",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "2500"
+      },
+      "b": {
+        "error": "out of gas",
+        "out": "0x",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "2500"
+      }
+    },
+    {
+      "case": "gas-observing callee",
+      "gas": "5000",
+      "sameOutput": false,
+      "a": {
+        "error": null,
+        "out": "0x00000000000000000000000000000000000000000000000000000000000000d1",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          },
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": true,
+            "codeAddress": "0x00000000000000000000000000000000000000c1",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "4837"
+      },
+      "b": {
+        "error": null,
+        "out": "0x00000000000000000000000000000000000000000000000000000000000000d5",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          },
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": true,
+            "codeAddress": "0x00000000000000000000000000000000000000c1",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "4830"
+      }
+    },
+    {
+      "case": "gas-observing callee",
+      "gas": "1000000",
+      "sameOutput": false,
+      "a": {
+        "error": null,
+        "out": "0x00000000000000000000000000000000000000000000000000000000000ef2ce",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          },
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": true,
+            "codeAddress": "0x00000000000000000000000000000000000000c1",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "4837"
+      },
+      "b": {
+        "error": null,
+        "out": "0x00000000000000000000000000000000000000000000000000000000000ef2d2",
+        "slot1": "0x",
+        "calls": [
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": false,
+            "codeAddress": "0x00000000000000000000000000000000000000c0",
+            "data": "0x12345678",
+            "value": "7"
+          },
+          {
+            "to": "0x00000000000000000000000000000000000000c0",
+            "caller": "0x00000000000000000000000000000000000000ee",
+            "delegatecall": true,
+            "codeAddress": "0x00000000000000000000000000000000000000c1",
+            "data": "0x12345678",
+            "value": "7"
+          }
+        ],
+        "gas": "4830"
+      }
+    }
+  ],
+  "gasDifferences": [
+    {
+      "name": "empty",
+      "input": "0x",
+      "oldGas": "4816",
+      "newGas": "4809"
+    },
+    {
+      "name": "empty",
+      "input": "0xa6",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "empty",
+      "input": "0xa61948",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "empty",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "empty",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "empty",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "empty",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "empty",
+      "input": "0x12345678",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "empty",
+      "input": "0xabababababababab",
+      "oldGas": "6471",
+      "newGas": "6464"
+    },
+    {
+      "name": "echo",
+      "input": "0x",
+      "oldGas": "4829",
+      "newGas": "4822"
+    },
+    {
+      "name": "echo",
+      "input": "0xa6",
+      "oldGas": "4841",
+      "newGas": "4834"
+    },
+    {
+      "name": "echo",
+      "input": "0xa61948",
+      "oldGas": "4841",
+      "newGas": "4834"
+    },
+    {
+      "name": "echo",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "echo",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "echo",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "echo",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "echo",
+      "input": "0x12345678",
+      "oldGas": "4841",
+      "newGas": "4834"
+    },
+    {
+      "name": "echo",
+      "input": "0xabababababababab",
+      "oldGas": "8916",
+      "newGas": "8909"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0x",
+      "oldGas": "4828",
+      "newGas": "4823"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa6",
+      "oldGas": "4840",
+      "newGas": "4835"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa61948",
+      "oldGas": "4840",
+      "newGas": "4835"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0x12345678",
+      "oldGas": "4840",
+      "newGas": "4835"
+    },
+    {
+      "name": "revertEcho",
+      "input": "0xabababababababab",
+      "oldGas": "8915",
+      "newGas": "8910"
+    },
+    {
+      "name": "return32",
+      "input": "0x",
+      "oldGas": "4835",
+      "newGas": "4828"
+    },
+    {
+      "name": "return32",
+      "input": "0xa6",
+      "oldGas": "4838",
+      "newGas": "4831"
+    },
+    {
+      "name": "return32",
+      "input": "0xa61948",
+      "oldGas": "4838",
+      "newGas": "4831"
+    },
+    {
+      "name": "return32",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return32",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return32",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return32",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return32",
+      "input": "0x12345678",
+      "oldGas": "4838",
+      "newGas": "4831"
+    },
+    {
+      "name": "return32",
+      "input": "0xabababababababab",
+      "oldGas": "6490",
+      "newGas": "6483"
+    },
+    {
+      "name": "return4096",
+      "input": "0x",
+      "oldGas": "6028",
+      "newGas": "6021"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa6",
+      "oldGas": "6031",
+      "newGas": "6024"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa61948",
+      "oldGas": "6031",
+      "newGas": "6024"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return4096",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "return4096",
+      "input": "0x12345678",
+      "oldGas": "6031",
+      "newGas": "6024"
+    },
+    {
+      "name": "return4096",
+      "input": "0xabababababababab",
+      "oldGas": "7276",
+      "newGas": "7269"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0x",
+      "oldGas": "4819",
+      "newGas": "4814"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa6",
+      "oldGas": "4822",
+      "newGas": "4817"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa61948",
+      "oldGas": "4822",
+      "newGas": "4817"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0x12345678",
+      "oldGas": "4822",
+      "newGas": "4817"
+    },
+    {
+      "name": "revertEmpty",
+      "input": "0xabababababababab",
+      "oldGas": "6474",
+      "newGas": "6469"
+    },
+    {
+      "name": "context",
+      "input": "0x",
+      "oldGas": "4862",
+      "newGas": "4855"
+    },
+    {
+      "name": "context",
+      "input": "0xa6",
+      "oldGas": "4865",
+      "newGas": "4858"
+    },
+    {
+      "name": "context",
+      "input": "0xa61948",
+      "oldGas": "4865",
+      "newGas": "4858"
+    },
+    {
+      "name": "context",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "context",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "context",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "context",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "context",
+      "input": "0x12345678",
+      "oldGas": "4865",
+      "newGas": "4858"
+    },
+    {
+      "name": "context",
+      "input": "0xabababababababab",
+      "oldGas": "6517",
+      "newGas": "6510"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0x",
+      "oldGas": "27041",
+      "newGas": "27034"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa6",
+      "oldGas": "27044",
+      "newGas": "27037"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa61948",
+      "oldGas": "27044",
+      "newGas": "27037"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0x12345678",
+      "oldGas": "27044",
+      "newGas": "27037"
+    },
+    {
+      "name": "writeSlot",
+      "input": "0xabababababababab",
+      "oldGas": "28696",
+      "newGas": "28689"
+    },
+    {
+      "name": "invalid",
+      "input": "0x",
+      "oldGas": "984482",
+      "newGas": "984481"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa6",
+      "oldGas": "984482",
+      "newGas": "984481"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa61948",
+      "oldGas": "984482",
+      "newGas": "984481"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "invalid",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "invalid",
+      "input": "0x12345678",
+      "oldGas": "984482",
+      "newGas": "984481"
+    },
+    {
+      "name": "invalid",
+      "input": "0xabababababababab",
+      "oldGas": "984508",
+      "newGas": "984507"
+    },
+    {
+      "name": "noCode",
+      "input": "0x",
+      "oldGas": "4816",
+      "newGas": "4809"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa6",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa61948",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa619486e00000000",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa619486e01",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "noCode",
+      "input": "0xa619486effffffff",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "noCode",
+      "input": "0x12345678",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "noCode",
+      "input": "0xabababababababab",
+      "oldGas": "6471",
+      "newGas": "6464"
+    },
+    {
+      "name": "slot:0",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "slot:0",
+      "input": "0x12345678",
+      "oldGas": "4819",
+      "newGas": "4812"
+    },
+    {
+      "name": "slot:ffffffffffffffffffffffff00000000000000000000000000000000000000c1",
+      "input": "0xa619486e",
+      "oldGas": "2182",
+      "newGas": "2175"
+    },
+    {
+      "name": "slot:ffffffffffffffffffffffff00000000000000000000000000000000000000c1",
+      "input": "0x12345678",
+      "oldGas": "4841",
+      "newGas": "4834"
+    }
+  ]
+}

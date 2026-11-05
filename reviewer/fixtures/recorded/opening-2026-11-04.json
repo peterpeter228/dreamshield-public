@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "kind": "recorded-chain",
+  "recordedCapture": {
+    "kind": "recorded-chain",
+    "sourceSha": "490042370dc8ecbae85385e73804578eaa923b69",
+    "capturedAt": "2026-11-04T17:57:07.889Z",
+    "pin": {
+      "block": "41611728",
+      "hash": "0x7506808dbf220e10934ae0033d7bc11ea631bdddd8477094a41725f05335f918",
+      "timestamp": "1793815027"
+    },
+    "opening": {
+      "txHash": "0x9cdbdb182c83e3080b09019ce56897019d33cfb5dc69df80a0b9b5f91eaf8140",
+      "block": "41609102",
+      "blockHash": "0x23c743ad15a05aff4a0d7e0b16675617f403620b4027539a6ddb7e137201624f",
+      "operation": 1,
+      "target": "0xb4fbd4db0490831b99dda6761cd20393fd9611ae",
+      "verifier": {
+        "status": "REJECTED",
+        "error": "Error: ACCOUNT_EXECUTION_SHAPE_UNSUPPORTED"
+      }
+    },
+    "attribution": "official-dreamdex-ui-user-safe-not-dreamshield",
+    "realSendProof": "NONE",
+    "liveWorkflowVerified": false,
+    "sourceFile": "evidence/recorded/opening-2026-11-04.sanitized.json",
+    "sourceSha256": "6976bf44c3237fd6bec2fbea03f033762204b38fddf0569233be1e0a8549ef1f",
+    "aggregateSnapshot": {
+      "mode": "live-readonly",
+      "market": null,
+      "position": null,
+      "stops": [],
+      "scope": "unavailable",
+      "readError": "Error: REGISTRY_CHANGED_DURING_DISCOVERY_RETRY_READONLY",
+      "capturedAt": "2026-11-04T17:55:56.423Z",
+      "complete": false,
+      "readonlyWarmup": [
+        {
+          "attempt": 1,
+          "status": "passed",
+          "ms": 217
+        }
+      ]
+    },
+    "limitations": [
+      "Historical known-ID supplement only; aggregate discovery failed. No completeness or current protection claim.",
+      "Opening was created by the user via official DreamDEX UI, not DreamShield.",
+      "Operation 1 MultiSend DELEGATECALL is unsupported by the strict single-CALL verifier.",
+      "Historical membership is not current injected-provider control or execution authorization.",
+      "Order somiPaid is not a current registry deposit requirement; no genesis or discovery watermark was captured."
+    ]
+  },
+  "snapshot": {
+    "mode": "replay",
+    "market": {
+      "chainId": 50383,
+      "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+      "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+      "stopRegistry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+      "symbol": "BTC / USDso",
+      "baseDecimals": 8,
+      "quoteDecimals": 18,
+      "tickSize": "100000000000000000",
+      "minQuantity": "13000",
+      "lotSize": "1000",
+      "mark": "80323217354006206500000",
+      "feedValid": true,
+      "observedBlock": "41611728",
+      "blockHash": "0x7506808dbf220e10934ae0033d7bc11ea631bdddd8477094a41725f05335f918",
+      "observedAt": "2026-11-04T17:57:07.000Z",
+      "stopDeposit": null
+    },
+    "position": {
+      "chainId": 50383,
+      "owner": "0xDb19191c710E9279612134F8746F0E42A78a3182",
+      "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+      "signedSize": "13000",
+      "entryPrice": "80501100000000000000000",
+      "observedBlock": "41611728",
+      "observedAt": "2026-11-04T17:57:07.000Z",
+      "source": "chain"
+    },
+    "stops": [
+      {
+        "id": "7581611814294625727582",
+        "owner": "0xDb19191c710E9279612134F8746F0E42A78a3182",
+        "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+        "registry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+        "intent": "reduceOnly",
+        "isBid": false,
+        "quantity": "13000",
+        "triggerPrice": "80976500000000000000000",
+        "triggerOperator": 0,
+        "stopOrderType": 1,
+        "limitPrice": "0",
+        "status": "pending",
+        "siblingId": "5091301364343836259423",
+        "observedBlock": "41611728"
+      },
+      {
+        "id": "5091301364343836259423",
+        "owner": "0xDb19191c710E9279612134F8746F0E42A78a3182",
+        "pool": "0x4181dd08e73bbcdd1ba3e615a18f6abd941b94c0",
+        "registry": "0x52E2ccebAeC9332672C247e9A90AA3d61FB615ef",
+        "intent": "reduceOnly",
+        "isBid": false,
+        "quantity": "13000",
+        "triggerPrice": "100000000000000000",
+        "triggerOperator": 1,
+        "stopOrderType": 1,
+        "limitPrice": "0",
+        "status": "pending",
+        "siblingId": "7581611814294625727582",
+        "observedBlock": "41611728"
+      }
+    ],
+    "scope": "knownIdsOnly",
+    "complete": false,
+    "readError": "Error: REGISTRY_CHANGED_DURING_DISCOVERY_RETRY_READONLY",
+    "capturedAt": "2026-11-04T17:57:07.889Z"
+  }
+}

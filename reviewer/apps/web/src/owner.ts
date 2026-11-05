@@ -1,0 +1,67 @@
+import {useEffect,useRef,useState} from 'react';
+import type {AccountModel,DeskResponse,Operation,RepairDraft} from '../../../packages/domain/types';
+import type {EvidenceObservation} from '../../../packages/domain/live-evidence';
+import type {EIP1193Provider} from 'viem';
+import {prepareControllerSafeCall,executeControllerSafeSl,type ControllerSafePlan,type UnsignedSafePlan} from '../../../packages/protocol/safe-plan';
+export type EvidenceCaptureKind=EvidenceObservation['kind'];
+export interface OwnerFlow {account:AccountModel|null;monitoredOwner:string|null;connectedSigner:string|null;eligible:boolean;safeSendEligible:boolean;controllerCall:ControllerSafePlan|null;reviewController:()=>Promise<void>;safePrepareEligible:boolean;safePlan:UnsignedSafePlan|null;controller:string;setController:(value:string)=>void;prepareSafePlan:()=>Promise<void>;prepareFreshSafePlan:(triggerPrice:string)=>Promise<void>;clearSafePlan:()=>void;captureEligible:boolean;busy:boolean;operation:Operation|null;message:string;evidenceMessage:string;capture:(input:{kind:EvidenceCaptureKind;openingTxHash?:string})=>Promise<void>;prepare:(input:{triggerPrice?:string;action?:'cancel-stop';stopId?:string})=>Promise<void>;send:()=>Promise<void>;reconcile:(id:string,recoveredHash?:string)=>Promise<void>;resume:(operation:Operation)=>void;cancelDraft:(id:string)=>Promise<void>}
+export function useOwner(data:DeskResponse|null,wallet:{account:string;chain:string}|null,reload:()=>Promise<void>):OwnerFlow {const [busy,setBusy]=useState(false);const lock=useRef(false);const [operation,setOperation]=useState<Operation|null>(null);const [safePlan,setSafePlan]=useState<UnsignedSafePlan|null>(null);const [controller,setControllerValue]=useState('');const planGeneration=useRef(0);const [message,setMessage]=useState('');const [evidenceMessage,setEvidenceMessage]=useState('');const account=data?.capabilities.account??null;const captureEligible=!!(data?.snapshot.mode==='live-owner'&&data.capabilities.mode==='live-owner'&&data.capabilities.ownerEnabled);const eligible=!!(captureEligible&&(!account||account.code==='empty')&&wallet?.chain&&Number.parseInt(wallet.chain,16)===50383&&wallet.account.toLowerCase()===data?.snapshot.position?.owner.toLowerCase());
+const safePrepareEligible=!!(captureEligible&&account?.code==='present'&&account.architecture==='official-safe'&&account.controlRead==='known'&&account.threshold==='1'&&account.owners?.length&&account.address.toLowerCase()===data?.capabilities.monitoredOwner?.toLowerCase());
+const [controllerCall,setControllerCall]=useState<ControllerSafePlan|null>(null);
+const safeSendEligible=!!(safePrepareEligible&&wallet?.chain&&Number.parseInt(wallet.chain,16)===50383&&wallet.account.toLowerCase()===controller.toLowerCase()&&wallet.account.toLowerCase()!==account?.address.toLowerCase()&&account?.owners?.some(owner=>owner.toLowerCase()===controller.toLowerCase()));
+async function reviewController(){await run(async()=>{
+ clearSafePlan();if(!safeSendEligible||!operation||operation.state!=='Draft'||operation.draft.action!=='create-sl')throw new Error('A fresh create-SL Draft and selected direct EOA controller are required.');
+ const generation=planGeneration.current,prepared=await prepareControllerSafeCall(operation.draft,controller,provider());
+ if(generation!==planGeneration.current)throw new Error('Controller review context changed. Review again.');
+ setSafePlan(prepared.unsigned);setControllerCall(prepared);setMessage('Direct-controller operation-0 call reviewed. Not executed. Outer transaction requires separate wallet confirmation; no G1 claim.');
+})}
+function clearSafePlan(){planGeneration.current++;setSafePlan(null);setControllerCall(null)}
+function setController(value:string){clearSafePlan();setControllerValue(value)}
+useEffect(()=>{clearSafePlan()},[data,wallet?.account,wallet?.chain]);
+useEffect(()=>{setOperation(previous=>previous?(data?.operations.find(op=>op.id===previous.id)??previous):null)},[data]);
+useEffect(()=>{if(!safePlan)return;const remaining=Date.parse(safePlan.expiresAt)-Date.now();if(remaining<=0){clearSafePlan();return}const timer=setTimeout(clearSafePlan,remaining);return()=>clearTimeout(timer)},[safePlan]);
+async function prepareFreshSafePlan(triggerPrice:string){await run(async()=>{
+ clearSafePlan();if(!safePrepareEligible)throw new Error('A known Safe in a local owner instance is required.');
+ if(!/^0x[0-9a-fA-F]{40}$/.test(controller)||!account?.owners?.some(owner=>owner.toLowerCase()===controller.toLowerCase()))throw new Error('Enter an exact observed controller member. Signing ability remains UNKNOWN.');
+ const generation=planGeneration.current;
+ try{const result=await post('/api/owner/safe-plan',{controller,triggerPrice,requestId:crypto.randomUUID()});setOperation(result.operation);
+ if(generation!==planGeneration.current)throw new Error('Plan context changed. Reserved draft remains available to discard.');
+ setSafePlan(result.plan);setMessage('Unsigned Safe plan reserved locally. Signing ability is UNKNOWN. No signature, broadcast, order or G1 verification.');
+ }catch(error){await reload().catch(()=>{});throw error}
+})}
+async function prepareSafePlan(){await run(async()=>{
+ clearSafePlan();if(!safePrepareEligible||!operation||operation.state!=='Draft'||operation.txHash)throw new Error('An unsigned stored Safe Draft is required.');
+ if(!/^0x[0-9a-fA-F]{40}$/.test(controller)||!account?.owners?.some(owner=>owner.toLowerCase()===controller.toLowerCase()))throw new Error('Enter an exact observed controller member. Signing ability remains UNKNOWN.');
+ const generation=planGeneration.current;const result=await post(`/api/operations/${encodeURIComponent(operation.id)}/safe-plan`,{controller});
+ if(generation!==planGeneration.current)throw new Error('Plan context changed. Prepare again.');
+ setSafePlan(result.plan);setMessage('Unsigned Safe plan only. Controller signing ability is UNKNOWN. No signature, broadcast, order or G1 verification.');
+})}
+async function post(path:string,body:unknown){const conf=await fetch('/api/config',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Config unavailable');return r.json()});if(conf.mode!=='live-owner'||!conf.ownerEnabled||typeof conf.csrfToken!=='string')throw new Error('Read-only instance');const res=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','x-dreamshield-token':conf.csrfToken},body:JSON.stringify(body)});const result=await res.json();if(!res.ok)throw new Error(result.error??'Owner request failed');return result}
+async function run(action:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(true);try{await action()}catch(e){setMessage((e as Error).message)}finally{lock.current=false;setBusy(false)}}
+async function capture(input:{kind:EvidenceCaptureKind;openingTxHash?:string}){if(lock.current)return;lock.current=true;setBusy(true);setEvidenceMessage('');try{if(!captureEligible)throw new Error('Evidence capture requires an enabled local owner instance.');const result=await post('/api/owner/evidence/capture',{kind:input.kind,...(input.kind==='opening'?{openingTxHash:input.openingTxHash}: {})}) as {observation:EvidenceObservation};if(!result.observation||typeof result.observation!=='object')throw new Error('Capture returned no observation. Export the scope history before capturing again.');setEvidenceMessage('Observation saved to durable owner/pool scope history. No wallet permissions, signatures, transaction preparation or sends were requested. Export to inspect the recorded evidence; capture does not establish current protection or clear unresolved operations.');await reload()}catch(e){setEvidenceMessage((e as Error).message)}finally{lock.current=false;setBusy(false)}}
+function provider(){const p=(window as Window&{ethereum?:EIP1193Provider}).ethereum;if(!p)throw new Error('Wallet unavailable');return p}
+async function prepare(input:{triggerPrice?:string;action?:'cancel-stop';stopId?:string}){await run(async()=>{if(!eligible&&!safePrepareEligible)throw new Error('A known Safe or exact EOA owner in a local owner instance is required.');clearSafePlan();const result=await post('/api/drafts',{...input,requestId:crypto.randomUUID()}) as {draft:RepairDraft;operation:Operation};setOperation(result.operation);setMessage('Fresh server draft reserved. No wallet signature requested. Review the exact action below.');await reload()})}
+async function send(){await run(async()=>{
+ if((!eligible&&!safeSendEligible)||!operation||operation.state!=='Draft'||Date.now()-Date.parse(operation.draft.createdAt)>=15000)throw new Error('A fresh owner draft is required.');
+ const p=provider(),safe=safeSendEligible&&!eligible,reviewed=controllerCall,generation=planGeneration.current;
+ if(safe&&(!reviewed||operation.draft.action!=='create-sl'))throw new Error('Review the exact direct-controller create-SL call first.');
+ const protocol=await import('../../../packages/protocol/index');let walletInvoked=false;let awaiting=false;
+ try{
+  if(!safe)await protocol.prepareOwnerCall(operation.draft,p).then(prepared=>{if(prepared.approvalRequired)throw new Error('Operator approval is missing. Review and authorize it separately in the official owner workflow; no automatic approval is sent.');});
+  if(generation!==planGeneration.current)throw new Error('Review context changed.');
+  const state=await post(`/api/operations/${encodeURIComponent(operation.id)}/state`,{state:'AwaitingSignature'});setOperation(state.operation);awaiting=true;
+  if(generation!==planGeneration.current)throw new Error('Review context changed. Reconcile the reserved operation.');
+  walletInvoked=true;const txHash=safe?await executeControllerSafeSl(operation.draft,reviewed!,p):await protocol.executeNativeSl(operation.draft,p);
+  setMessage(`Transaction hash: ${txHash}. Save it now. Read-back is still required.`);
+  try{const submitted=await post(`/api/operations/${encodeURIComponent(operation.id)}/state`,{state:'Submitted',txHash});setOperation(submitted.operation)}catch{
+   setOperation({...operation,state:'Unknown',txHash,error:'Submission journal acknowledgement uncertain'});
+   try{const unknown=await post(`/api/operations/${encodeURIComponent(operation.id)}/state`,{state:'Unknown',txHash,error:'Submission journal acknowledgement uncertain'});setOperation(unknown.operation)}catch{/* Keep the known hash in memory; never resend the transaction. */}
+   setMessage(`Transaction ${txHash} was returned, but journal confirmation failed. Do not retry. Save this hash and reconcile.`);
+  }
+  clearSafePlan();await reload();
+ }catch(e){const error=e as {code?:number;message?:string;cause?:{code?:number}};if(awaiting){const rejected=walletInvoked&&(error.code===4001||error.cause?.code===4001);try{const result=await post(`/api/operations/${encodeURIComponent(operation.id)}/state`,{state:rejected?'Cancelled':'Unknown',error:error.message??'Wallet outcome uncertain'});setOperation(result.operation)}catch{setMessage('Outcome and journal update uncertain. Do not retry. Inspect wallet activity and reconcile.');return}}throw e}
+})}
+function resume(op:Operation){if(lock.current)return;clearSafePlan();setOperation(op);setMessage(op.state==='Draft'?'Reserved draft loaded. Cancel an expired draft, then prepare a fresh one. No transaction was sent.':'Operation loaded for read-only reconciliation. Do not repeat the transaction.')}
+async function cancelDraft(id:string){await run(async()=>{if(!captureEligible)throw new Error('Local owner instance required.');clearSafePlan();const op=data?.operations.find(n=>n.id===id)??operation;if(!op||op.id!==id||op.state!=='Draft')throw new Error('Only an unsigned Draft can be cancelled here.');const result=await post(`/api/operations/${encodeURIComponent(id)}/discard-draft`,{});setOperation(result.operation);setMessage('Unsigned draft discarded. No chain transaction was sent. Recheck before preparing again.');await reload()})}
+async function reconcile(id:string,recoveredHash?:string){await run(async()=>{if(!eligible&&!safeSendEligible)throw new Error('Local owner instance and exact wallet identity required.');let op=operation?.id===id?operation:data?.operations.find(n=>n.id===id);if(!op||op.owner.toLowerCase()!==data?.capabilities.monitoredOwner?.toLowerCase()||(!eligible&&op.draft.action!=='create-sl'))throw new Error('Monitored operation scope required.');if(recoveredHash!==undefined){const recovered=await post(`/api/operations/${encodeURIComponent(id)}/recover-hash`,{txHash:recoveredHash,owner:op.owner,pool:op.pool});op=recovered.operation;setOperation(recovered.operation);}if(op?.state==='AwaitingSignature'||op?.state==='Unknown'){await post(`/api/operations/${encodeURIComponent(id)}/state`,{state:'Unknown',...(op.txHash?{txHash:op.txHash}:{}),error:'Owner requested reconciliation of uncertain outcome'}).catch(()=>{/* Reconcile endpoint will reject unsafe state; never send a transaction. */})}const result=await post(`/api/operations/${encodeURIComponent(id)}/reconcile`,{});setOperation(result.operation);setMessage(`Reconciliation: ${result.operation.state}. No new transaction was sent.`);await reload()})}
+return {account,monitoredOwner:data?.capabilities.monitoredOwner??null,connectedSigner:wallet?.account??null,eligible,safeSendEligible,controllerCall,reviewController,safePrepareEligible,safePlan,controller,setController,prepareSafePlan,prepareFreshSafePlan,clearSafePlan,captureEligible,busy,operation,message,evidenceMessage,capture,prepare,send,reconcile,resume,cancelDraft}}

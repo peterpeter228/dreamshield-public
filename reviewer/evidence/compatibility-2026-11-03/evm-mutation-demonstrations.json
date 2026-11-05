@@ -1,0 +1,16 @@
+[
+  {
+    "label": "selector-shift tamper",
+    "differentBytes": true,
+    "originalOutput": "0x00000000000000000000000000000000000000000000000000000000000000c1",
+    "modifiedOutput": "0xa619486e",
+    "sameBehavior": false
+  },
+  {
+    "label": "metadata-only tamper",
+    "differentBytes": true,
+    "originalOutput": "0x00000000000000000000000000000000000000000000000000000000000000c1",
+    "modifiedOutput": "0x00000000000000000000000000000000000000000000000000000000000000c1",
+    "sameBehavior": true
+  }
+]
