@@ -3,7 +3,7 @@ import { readSystemConfigWithWarmup } from './readonly-config.ts';
 import { sdkReadInfrastructure, type ReadonlyTransport } from './readonly-runtime.ts';
 import {transactionAbi} from './transaction-abi.js';
 import { SomniaMarkets, decodePerpStopOrderIds, PLACE_ORDER_FOR_SELECTOR, type PerpStopOrder, type PlacePerpStopOrderParams } from '@somnia-chain/markets-sdk';
-import { createPublicClient, createWalletClient, custom, defineChain, encodeFunctionData, getAddress, http, isAddress, parseEventLogs, type Address, type EIP1193Provider, type Hex } from 'viem';
+import { createPublicClient, createWalletClient, custom, defineChain, encodeFunctionData, getAddress, http, isAddress, parseEventLogs, type Address, type EIP1193Provider, type Hex, type PublicClient, type WalletClient } from 'viem';
 import { poolReadAbi,bankReadAbi,stopReadAbi,stopEventsAbi,factoryReadAbi,tokenReadAbi,operatorReadAbi } from './sdk-abi.ts';
 import type { NativeStopSnapshot, Operation, RepairDraft, Snapshot } from '../domain/types.ts';
 import type { OperationEvidenceProof } from '../domain/live-evidence.js';
@@ -139,15 +139,21 @@ export async function prepareOwnerCall(draft:RepairDraft,provider:EIP1193Provide
  const [account]=await wallet.getAddresses();
  if(!account||!same(account,draft.owner))throw new Error('OWNER_WALLET_REQUIRED');
  if(await wallet.getChainId()!==NETWORK.chainId)throw new Error('WRONG_WALLET_CHAIN');
+ return prepareStopCall(draft,account,httpClient(),wallet);
+}
+/** Shared unsigned validation/building; the supplied wallet is never asked to sign. */
+export async function prepareStopCall(draft:RepairDraft,account:Address,rpc:PublicClient,wallet:WalletClient,requireApproval=false) {
+ if(!same(account,draft.owner))throw new Error('OWNER_WALLET_REQUIRED');
+ if(await rpc.getChainId()!==NETWORK.chainId)throw new Error('WRONG_CHAIN');
  const reader=createProtocolReader();
  try {
-  const ownerCode=await httpClient().getCode({address:account});if(ownerCode&&ownerCode!=='0x')throw new Error('SMART_ACCOUNT_NOT_SUPPORTED');
+  const ownerCode=await rpc.getCode({address:account});if(ownerCode&&ownerCode!=='0x')throw new Error('SMART_ACCOUNT_NOT_SUPPORTED');
   const market=await reader.client.getPerpMarket(draft.pool);
   if(!market?.stopRegistry||!same(market.stopRegistry,draft.registry))throw new Error('REGISTRY_POOL_MISMATCH');
-  const rpc=httpClient();
   const currentPayment=await rpc.readContract({address:market.stopRegistry,abi:stopReadAbi,functionName:'somiPaymentPerOrder'});
   if(draft.action==='create-sl'&&currentPayment!==BigInt(draft.deposit))throw new Error('STOP_DEPOSIT_CHANGED');
   const approved=draft.action==='cancel-stop'||await rpc.readContract({address:market.poolAddress,abi:operatorReadAbi,functionName:'isOperatorAuthorized',args:[account,market.stopRegistry,PLACE_ORDER_FOR_SELECTOR]});
+  if(requireApproval&&!approved)throw new Error('OPERATOR_APPROVAL_REQUIRED');
   const exchange=new SomniaMarkets({...protocolConfig(),walletClient:wallet,account});
   try {
    const fresh=await readLiveSnapshot({owner:draft.owner,pool:draft.pool});
@@ -160,7 +166,7 @@ export async function prepareOwnerCall(draft:RepairDraft,provider:EIP1193Provide
    if(size===0n||draft.isBid!==(size<0n)||draft.triggerOperator!==(size>0n?1:0)||!fresh.market.feedValid||(size>0n?trigger>=mark:trigger<=mark))throw new Error('DRAFT_NO_LONGER_VALID');
    if(trigger%BigInt(fresh.market.tickSize)!==0n)throw new Error('OFF_GRID_TRIGGER');
    if(fresh.stops.some(s=>s.status==='pending'&&s.intent==='reduceOnly'&&s.isBid===draft.isBid&&s.triggerOperator===draft.triggerOperator))throw new Error('EXISTING_SL_REQUIRES_REVIEW');
-   const unsigned=await exchange.trader.buildPlacePerpStopOrder({...stopParams(draft),skipOperatorApproval:approved});
+   const unsigned=await exchange.trader.buildPlacePerpStopOrder({...stopParams(draft),somiPayment:currentPayment,skipOperatorApproval:approved});
    return {account,chainId:NETWORK.chainId,call:unsigned.stopOrder,approvalRequired:!approved,approval:unsigned.operatorApproval??null};
   }finally{await exchange.close();}
  }finally{await reader.close();}

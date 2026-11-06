@@ -18,7 +18,8 @@
     "verify:evidence": "node --import tsx scripts/verify-evidence.ts",
     "test:judge": "npm run typecheck && npm test && npm run build && npm run verify:evidence",
     "submission:check": "node --import tsx scripts/submission-check.ts",
-    "live:testnet": "node --import tsx scripts/live-testnet.ts"
+    "live:testnet": "node --import tsx scripts/live-testnet.ts",
+    "local:stop": "node --import tsx scripts/local-stop-cli.ts"
   },
   "dependencies": {
     "@somnia-chain/markets-sdk": "0.32.1",

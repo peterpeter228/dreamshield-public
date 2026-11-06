@@ -1,5 +1,7 @@
 # DreamShield
 
+> **Locally UNPUBLISHED composite candidate.** Actual public reviewer tip is `a37ad13967d582cda51ad8d9eea0730329127a3e`; it does not include local SDK `75c2ffb6f73899397f519ab33259fbda43892a09`. This projection contains four exact SDK code files and sanitized [LOCAL_SDK](docs/LOCAL_SDK.md). Current inventory: 105 reviewer text files (106 including root README), stored outside the payload; generated compatibility reference is additional. November 5 review PASS0 / 22 focused checks / parent94 are historical local-code proof, not this packaging smoke. New MVP NOT_SUBMITTED; G1 NOT_RUN.
+
 A native perps stop-protection desk for DreamDEX on Somnia Tokyo testnet (chain **50383**). For account owners checking whether native stop settings match their position after a position or stop changes.
 
 ## Current status
@@ -8,17 +10,17 @@ Open the [read-only reviewer demo](https://dreamshield-read-only-reviewer-demo-r
 
 DreamShield reads position/stop observations, explains coverage gaps, prepares unsigned native stop calls and reconciles canonical readback instead of treating a receipt as a fill. Public mode is read-only. Local owner mode has no server signing key.
 
-The browser also implements a narrow **direct EOA-controller → threshold-1 Safe → operation-0 create-SL** path using the pinned official accounts SDK. Preparation and explicit wallet execution are separate. The code path can be checked offline; the user's current controlling provider, eligible state and execution authorization are **not established**. DreamShield has never signed or broadcast a stop in the supplied evidence. **No DreamShield-originated real order, G1 or completed submission is claimed.**
+The browser also implements a narrow **direct EOA-controller → threshold-1 Safe → operation-0 create-SL** path using the pinned official accounts SDK. Preparation and explicit wallet execution are separate. The code path can be checked offline; the user's currently controlled direct-owner provider and eligible state are **not established**; existing bounded testnet consent does not establish either prerequisite. DreamShield has never signed or broadcast a stop in the supplied evidence. **No DreamShield-originated real order, G1 or completed submission is claimed.**
 
 The included November 4 real-chain recording is a historical known-ID supplement around a failed aggregate read. Coverage stays **UNKNOWN / READ_FAILED**, with a separate warning about the observed absolute **0.1 USDso** SL trigger. The opening was user-created through the official DreamDEX UI, not this app.
 
-For the API-free reviewer build, use the [static reviewer guide](docs/REVIEWER_STATIC.md). The normal local Express app instructions below remain unchanged; the legacy public repository root is not the current `reviewer/` package.
+For the API-free reviewer build, use the [static reviewer guide](docs/REVIEWER_STATIC.md). The normal local Express app instructions below remain unchanged; the actual public `reviewer/` package is published at `a37ad13967d582cda51ad8d9eea0730329127a3e`; this local composite is not published.
 
 Text-only publication projects the approved compatibility gzip into `scripts/materialize-reviewer-reference.mjs`. `npm test` (via `pretest`) and `npm run build:reviewer` restore `evidence/compatibility-2026-11-03/evm-results.json.gz`: exactly **6680 bytes**, SHA-256 **2ae79da9d2e8ad7e50f4b967043f970a664a350c28f3fb48c01640c373077e5a**. The Node-built-in-only helper checks embedded bytes, leaves an identical existing reference untouched and refuses to overwrite a different file. No postinstall hook, dependencies or network scripts; the original source archive/private gzip and normal app behavior are unchanged. See the static guide for inventory scopes.
 
 ## Run locally
 
-Use Node **24.22.1**, npm and the committed `package-lock.json`. Extract the supplied source archive into an empty directory; the older public repository is not a claim of current-source synchronization. No wallet, API key or secret is required for replay.
+Use Node **24.22.1**, npm and the committed `package-lock.json`. Extract this composite archive into an empty directory and enter `reviewer/`. The actual public clone at `a37ad13967d582cda51ad8d9eea0730329127a3e` contains the baseline reviewer, not the local SDK. Generic `npm ci` instructions below were not exercised by this closeout; extraction validation reused the existing exact-lock dependency installation. No wallet, API key or secret is required for replay.
 
 ```sh
 npm ci
@@ -82,7 +84,7 @@ After a page reload, unresolved Safe operations remain locked. In the local live
 - The actual operation-1 opening is unsupported by the strict operation-0 verifier. No MultiSend support or relaxed attestation was added.
 - No supplied evidence proves the current injected provider controls a historical direct EOA owner on chain50383. Historical owners/code are not present signing authority.
 - Actual execution also needs independently eligible fresh state and separately bounded exact payload/account/provider authorization. The captured position already has an SL: do not create another, cancel it or open a position to manufacture eligibility.
-- Public reviewer source and the read-only demo are available. Browser QA remains separate from offline tests and HTTP smoke. These artifacts do not establish a live wallet connection, a DreamShield-originated order, G1, or a completed submission.
+- Public baseline reviewer source and the read-only demo are available; this local SDK composite remains unpublished. Browser QA remains separate from offline tests and HTTP smoke. These artifacts do not establish a live wallet connection, a DreamShield-originated order, G1, or a completed submission.
 - Testnet only. No mainnet, automated trading strategy, custody, guaranteed returns or formal audit claim.
 
 ## X posts and submission
@@ -95,7 +97,7 @@ After a page reload, unresolved Safe operations remain locked. In the local live
 
 The [official bounty](https://dorahacks.io/hackathon/dreamdex-perps-bounty/detail) requires a repository, README what/who/run, real Tokyo perps orders and 2–3 genuine posts tagging `@DreamDEXSomnia`. Current corroborated deadline: **2026-11-15T14:30:00Z**. The user published the three posts linked above. Rio checked their public pages and approved content. Hunter maintains the business packet; this documentation update sends no posts.
 
-Public current-source access, the read-only demo and the three genuine X links are available. A real DreamShield-issued order/readback, G1 and an actual Build receipt remain unmet or unverified. Do not label official-UI reference trades as DreamShield execution. No trading-volume, Arena rank or mainnet funding requirement is inferred for the builder MVP.
+Public baseline source at `a37ad13967d582cda51ad8d9eea0730329127a3e`, the read-only demo and the three genuine X links are available; the local SDK is not public. A real DreamShield-issued order/readback, G1 and an actual Build receipt remain unmet or unverified. Do not label official-UI reference trades as DreamShield execution. No trading-volume, Arena rank or mainnet funding requirement is inferred for the builder MVP.
 
 ```sh
 npm run verify:evidence -- evidence/manifest.json --submission evidence/submission.json
@@ -109,3 +111,7 @@ Strict checks remain **BLOCKED / exit 2**. File-only checksum/schema checks do n
 `packages/domain`: pure bigint coverage, known-order risk and operation rules. `packages/protocol`: pinned Markets SDK 0.32.1, accounts SDK 0.4.0 and strict account/readback adapters. `packages/storage`: durable SQLite journal. `apps/server`: mode/origin boundaries and bound evidence exports. `apps/web`: protection desk and explicit browser owner flow. `fixtures`: labelled synthetic and historical data. `evidence/recorded`: sanitized frozen provenance.
 
 Dependencies/ABIs follow the committed lockfile. [Third-party notices](docs/THIRD_PARTY_NOTICES.md). Independent historical reviews are not a formal audit or current live acceptance.
+
+## Closeout evidence boundary
+
+November 5 complete aggregates observed F36 NO_POSITION and Wallet1 NEEDS_REVIEW (existing absolute 0.1 USDso SL); all 15-second views expired. This does not replace the byte-identical November 4 UNKNOWN / READ_FAILED recording. Feedback 50928 Under Review is independent of the new MVP, which remains NOT_SUBMITTED with no Build ID. No extra posts or portal actions are requested.

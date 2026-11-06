@@ -7,8 +7,8 @@ This is the existing React protection view and pure domain evaluator with packag
 Use Node **24.22.1** and the committed exact lockfile:
 
 ```sh
-git clone --branch review/dreamshield-20261105 --single-branch https://github.com/peterpeter228/dreamshield-public.git
-cd dreamshield-public/reviewer
+# Extract the local composite archive into an empty directory
+cd reviewer
 npm ci
 npm run build:reviewer
 python3 -m http.server 4312 --bind 127.0.0.1 -d dist-reviewer/web
@@ -22,7 +22,7 @@ The Git-published reviewer source excludes the binary `evidence/compatibility-20
 
 `npm run build:reviewer` first runs that Node-built-in-only helper; `npm test` runs the same helper via `pretest`. Paths resolve relative to the helper's `import.meta.url`, not the shell directory. Embedded length/hash validation precedes writing. Missing reference: create exclusively; identical reference: no-op; different existing reference: fail without overwrite. `npm ci` does not materialize it: no postinstall hook, new dependency or network script is added. The original private source gzip and initial source archive remain unchanged; normal app/build commands retain their behavior.
 
-The external source inventory counts **101 Git-published UTF-8 text files**, including this helper but excluding the generated gzip. After materialization the reviewer directory has **102 source/reference files** (101 text + one original-byte reference); generated build output and installed dependencies are not source inventory entries. The separate hosting inventory remains five files and contains neither this helper nor the compatibility gzip.
+The frozen public baseline inventory counts **101 Git-published UTF-8 text files**, including this helper but excluding the generated gzip. This locally UNPUBLISHED composite instead has **105 reviewer text files** (106 payload files including root README); after materialization: **106 reviewer source/reference files**. Generated build output and installed dependencies are not source inventory entries. The separate hosting inventory remains five files and contains neither this helper nor the compatibility gzip.
 
 ## Inspect
 
@@ -40,3 +40,5 @@ No DreamShield-originated real order, G1, completed submission, hosted deploymen
 ## Source identity
 
 The publication branch is [review/dreamshield-20261105](https://github.com/peterpeter228/dreamshield-public/tree/review/dreamshield-20261105/reviewer). The publication receipt supplies the exact SHA-256 of the sorted reviewer source inventory (relative paths, byte counts and file hashes). That content digest identifies this staged version; no unpublished commit SHA or hosted URL is invented. The legacy repository root is not this reviewer package.
+
+This guide accompanies an unpublished composite, not a new public commit. Actual published baseline tip is `a37ad13967d582cda51ad8d9eea0730329127a3e`; local SDK code bytes are from `75c2ffb6f73899397f519ab33259fbda43892a09`. Generic installation instructions are not an npm-ci/fresh-clone validation claim.
