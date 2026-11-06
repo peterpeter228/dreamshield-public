@@ -1,6 +1,6 @@
-# Local SDK — UNPUBLISHED composite candidate
+# Local SDK published composite source
 
-The four code files are exact bytes from local commit `75c2ffb6f73899397f519ab33259fbda43892a09`. Public commit `a37ad13967d582cda51ad8d9eea0730329127a3e` does not include this SDK. No execution authority is added by this archive.
+Reviewed EOA SDK source from local commit `75c2ffb6f73899397f519ab33259fbda43892a09` was incorporated into public composite `78c94e6347bb3009daabd6a03f3660d5065bd2a3` (parent `a37ad13967d582cda51ad8d9eea0730329127a3e`). The earlier public baseline did not include this SDK. Frozen archive/pre-publication metadata retain their historical unpublished labels and hashes. Publication adds no execution authority.
 
 ## Nonextension local SL runner — offline verified, real G1 NOT_RUN
 
